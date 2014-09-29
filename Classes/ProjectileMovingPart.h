@@ -35,7 +35,7 @@ protected:
     CC_SYNTHESIZE(Vec2, m_position, Position);                  // 飞行器当前坐标
     CC_SYNTHESIZE(float, m_rate, Rate);                         // 速度标量
     CC_SYNTHESIZE(Vec2, m_targetPos, TargetPos);                // 目标坐标
-    Vec2    m_velocity;                                         // 速度矢量
+    CC_SYNTHESIZE_READONLY(Vec2, m_velocity, Velocity);         // 速度矢量
 };
 
 #endif

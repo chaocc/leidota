@@ -165,6 +165,9 @@
     <ClCompile Include="..\Classes\ProjectileMonomerAttack.cpp">
       <Filter>Classes\weapons &amp; projectiles\projectiles</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\ProjectileTypeOneShapePart.cpp">
+      <Filter>Classes\weapons &amp; projectiles\projectiles</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">

@@ -27,8 +27,54 @@ Projectile* Projectile::create( GameCharacterAttribute& att, ProjectileTypeEnum 
             pRet->getMovingPart()->setRate(1800);
 
             // @_@ 装配显示部分
-            pRet->setShapePart(new ProjectileTypeOneShapePart("xuejingling-texiao.ExportJson", 
-                "xuejingling-texiao", "atk"));
+            pRet->setShapePart(new ProjectileTypeOneShapePart("xuejingling-texiao", "atk"));
+
+            break;
+        }
+
+    case PROJECTILE_TYPE_ZEUS_FLY_HAMMER:                // 飞锤
+        {
+            // 单体攻击
+            pRet    =   new ProjectileMonomerAttack(att, (int)extraInfo);
+
+            pRet->setMovingPart(new ProjectileTrackMovingPart((int)extraInfo));
+            pRet->getMovingPart()->setRate(1000);
+
+            pRet->setShapePart(new ProjectileTypeOneShapePart("zhousi-wuqi", "atk3", true));
+
+            break;
+        }
+
+    case PROJECTILE_TYPE_PIG_FLY_KNIFE:                 // 野猪飞刀
+        {
+            pRet    =   new ProjectileMonomerAttack(att, (int)extraInfo);
+
+            pRet->setMovingPart(new ProjectileTrackMovingPart((int)extraInfo));
+            pRet->getMovingPart()->setRate(1000);
+
+            pRet->setShapePart(new ProjectileTypeOneShapePart("Pig-wuqi", "atk2", true));
+
+            break;
+        }
+
+    case PROJECTILE_TYPE_NIU_FLY_SHIELD:                // 牛的飞盾
+        {
+            pRet    =   new ProjectileMonomerAttack(att, (int)extraInfo);
+
+            pRet->setMovingPart(new ProjectileTrackMovingPart((int)extraInfo));
+            
+            pRet->setShapePart(new ProjectileTypeOneShapePart("Niu-wuqi", "atk2", true));
+
+            break;
+        }
+
+    case PROJECTILE_TYPE_THEIF_FLY_DAGGER:              // 刺客的飞匕首
+        {
+            pRet    =   new ProjectileMonomerAttack(att, (int)extraInfo);
+
+            pRet->setMovingPart(new ProjectileTrackMovingPart((int)extraInfo));
+
+            pRet->setShapePart(new ProjectileTypeOneShapePart("Theif-wuqi", "atk2", true));
 
             break;
         }
@@ -76,4 +122,10 @@ void Projectile::updateMovement( float dm )
     // 使用推进器更新当前的坐标
     m_movingPart->updateMovement(dm);
     m_shapePart->setPosition(m_movingPart->getPosition());
+
+    // 判断方向
+    if (m_movingPart->getVelocity().x < 0)
+    {
+        m_shapePart->setScaleX(-1);
+    }
 }

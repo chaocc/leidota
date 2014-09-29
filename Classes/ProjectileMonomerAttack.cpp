@@ -38,7 +38,7 @@ void ProjectileMonomerAttack::update( float dm )
     else
     {
         // 当动画播放完毕后就
-        if (!m_shapePart->isPlaying())
+        if (m_shapePart->canBeDestroy())
         {
             updateOff();
         }

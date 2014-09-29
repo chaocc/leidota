@@ -28,9 +28,9 @@ public:
     virtual void onImpact() = 0;
 
     /**
-    *	当前飞行器正在播放动画吗？ 
+    *	是否可以被清除掉，@_@这个和动画还是有点关系的
     */
-    virtual bool isPlaying() = 0;
+    virtual bool canBeDestroy() = 0;
 };
 
 #endif

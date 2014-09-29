@@ -155,6 +155,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\Projectile.cpp" />
     <ClCompile Include="..\Classes\ProjectileMonomerAttack.cpp" />
     <ClCompile Include="..\Classes\ProjectileManager.cpp" />
+    <ClCompile Include="..\Classes\ProjectileTypeOneShapePart.cpp" />
     <ClCompile Include="..\Classes\SteeringBehaviors.cpp" />
     <ClCompile Include="..\Classes\TeamManager.cpp" />
     <ClCompile Include="..\Classes\UIView.cpp" />

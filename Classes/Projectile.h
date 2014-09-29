@@ -15,6 +15,10 @@ using namespace cocos2d;
 enum ProjectileTypeEnum
 {
     PROJECTILE_TYPE_GALAXO_BALL,                // 闪电球
+    PROJECTILE_TYPE_ZEUS_FLY_HAMMER,            // 宙斯的飞锤
+    PROJECTILE_TYPE_PIG_FLY_KNIFE,              // 野猪飞刀
+    PROJECTILE_TYPE_NIU_FLY_SHIELD,             // 牛的飞刀
+    PROJECTILE_TYPE_THEIF_FLY_DAGGER,           // 刺客飞匕首
 };
 
 /**
@@ -46,7 +50,6 @@ public:
     /**
     *	返回显示节点，这个将被加入地图的显示列表 
     */
-    // virtual Node* getShape() = 0;
     CC_SYNTHESIZE(ProjectileShapePart*, m_shapePart, ShapePart);
 
     /**

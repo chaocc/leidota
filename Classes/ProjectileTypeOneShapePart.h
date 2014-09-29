@@ -19,9 +19,9 @@ public:
     /**
     *	 动画文件、动画名称、动作名称、是否在开始发射的时候就播放动画还是撞击的时候播放动画
     */
-    ProjectileTypeOneShapePart(string armatureFile, string armatureName, string actionName, bool playOnLaunch = false)
+    ProjectileTypeOneShapePart(string armatureName, string actionName, bool playOnLaunch = false)
     {
-        ArmatureDataManager::getInstance()->addArmatureFileInfo(armatureFile);
+        ArmatureDataManager::getInstance()->addArmatureFileInfo(m_shapeDir + armatureName + ".ExportJson");
         m_armature      =   Armature::create(armatureName);
         m_actionName    =   actionName;
         m_playOnLaunch  =   playOnLaunch;
@@ -44,15 +44,18 @@ public:
         }
     }
 
-    virtual bool isPlaying() override
+    virtual bool canBeDestroy() override
     {
-        return m_armature->getAnimation()->isPlaying();
+        return (!m_playOnLaunch && !m_armature->getAnimation()->isPlaying()) || 
+            (m_playOnLaunch);
     }
 
 protected:
     Armature*       m_armature;             // 对应的动画
     string          m_actionName;           // 动作名称
     bool            m_playOnLaunch;         // 是否在发射的时候播放动画
+
+    static string   m_shapeDir;             // 飞行道具外形的目录
 };
 
 #endif

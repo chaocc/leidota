@@ -32,6 +32,9 @@ GameCharacter* GameCharacter::create(int id)
 
             // 普通近距离攻击能力
             tmpRet->getWeaponControlSystem()->addWeapon(new NormalCloseRangeWeapon(tmpRet));
+            // 飞锤攻击的普通远距离攻击
+            tmpRet->getWeaponControlSystem()->addWeapon(new NormalLongRangeWeapon(tmpRet, 
+                PROJECTILE_TYPE_ZEUS_FLY_HAMMER, 600, "atk3"));
 
             break;
         }
@@ -72,6 +75,9 @@ GameCharacter* GameCharacter::create(int id)
 
             // 普通近程攻击能力
             tmpRet->getWeaponControlSystem()->addWeapon(new NormalCloseRangeWeapon(tmpRet));
+            // 普通远距离攻击能力
+            tmpRet->getWeaponControlSystem()->addWeapon(new NormalLongRangeWeapon(tmpRet, PROJECTILE_TYPE_PIG_FLY_KNIFE, 
+                600, "atk2"));
 
             break;
         }
@@ -85,6 +91,9 @@ GameCharacter* GameCharacter::create(int id)
 
             // 普通近程攻击能力
             tmpRet->getWeaponControlSystem()->addWeapon(new NormalCloseRangeWeapon(tmpRet));
+            // 普通远距离攻击能力
+            tmpRet->getWeaponControlSystem()->addWeapon(new NormalLongRangeWeapon(tmpRet, PROJECTILE_TYPE_NIU_FLY_SHIELD,
+                600, "atk2"));
 
             break;
         }
@@ -98,6 +107,9 @@ GameCharacter* GameCharacter::create(int id)
 
             // 普通进程攻击能力
             tmpRet->getWeaponControlSystem()->addWeapon(new NormalCloseRangeWeapon(tmpRet));
+            // 普通远距离攻击能力
+            tmpRet->getWeaponControlSystem()->addWeapon(new NormalLongRangeWeapon(tmpRet, PROJECTILE_TYPE_THEIF_FLY_DAGGER,
+                500, "atk2"));
 
             break;
         }
