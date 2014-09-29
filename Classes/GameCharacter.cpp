@@ -41,7 +41,7 @@ GameCharacter* GameCharacter::create(int id)
             tmpRet->m_shape         =   GameCharacterShape::create("xuejingling-qian");
             tmpRet->m_shape->retain();
 
-            tmpRet->m_attribute     =   GameCharacterAttribute(100, 40, 10, 90, 700);
+            tmpRet->m_attribute     =   GameCharacterAttribute(800, 100, 10, 90, 700);
 
             // 普通远程攻击，丢出去的是闪电球
             tmpRet->getWeaponControlSystem()->addWeapon(new NormalLongRangeWeapon(tmpRet, PROJECTILE_TYPE_GALAXO_BALL, 

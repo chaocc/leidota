@@ -3,6 +3,8 @@
 
 #include "cocos2d.h"
 #include "GameCharacter.h"
+#include "ProjectileMovingPart.h"
+#include "ProjectileShapePart.h"
 
 using namespace cocos2d;
 
@@ -37,24 +39,20 @@ public:
     static Projectile* create(GameCharacterAttribute& att, ProjectileTypeEnum type, void* extraData);
 
     /**
-    *	设置子弹的初始方向，这里会根据初始方向计算初始速度
+    *	在此处完成位移更新，不再使用原来的继承方式，而是采用
     */
-    void setOrientation(Vec2 orientation);
+    void updateMovement(float dm);
 
     /**
     *	返回显示节点，这个将被加入地图的显示列表 
     */
-    virtual Node* getShape() = 0;
+    // virtual Node* getShape() = 0;
+    CC_SYNTHESIZE(ProjectileShapePart*, m_shapePart, ShapePart);
 
     /**
     *	在此处完成除了位移更新以外的其他更新
     */
     virtual void update(float dm) = 0;
-
-    /**
-    *	在此处完成位移更新 
-    */
-    virtual void updateMovement(float dm) = 0;
 
 protected:
     /**
@@ -63,14 +61,12 @@ protected:
     */
     Projectile(GameCharacterAttribute& att);
 
-    virtual ~Projectile() {}
+    virtual ~Projectile();
 
     /**
-    *	关于位移的，在子弹创建好后，需要
+    *	子弹推进器，用来管理子弹的移动部分
     */
-    CC_SYNTHESIZE(Vec2, m_position, Position);                 // 坐标
-    Vec2    m_velocity;                                        // 速度矢量
-    float   m_rate;                                            // 速度标量
+    CC_SYNTHESIZE(ProjectileMovingPart*, m_movingPart, MovingPart);
 
     /**
     *	关于子弹的状态 

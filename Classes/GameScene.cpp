@@ -33,13 +33,13 @@ bool GameScene::init()
     auto tmpRole3   =   GameCharacter::create(1);
     tmpRole3->setType(GAME_ENTITY_TYPE_PLAYER_CHARACTER);
 
-    auto tmpRole4   =   GameCharacter::create(6);
+    auto tmpRole4   =   GameCharacter::create(2);
     tmpRole4->setType(GAME_ENTITY_TYPE_PLAYER_CHARACTER);
 
     auto tmpRole5   =   GameCharacter::create(2);
     tmpRole5->setType(GAME_ENTITY_TYPE_PLAYER_CHARACTER);
 
-    auto tmpRole6   =   GameCharacter::create(1);
+    auto tmpRole6   =   GameCharacter::create(2);
     tmpRole6->setType(GAME_ENTITY_TYPE_PLAYER_CHARACTER);
 
     auto tmpTeam1   =   GameTeam::create(GAME_TEAM_TYPE_PLAYER);
@@ -109,10 +109,10 @@ bool GameScene::init()
     auto tmpRole16   =   GameCharacter::create(5);
     tmpRole16->setType(GAME_ENTITY_TYPE_ENEMY_CHARACTER);
 
-    auto tmpRole17   =   GameCharacter::create(2);
+    auto tmpRole17   =   GameCharacter::create(1);
     tmpRole17->setType(GAME_ENTITY_TYPE_ENEMY_CHARACTER);
 
-    auto tmpRole18   =   GameCharacter::create(2);
+    auto tmpRole18   =   GameCharacter::create(1);
     tmpRole18->setType(GAME_ENTITY_TYPE_ENEMY_CHARACTER);
 
     auto tmpTeam3   =   GameTeam::create(GAME_TEAM_TYPE_ENEMY);

@@ -52,13 +52,13 @@ void NormalLongRangeWeapon::onLaunchProjectile( string evt )
             m_projectileType, (void*)m_targetId);
         
         // 放置初始位置
-        tmpProjectile->setPosition(m_pOwner->getShape()->getCenterPos());
+        tmpProjectile->getMovingPart()->setPosition(m_pOwner->getShape()->getCenterPos());
 
         // 设置初始速度，这里应该只是设置方向
         auto tmpCharacter   =   dynamic_cast<GameCharacter*>(EntityMgr->getEntityFromID(m_targetId));
         auto tmpTargetPos   =   tmpCharacter->getShape()->getCenterPos();
         auto tmpOwnerPos    =   m_pOwner->getShape()->getCenterPos();
-        tmpProjectile->setOrientation((tmpTargetPos - tmpOwnerPos).getNormalized());
+        tmpProjectile->getMovingPart()->setOrientation((tmpTargetPos - tmpOwnerPos).getNormalized());
     }
 }
 

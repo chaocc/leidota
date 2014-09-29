@@ -92,5 +92,5 @@ void GameMap::placeGameCharacter( GameCharacter* player )
 
 void GameMap::addProjectile(Projectile* aProjectile)
 {
-    m_playerLayer->addChild(aProjectile->getShape());
+    m_playerLayer->addChild(aProjectile->getShapePart());
 }

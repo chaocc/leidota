@@ -156,14 +156,14 @@
     <ClCompile Include="..\Classes\Projectile.cpp">
       <Filter>Classes\weapons &amp; projectiles\projectiles</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\ProjectileGalaxoBall.cpp">
-      <Filter>Classes\weapons &amp; projectiles\projectiles</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\ProjectileManager.cpp">
       <Filter>Classes\weapons &amp; projectiles\projectiles</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\NormalLongRangeWeapon.cpp">
       <Filter>Classes\weapons &amp; projectiles\weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ProjectileMonomerAttack.cpp">
+      <Filter>Classes\weapons &amp; projectiles\projectiles</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -296,14 +296,26 @@
     <ClInclude Include="..\Classes\Projectile.h">
       <Filter>Classes\weapons &amp; projectiles\projectiles</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\ProjectileGalaxoBall.h">
-      <Filter>Classes\weapons &amp; projectiles\projectiles</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\ProjectileManager.h">
       <Filter>Classes\weapons &amp; projectiles\projectiles</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GoalTeamGuard.h">
       <Filter>Classes\ai\goal\composite\team</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ProjectileMovingPart.h">
+      <Filter>Classes\weapons &amp; projectiles\projectiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ProjectileTrackMovingPart.h">
+      <Filter>Classes\weapons &amp; projectiles\projectiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ProjectileShapePart.h">
+      <Filter>Classes\weapons &amp; projectiles\projectiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ProjectileTypeOneShapePart.h">
+      <Filter>Classes\weapons &amp; projectiles\projectiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ProjectileMonomerAttack.h">
+      <Filter>Classes\weapons &amp; projectiles\projectiles</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
