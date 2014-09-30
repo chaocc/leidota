@@ -199,3 +199,8 @@ std::string GameCharacterShape::getCurrentAnimationName()
     }
     return _currentAnimationName;
 }
+
+cocos2d::Vec2 GameCharacterShape::getCenterPosLocation()
+{
+    return getCenterPos() - this->getPosition();
+}

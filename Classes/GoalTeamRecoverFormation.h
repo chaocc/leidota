@@ -13,9 +13,9 @@
 class GoalTeamRecoverFormation : public Goal<GameTeam>
 {
 public:
-    GoalTeamRecoverFormation(GameTeam* owner, float timeOut = 4):Goal<GameTeam>(owner)
+    GoalTeamRecoverFormation(GameTeam* owner):Goal<GameTeam>(owner)
     {
-        m_timeOut   =   timeOut;
+        
     }
 
 protected:
@@ -40,7 +40,6 @@ protected:
 
 private:
     double          m_activeTime;
-    float           m_timeOut;
 };
 
 #endif

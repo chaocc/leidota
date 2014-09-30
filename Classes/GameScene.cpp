@@ -117,7 +117,7 @@ bool GameScene::init()
 
     auto tmpTeam3   =   GameTeam::create(GAME_TEAM_TYPE_ENEMY);
     tmpTeam3->getTeamFormation().setFormationType(Formation::FORMATION_TYPE_LEFT);
-    tmpTeam3->getTeamFormation().setFormationAnchor(Vec2(2800, 300));
+    tmpTeam3->getTeamFormation().setFormationAnchor(Vec2(2500, 300));
     m_map->placeGameCharacter(tmpRole13);
     m_map->placeGameCharacter(tmpRole14);
     m_map->placeGameCharacter(tmpRole15);
@@ -131,16 +131,51 @@ bool GameScene::init()
     tmpTeam3->addMember(tmpRole17, 7);
     tmpTeam3->addMember(tmpRole18, 8);
 
+    /**
+    *	第四队 
+    */
+    auto tmpRole19   =   GameCharacter::create(4);
+    tmpRole19->setType(GAME_ENTITY_TYPE_ENEMY_CHARACTER);
+
+    auto tmpRole20   =   GameCharacter::create(4);
+    tmpRole20->setType(GAME_ENTITY_TYPE_ENEMY_CHARACTER);
+
+    auto tmpRole21   =   GameCharacter::create(4);
+    tmpRole21->setType(GAME_ENTITY_TYPE_ENEMY_CHARACTER);
+
+    auto tmpRole22   =   GameCharacter::create(4);
+    tmpRole22->setType(GAME_ENTITY_TYPE_ENEMY_CHARACTER);
+
+    auto tmpRole23   =   GameCharacter::create(3);
+    tmpRole23->setType(GAME_ENTITY_TYPE_ENEMY_CHARACTER);
+
+    auto tmpTeam4   =   GameTeam::create(GAME_TEAM_TYPE_ENEMY);
+    tmpTeam4->getTeamFormation().setFormationType(Formation::FORMATION_TYPE_LEFT);
+    tmpTeam4->getTeamFormation().setFormationAnchor(Vec2(3500, 300));
+    m_map->placeGameCharacter(tmpRole19);
+    m_map->placeGameCharacter(tmpRole20);
+    m_map->placeGameCharacter(tmpRole21);
+    m_map->placeGameCharacter(tmpRole22);
+    m_map->placeGameCharacter(tmpRole23);
+    tmpTeam4->addMember(tmpRole19, 0);
+    tmpTeam4->addMember(tmpRole20, 2);
+    tmpTeam4->addMember(tmpRole21, 6);
+    tmpTeam4->addMember(tmpRole22, 8);
+    tmpTeam4->addMember(tmpRole23, 4);
+
     // 队伍恢复阵型
-    tmpTeam1->getTeamBrain()->addSubgoal(new GoalTeamRecoverFormation(tmpTeam1, 12));
-    tmpTeam2->getTeamBrain()->addSubgoal(new GoalTeamRecoverFormation(tmpTeam2, 15));
-    tmpTeam3->getTeamBrain()->addSubgoal(new GoalTeamRecoverFormation(tmpTeam3, 35));
+    tmpTeam1->getTeamBrain()->addSubgoal(new GoalTeamRecoverFormation(tmpTeam1));
+    tmpTeam2->getTeamBrain()->addSubgoal(new GoalTeamRecoverFormation(tmpTeam2));
+    tmpTeam3->getTeamBrain()->addSubgoal(new GoalTeamRecoverFormation(tmpTeam3));
+    tmpTeam4->getTeamBrain()->addSubgoal(new GoalTeamRecoverFormation(tmpTeam4));
 
     // 设置队伍级别目标
     tmpTeam1->getTeamBrain()->addSubgoal(new GoalTeamAttackTargetTeam(tmpTeam1, tmpTeam2));
     tmpTeam1->getTeamBrain()->addSubgoal(new GoalTeamAttackTargetTeam(tmpTeam1, tmpTeam3));
+    tmpTeam1->getTeamBrain()->addSubgoal(new GoalTeamAttackTargetTeam(tmpTeam1, tmpTeam4));
     tmpTeam2->getTeamBrain()->addSubgoal(new GoalTeamGuard(tmpTeam2));
     tmpTeam3->getTeamBrain()->addSubgoal(new GoalTeamGuard(tmpTeam3));
+    tmpTeam4->getTeamBrain()->addSubgoal(new GoalTeamGuard(tmpTeam4));
 
     m_mainModel =   new GameMainModel();
 

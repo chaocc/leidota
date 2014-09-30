@@ -10,6 +10,7 @@ enum WeaponTypeEnum
 {
     NORMAL_CLOSE_RANGE_WEAPON,          // 普通近战
     NORMAL_LONG_RANGE_WEAPON,           // 普通远程
+    SPIRIT_FREEZE_SKILL_WEAPON,         // 雪精灵的冰冻攻击
 };
 
 /**

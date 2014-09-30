@@ -67,6 +67,11 @@ public:
     Vec2 getCenterPos();
 
     /**
+    *	返回该角色的中心坐标，这里是本地坐标 
+    */
+    Vec2 getCenterPosLocation();
+
+    /**
     * 当想让该角色身上出现数字飘动的时候调用的接口 
     */
     void floatNumber(int num, FloatNumberTypeEnum type);

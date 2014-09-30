@@ -59,7 +59,7 @@ GameCharacter* GameCharacter::create(int id)
             tmpRet->m_shape         =   GameCharacterShape::create("Aer");
             tmpRet->m_shape->retain();
 
-            tmpRet->m_attribute     =   GameCharacterAttribute(900, 30, 50, 100);
+            tmpRet->m_attribute     =   GameCharacterAttribute(900, 1, 50, 120);
 
             // 普通近程攻击能力
             tmpRet->getWeaponControlSystem()->addWeapon(new NormalCloseRangeWeapon(tmpRet));

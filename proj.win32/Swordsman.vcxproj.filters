@@ -332,6 +332,9 @@
     <ClInclude Include="..\Classes\GameCharacterState.h">
       <Filter>Classes\state</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\SpiritFreezeSkillWeapon.h">
+      <Filter>Classes\weapons &amp; projectiles\weapons</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">
