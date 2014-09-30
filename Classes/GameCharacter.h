@@ -10,6 +10,8 @@
 #include "MovingEntity.h"
 #include "SteeringBehaviors.h"
 
+#include "StateMachine.h"
+
 using namespace std;
 
 class GameTeam;
@@ -20,6 +22,9 @@ class GoalCharacterThink;
 */
 class GameCharacter : public BaseGameEntity
 {
+private:
+    typedef StateMachine<GameCharacter> CharacterStateMachine;  
+
 public:
     /**
     	 @_@ 主要是创建一个角色需要的参数太多，以后应该是从配置表中获取，
@@ -57,6 +62,9 @@ public:
     * 有关当前目标的判断，比如在队伍分配目标的时候会用到这个接口
     */
     bool hasGoal();
+
+    // 返回状态机
+    CharacterStateMachine* getFSM() { return m_stateMachine; }
 
     // 设置和返回该角色所属的队伍 
     CC_SYNTHESIZE(GameTeam*, m_team, Team);
@@ -96,8 +104,9 @@ protected:
     MovingEntity                    m_movingEntity;             // 用来代表角色移动的对象
     SteeringBehaviors*              m_steeringBehaviors;        // 驱动力产生对象
 
-    double                          m_lastUpdateTime;           // 最近一次调用update的时间
     GameCharacterStateEnum          m_state;                    // 角色当前当前状态
+ 
+    CharacterStateMachine*   m_stateMachine;                    // 角色的状态机
 };
 
 #endif

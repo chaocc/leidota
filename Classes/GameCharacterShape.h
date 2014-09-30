@@ -39,15 +39,6 @@ public:
     };
 
     /**
-    * 被选中的时候显示的光圈的类型 
-    */
-    enum HaloTypeEnum
-    {
-        HALO_GREEN,                             // 绿色光圈
-        HALO_RED                                // 红色光圈
-    };
-
-    /**
     	 角色形象的，记住按照固定的命名方式，这样就只需要传入动画名称
     */
     static GameCharacterShape* create(const std::string& armatureName);
@@ -66,16 +57,6 @@ public:
     bool init() override;
 
     /**
-    	 判断当前动画是否已经结束
-    */
-    bool isNotInAnimation();
-
-    /**
-    	 返回当前动作的帧位置
-    */
-    int getCurrentFrameIndex();
-
-    /**
     	 返回用来检测碰撞的矩形
     */
     Rect getCollisionRect();
@@ -91,16 +72,6 @@ public:
     void floatNumber(int num, FloatNumberTypeEnum type);
 
     /**
-    *  在人物周围出现一个被选中的光圈
-    */
-    void showHalo(HaloTypeEnum type);
-
-    /**
-    * 如果当前人物身边有光圈，就删除掉 
-    */
-    void hideHalo();
-
-    /**
     *	设置HP显示的比率，就是还剩百分之几的hp
     *   0~1
     */
@@ -110,6 +81,32 @@ public:
     * 返回当前播放的动画 
     */
     string getCurrentAnimationName();
+
+    /**
+    *	冻结动画，就是让角色处于当前帧，并且在解冻之前，所有的动画播放请求都被阻止
+    */
+    void freezeAnimation()
+    {
+        m_freezed    =   true;
+        // 暂停
+        _armature->getAnimation()->pause();
+    }
+
+    /**
+    *	解冻动画，remain表示是继续之前的动画呢？还是恢复到idle动画状态
+    */
+    void unfreezeAnimation(bool remain = false)
+    {
+        m_freezed   =   false;
+        if (remain)
+        {
+            _armature->getAnimation()->resume();
+        }
+        else
+        {
+            playAction(IDLE_ACTION);
+        }
+    }
 
     /**
     * 临时用的一个东西，就是从外面设置一个数字，可以在角色上显示 
@@ -161,6 +158,11 @@ protected:
     */
     void onFloatNumberMoveOver(Node* pNode);
 
+    /**
+    	 判断当前动画是否已经结束
+    */
+    bool isNotInAnimation();
+
     Armature* _armature;
     string _currentAnimationName;                   // 当前播放的动画的名称
 
@@ -178,10 +180,11 @@ protected:
     /**
     * 临时值 
     */
-    Armature*   m_halo;                             // 人物脚部旋转地光圈
     Label*      m_posNumLabel;                      // 数字标签
     Label*      m_goalLabel;                        // 角色当前目标
     Label*      m_forceLabel;                       // 驱动力的标签
+
+    bool        m_freezed;                          // 是否冻结该角色动画
 };
 
 #endif

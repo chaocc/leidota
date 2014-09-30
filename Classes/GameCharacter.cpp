@@ -5,6 +5,7 @@
 #include "NormalCloseRangeWeapon.h"
 #include "NormalLongRangeWeapon.h"
 #include "TimeTool.h"
+#include "GameCharacterState.h"
 
 GameCharacter* GameCharacter::create(int id)
 {
@@ -150,11 +151,14 @@ GameCharacter::GameCharacter()
     // 驱动力产生对象
     m_steeringBehaviors             =   new SteeringBehaviors(this);
 
-    m_lastUpdateTime                =   -1;
-
     // 默认就打开几个驱动力
     m_steeringBehaviors->wallAvoidanceOn();
     m_steeringBehaviors->separationOn();
+
+    // 角色状态机
+    m_stateMachine                  =   CharacterStateMachine::create(this);
+    m_stateMachine->retain();
+    m_stateMachine->changeState(GameCharacterFreeState::create());
 }
 
 GameCharacter::~GameCharacter()
@@ -171,6 +175,8 @@ GameCharacter::~GameCharacter()
 
     CC_SAFE_DELETE(m_steeringBehaviors);
     m_steeringBehaviors     =   nullptr;
+
+    CC_SAFE_RELEASE_NULL(m_stateMachine);
 }
 
 void GameCharacter::update(float dm)
@@ -181,25 +187,20 @@ void GameCharacter::update(float dm)
         return;
     }
 
-    if (m_lastUpdateTime == -1)
-    {
-        m_lastUpdateTime    =   TimeTool::getSecondTime();
-    }
-    auto tmpDmTime     =    TimeTool::getSecondTime() - m_lastUpdateTime;
-    //CCLOG("%f", tmpDmTime);
+    // 更新当前武器系统
+    m_weaponControlSystem->update(dm);
+
     // 思考一下
     m_brain->process();
 
     // 根据MovingEntity来调整Shape的坐标
-    updateMovement(tmpDmTime);
+    updateMovement(dm);
 
     // 这里以hp归零作为死亡的标准，然后在一个统一的地方删除处于死亡状态的
     if (getAttribute().getHp() <= 0)
     {
         m_state =   dead;
     }
-
-    m_lastUpdateTime    =   TimeTool::getSecondTime();
 
     // @_@ 额外的数字标签
     m_shape->setPosNumber(m_movingEntity.getFormationPosId());

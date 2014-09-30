@@ -173,6 +173,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\GameCharacter.h" />
     <ClInclude Include="..\Classes\GameCharacterAttribute.h" />
     <ClInclude Include="..\Classes\GameCharacterShape.h" />
+    <ClInclude Include="..\Classes\GameCharacterState.h" />
     <ClInclude Include="..\Classes\GameMainModel.h" />
     <ClInclude Include="..\Classes\GameMap.h" />
     <ClInclude Include="..\Classes\GameScene.h" />
@@ -204,6 +205,8 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\ProjectileTrackMovingPart.h" />
     <ClInclude Include="..\Classes\RefreshUIEventEnum.h" />
     <ClInclude Include="..\Classes\RefreshUIMsg.h" />
+    <ClInclude Include="..\Classes\State.h" />
+    <ClInclude Include="..\Classes\StateMachine.h" />
     <ClInclude Include="..\Classes\SteeringBehaviors.h" />
     <ClInclude Include="..\Classes\TeamManager.h" />
     <ClInclude Include="..\Classes\Telegram.h" />

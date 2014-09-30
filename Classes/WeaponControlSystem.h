@@ -25,6 +25,12 @@ public:
     void addWeapon(Weapon* aWeapon);
 
     /**
+    *	定时在主循环中被调用，在这里会根据当前的情况选择合适的武器来发起
+    *   当前的攻击
+    */
+    void update(float dm);
+
+    /**
     * 使用当前武器并且攻击某个目标 
     */
     void takeWeaponAndAttack(GameCharacter* target);
@@ -40,6 +46,11 @@ public:
     bool canCharacterMove();
 
 private:
+    /**
+    *	更换武器，如果更换成功就返回true，否则返回false 
+    */
+    bool changeWeapon(WeaponTypeEnum type);
+
     GameCharacter*                              m_pOwner;           // 当前武器拥有者
 
     Weapon*                                     m_currentWeapon;    // 当前武器
@@ -48,6 +59,9 @@ private:
     WeaponMap        m_allWeapons;                                  // 当前角色拥有的所有武器
 
     int                                         m_targetId;         // 临时记录上一次攻击的目标的id
+
+    const float m_updateInterval;                                   // 这个应该没有必要每次都更新
+    float m_updateCountTime;                                        // 更新的计数时间
 };
 
 #endif

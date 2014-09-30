@@ -76,6 +76,9 @@
     <Filter Include="Classes\ai\goal\atomic\team">
       <UniqueIdentifier>{d0b7750d-43d0-4361-85f8-2381db303c6a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\state">
+      <UniqueIdentifier>{5d810428-9d53-4b37-81ad-ae8af8105305}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -319,6 +322,15 @@
     </ClInclude>
     <ClInclude Include="..\Classes\ProjectileMonomerAttack.h">
       <Filter>Classes\weapons &amp; projectiles\projectiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\State.h">
+      <Filter>Classes\state</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\StateMachine.h">
+      <Filter>Classes\state</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameCharacterState.h">
+      <Filter>Classes\state</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

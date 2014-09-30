@@ -69,7 +69,4 @@ void GameMainModel::update(float dm)
 void GameMainModel::setMainGameCharacter(GameCharacter* character)
 {
     EntityMgr->setmainEntity(character);
-
-    // Ö÷½Ç¹â»·
-    character->getShape()->showHalo(GameCharacterShape::HALO_GREEN);
 }

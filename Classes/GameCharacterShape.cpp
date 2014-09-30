@@ -9,8 +9,8 @@ GameCharacterShape::GameCharacterShape(const std::string& armatureName):
     ArmatureDataManager::getInstance()->addArmatureFileInfo(tmpFileName + ".ExportJson");
     _armature = Armature::create(armatureName);
     _currentAnimationName = "";
-    m_halo  =   nullptr;
-    m_hpBar =   nullptr;
+    m_hpBar     =   nullptr;
+    m_freezed    =   false;
     
     // @_@ 这里是因为美术每个资源的问题，给的任务的朝向不同，只好加上这个逻辑
     if (armatureName == "xuejingling-qian" || armatureName == "Aer" || armatureName == "Theif" 
@@ -34,6 +34,12 @@ GameCharacterShape* GameCharacterShape::create(const std::string& armatureName)
 
 void GameCharacterShape::playAction(const std::string& actionName, bool loop, ActionFrameEventCallback eventCallBack)
 {
+    // 如果已经冻结，就不允许任何播放动画的行为
+    if (m_freezed)
+    {
+        return;
+    }
+
     // @_@ 需要检查一下是否有指定动画
     std::vector<std::string> tmpNames = _armature->getAnimation()->getAnimationData()->movementNames;
     for (int i = 0; i < tmpNames.size(); i++)
@@ -115,11 +121,6 @@ bool GameCharacterShape::isNotInAnimation()
     return !_armature->getAnimation()->isPlaying();
 }
 
-int GameCharacterShape::getCurrentFrameIndex()
-{
-    return _armature->getAnimation()->getCurrentFrameIndex();
-}
-
 Rect GameCharacterShape::getCollisionRect()
 {
     Rect tmpRect    =   _armature->getBoundingBox();
@@ -182,49 +183,6 @@ void GameCharacterShape::floatNumber(int num, GameCharacterShape::FloatNumberTyp
 void GameCharacterShape::onFloatNumberMoveOver( Node* pNode )
 {
     pNode->removeFromParentAndCleanup(true);
-}
-
-void GameCharacterShape::showHalo( HaloTypeEnum type )
-{
-    if (m_halo != nullptr)
-    {
-        m_halo->removeFromParentAndCleanup(true);
-        m_halo  =   nullptr;
-    }
-
-    // 添加光圈动画
-    ArmatureDataManager::getInstance()->addArmatureFileInfo("halo/greenhalo0.png", "halo/greenhalo0.plist", "halo/greenhalo.ExportJson");
-    ArmatureDataManager::getInstance()->addArmatureFileInfo("halo/redhalo0.png", "halo/redhalo0.plist", "halo/redhalo.ExportJson");
-
-    switch (type)
-    {
-    case GameCharacterShape::HALO_GREEN:
-        {
-            m_halo  =   Armature::create("greenhalo");
-            this->addChild(m_halo);
-            break;
-        }
-        
-    case GameCharacterShape::HALO_RED:
-        {
-	        m_halo  =   Armature::create("redhalo");
-	        this->addChild(m_halo);
-	        break;
-        }
-    default:
-        break;
-    }
-
-    m_halo->getAnimation()->play("Animation1");
-}
-
-void GameCharacterShape::hideHalo()
-{
-    if (m_halo != nullptr)
-    {
-        m_halo->removeFromParentAndCleanup(true);
-        m_halo  =   nullptr;
-    }
 }
 
 void GameCharacterShape::setHpRatio( float ratio )

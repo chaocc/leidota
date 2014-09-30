@@ -6,7 +6,7 @@
 #include "MathTool.h"
 
 GoalTeamAttackTargetTeam::GoalTeamAttackTargetTeam( GameTeam* owner, GameTeam* target ) 
-    :GoalComposite<GameTeam>(owner), m_attDistance(800)
+    :GoalComposite<GameTeam>(owner), m_attDistance(500)
 {
     m_targetTeam    =   target;
     m_targetId      =   target->getTeamId();
