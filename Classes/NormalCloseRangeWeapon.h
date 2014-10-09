@@ -19,12 +19,13 @@ public:
     virtual bool isReadyForNextAttack() override;
     virtual bool isAttacking() override;
 
-private:
+protected:
     /**
     *	 普通近距离攻击都是直接播放动画在特定帧的时候才作用，这里是帧事件
     */
     void onAttackEffect(string evt);
 
+private:
     /**
     *  对应的动画文件中的动作名称，主要是考虑到在做动画文件的时候命名不规范的原因
     *  普通的近距离攻击武器基本上就只需要播放动画就OK了

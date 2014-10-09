@@ -7,6 +7,7 @@
 using namespace std;
 
 class GameCharacter;
+class WeaponChoiceAI;
 
 /**
 * 武器控制系统，这里负责维护角色身上的所有攻击方式，包括普通攻击、技能攻击等，包括
@@ -45,15 +46,22 @@ public:
     */
     bool canCharacterMove();
 
-private:
+    /**
+    *	 设置武器选择的AI部分
+    */
+    void setWeaponChoiceAI(WeaponChoiceAI* aAI) { m_weaponChoiceAI = aAI; }
+
     /**
     *	更换武器，如果更换成功就返回true，否则返回false 
     */
     bool changeWeapon(WeaponTypeEnum type);
 
+private:
     GameCharacter*                              m_pOwner;           // 当前武器拥有者
 
     Weapon*                                     m_currentWeapon;    // 当前武器
+
+    WeaponChoiceAI*                             m_weaponChoiceAI;   // 武器选择AI
     
     typedef map<WeaponTypeEnum, Weapon*> WeaponMap;
     WeaponMap        m_allWeapons;                                  // 当前角色拥有的所有武器

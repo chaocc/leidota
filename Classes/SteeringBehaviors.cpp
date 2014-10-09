@@ -30,22 +30,33 @@ cocos2d::Vec2 SteeringBehaviors::calculate()
     {
         return m_vSteeringForce;
     }
+
     if (On(SEPARATION) && !accumulateForce(m_vSteeringForce, separation()))
     {
         return m_vSteeringForce;
     }
+
+    // @_@ 后来加入的外部牵引力，一般是不开放的
+    if (On(TRACTION) && !accumulateForce(m_vSteeringForce, m_traction))
+    {
+        return m_vSteeringForce;
+    }
+
     if (On(SEEK) && !accumulateForce(m_vSteeringForce, seek(m_vTarget)))
     {
         return m_vSteeringForce;
     }
+
     if (On(ARRIVE) && !accumulateForce(m_vSteeringForce, arrive(m_vTarget)))
     {
         return m_vSteeringForce;
     }
+
     if (On(PURSUIT) && !accumulateForce(m_vSteeringForce, pursuit(m_targetId)))
     {
         return m_vSteeringForce;
     }
+
     auto tmpFormation       =   m_pOwner->getTeam()->getTeamFormation();
     auto tmpFormationPosId  =   m_pOwner->getMovingEntity().getFormationPosId();
     if (On(KEEP_FORMATION) && !accumulateForce(m_vSteeringForce, keepFormation(tmpFormation, tmpFormationPosId)))
@@ -53,6 +64,14 @@ cocos2d::Vec2 SteeringBehaviors::calculate()
         return m_vSteeringForce;
     }
 
+    return m_vSteeringForce;
+}
+
+cocos2d::Vec2 SteeringBehaviors::calculateWithTraction()
+{
+    tractionOn();
+    calculate();
+    tractionOff();
     return m_vSteeringForce;
 }
 

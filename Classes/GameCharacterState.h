@@ -48,7 +48,7 @@ public:
         ArmatureDataManager::getInstance()->addArmatureFileInfo("skill/xuejingling_VFX.ExportJson");
         m_iceCake   =   Armature::create("xuejingling_VFX");
         m_iceCake->setPosition(owner->getShape()->getCenterPosLocation());
-        owner->getShape()->addChild(m_iceCake);
+        owner->getShape()->addChild(m_iceCake, 10);
         m_iceCake->getAnimation()->play("atk3");
     }
 

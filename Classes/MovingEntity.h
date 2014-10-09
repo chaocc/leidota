@@ -25,7 +25,8 @@ public:
     ~MovingEntity(){}
 
     CC_SYNTHESIZE(Vec2, m_position, Position);              // 当前的坐标
-    CC_SYNTHESIZE_READONLY(Vec2, m_velocity, Velocity);     // 速度
+    CC_SYNTHESIZE_READONLY(Vec2, m_velocity, Velocity);     // 速度（角色自以为的速度）
+    CC_SYNTHESIZE(Vec2, m_realVelocity, RealVelocity);      // 实际速度（加入了外力的影响）
     CC_SYNTHESIZE(float, m_mass, Mass);                     // 质量
     CC_SYNTHESIZE(float, m_maxSpeed, MaxSpeed);             // 最大速度
     CC_SYNTHESIZE(float, m_maxForce, MaxForce);             // 最大驱动力

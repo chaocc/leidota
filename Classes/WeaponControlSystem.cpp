@@ -3,12 +3,14 @@
 #include "GameCharacter.h"
 #include "GameTeam.h"
 #include "EntityManager.h"
+#include "WeaponChoiceAI.h"
 
 WeaponControlSystem::WeaponControlSystem( GameCharacter* owner ):m_updateInterval(1)
 {
     m_pOwner            =   owner;
     m_currentWeapon     =   nullptr;
     m_updateCountTime   =   0;
+    m_targetId          =   INVALID_GAME_ENTITY_ID;
 }
 
 WeaponControlSystem::~WeaponControlSystem()
@@ -19,6 +21,9 @@ WeaponControlSystem::~WeaponControlSystem()
     }
 
     m_allWeapons.clear();
+
+    // 武器选择AI部分
+    CC_SAFE_DELETE(m_weaponChoiceAI);
 }
 
 void WeaponControlSystem::addWeapon(Weapon* aWeapon)
@@ -64,45 +69,8 @@ bool WeaponControlSystem::canCharacterMove()
 
 void WeaponControlSystem::update(float dm)
 {
-    m_updateCountTime   +=  dm;
-    if (m_updateCountTime < m_updateInterval)
-    {
-        return;
-    }
-    else
-    {
-        m_updateCountTime   =   0;
-    }
-
-    // 先写一个最简单的规则
-    int tmpPosId    =   m_pOwner->getMovingEntity().getFormationPosId();
-    if ( tmpPosId>= 0 && tmpPosId <= 2 )
-    {
-        // 0~2位置编号的优先使用近程攻击能力，如果没有近程就使用远程
-        if (!changeWeapon(NORMAL_CLOSE_RANGE_WEAPON))
-        {
-            changeWeapon(NORMAL_LONG_RANGE_WEAPON);
-        }
-    }
-    else
-    {
-        auto tmpCharacter   =   m_pOwner->getTeam()->getMemberIdFromFormation(tmpPosId % 3);
-        if (tmpCharacter != nullptr)
-        {
-            // 如果前面有人，优先远程
-            if (!changeWeapon(NORMAL_LONG_RANGE_WEAPON))
-            {
-                changeWeapon(NORMAL_CLOSE_RANGE_WEAPON);
-            }
-        }
-        else
-        {
-            if (!changeWeapon(NORMAL_CLOSE_RANGE_WEAPON))
-            {
-                changeWeapon(NORMAL_LONG_RANGE_WEAPON);
-            }
-        }
-    }
+    // 现在把这部分更新当前选择武器的逻辑交给外部对象
+    m_weaponChoiceAI->update(dm);
 }
 
 bool WeaponControlSystem::changeWeapon( WeaponTypeEnum type )

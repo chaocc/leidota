@@ -1,8 +1,11 @@
 #ifndef __SPIRIT_FREEZE_SKILL_WEAPON_H__
 #define __SPIRIT_FREEZE_SKILL_WEAPON_H__
 
+#include "cocos2d.h"
 #include "Weapon.h"
 #include "GameCharacterState.h"
+
+using namespace std;
 
 /**
 *	雪精灵的冰冻魔法，用该技能攻击对手可以在对手身上产生冰冻效果，让对手
@@ -14,34 +17,36 @@ public:
     SpiritFreezeSkillWeapon(GameCharacter* owner);
     virtual ~SpiritFreezeSkillWeapon();
 
-    virtual void attack(GameCharacter* target) override
-    {
-        /**
-        *	 @_@ 发起攻击，其实就是让敌人进入冻结状态，显示这一块暂时也放在
-        *   状态里面，以后可能还是使用消息的方式，但是目前图简单，先直接修改
-        *   目标的状态
-        */
-        target->getFSM()->changeState(GameCharacterFrozenState::create());
-        
-        // @_@ 应该还会造成伤害，这里暂时留着不写
-    }
+    virtual void attack(GameCharacter* target) override;
 
-    virtual bool isInAttackRange(GameCharacter* target) override
-    {
-        // 临时写
-        return true;
-    }
+    virtual bool isInAttackRange(GameCharacter* target) override;
 
-    virtual bool isReadyForNextAttack() override
-    {
-        // @_@ 临时写
-        return true;
-    }
+    virtual bool isReadyForNextAttack() override;
 
-    virtual bool isAttacking()
-    {
-        return true;
-    }
+    virtual bool isAttacking();
+
+private:
+    /**
+    *	施展动画播放到要开始 
+    */
+    void onAttackEffect(string evt);
+
+    /**
+    *	目标是否存在 
+    */
+    bool isTargetAlive();
+
+    /**
+    *	目前限制两次冰冻的条件也是时间问题 
+    */
+    float           m_minAttackInterval;
+    double          m_lastAttackTime;               // 最近一次攻击时间
+    double          m_nextAttackReadyTime;          // 下一次攻击准备完毕时间
+
+    int             m_targetId;                     // 攻击目标id
+
+    const string    m_actionName;                   // 动作名称
+    const float     m_attRadius;                    // 攻击半径
 };
 
 #endif

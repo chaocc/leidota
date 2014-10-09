@@ -7,6 +7,16 @@
 #include "TimeTool.h"
 #include "GameCharacterState.h"
 
+#include "WeaponZeusChoiceAI.h"
+#include "WeaponSpiritChoiceAI.h"
+#include "WeaponAerChoiceAI.h"
+#include "WeaponPigNiuTheifChoiceAI.h"
+#include "WeaponYSGChoiceAI.h"
+
+#include "ZeusThumpSkillWeapon.h"
+#include "SpiritFreezeSkillWeapon.h"
+#include "SpiritSnowStormSkillWeapon.h"
+
 GameCharacter* GameCharacter::create(int id)
 {
     /**
@@ -33,9 +43,14 @@ GameCharacter* GameCharacter::create(int id)
 
             // 普通近距离攻击能力
             tmpRet->getWeaponControlSystem()->addWeapon(new NormalCloseRangeWeapon(tmpRet));
+            // 重击
+            tmpRet->getWeaponControlSystem()->addWeapon(new ZeusThumpSkillWeapon(tmpRet));
             // 飞锤攻击的普通远距离攻击
             tmpRet->getWeaponControlSystem()->addWeapon(new NormalLongRangeWeapon(tmpRet, 
                 PROJECTILE_TYPE_ZEUS_FLY_HAMMER, 600, "atk3"));
+
+            // 宙斯特有的武器选择逻辑
+            tmpRet->getWeaponControlSystem()->setWeaponChoiceAI(new WeaponZeusChoiceAI(tmpRet));
 
             break;
         }
@@ -50,6 +65,12 @@ GameCharacter* GameCharacter::create(int id)
             // 普通远程攻击，丢出去的是闪电球
             tmpRet->getWeaponControlSystem()->addWeapon(new NormalLongRangeWeapon(tmpRet, PROJECTILE_TYPE_GALAXO_BALL, 
                 tmpRet->getAttribute().getAttDistance()));
+            // 冰冻攻击，让敌人被冻住
+            tmpRet->getWeaponControlSystem()->addWeapon(new SpiritFreezeSkillWeapon(tmpRet));
+            // 暴风雪
+            tmpRet->getWeaponControlSystem()->addWeapon(new SpiritSnowStormSkillWeapon(tmpRet));
+
+            tmpRet->getWeaponControlSystem()->setWeaponChoiceAI(new WeaponSpiritChoiceAI(tmpRet));
 
             break;
         }
@@ -63,6 +84,8 @@ GameCharacter* GameCharacter::create(int id)
 
             // 普通近程攻击能力
             tmpRet->getWeaponControlSystem()->addWeapon(new NormalCloseRangeWeapon(tmpRet));
+
+            tmpRet->getWeaponControlSystem()->setWeaponChoiceAI(new WeaponAerChoiceAI(tmpRet));
 
             break;
         }
@@ -80,6 +103,8 @@ GameCharacter* GameCharacter::create(int id)
             tmpRet->getWeaponControlSystem()->addWeapon(new NormalLongRangeWeapon(tmpRet, PROJECTILE_TYPE_PIG_FLY_KNIFE, 
                 600, "atk2"));
 
+            tmpRet->getWeaponControlSystem()->setWeaponChoiceAI(new WeaponPigNiuTheifChoiceAI(tmpRet));
+
             break;
         }
 
@@ -95,6 +120,8 @@ GameCharacter* GameCharacter::create(int id)
             // 普通远距离攻击能力
             tmpRet->getWeaponControlSystem()->addWeapon(new NormalLongRangeWeapon(tmpRet, PROJECTILE_TYPE_NIU_FLY_SHIELD,
                 600, "atk2"));
+
+            tmpRet->getWeaponControlSystem()->setWeaponChoiceAI(new WeaponPigNiuTheifChoiceAI(tmpRet));
 
             break;
         }
@@ -112,6 +139,8 @@ GameCharacter* GameCharacter::create(int id)
             tmpRet->getWeaponControlSystem()->addWeapon(new NormalLongRangeWeapon(tmpRet, PROJECTILE_TYPE_THEIF_FLY_DAGGER,
                 500, "atk2"));
 
+            tmpRet->getWeaponControlSystem()->setWeaponChoiceAI(new WeaponPigNiuTheifChoiceAI(tmpRet));
+
             break;
         }
 
@@ -124,6 +153,8 @@ GameCharacter* GameCharacter::create(int id)
 
             // 普通近程攻击能力
             tmpRet->getWeaponControlSystem()->addWeapon(new NormalCloseRangeWeapon(tmpRet));
+
+            tmpRet->getWeaponControlSystem()->setWeaponChoiceAI(new WeaponYSGChoiceAI(tmpRet));
 
             break;
         }
@@ -294,12 +325,30 @@ void GameCharacter::updateMovement(float dm)
         m_shape->playAction(IDLE_ACTION);
     }
 
+    /**
+    *	 在改变当前坐标前，使用包含牵引力的重新计算，这里主要就是因为
+    */ 
+    Vec2 tmpRealForce   =   m_steeringBehaviors->calculateWithTraction();
+    if (tmpRealForce.getLengthSq() < 5)
+    {
+        // 如果力过小，就直接把速度降为0
+        const double BrakingRate = 0.1; 
+        m_movingEntity.setRealVelocity(m_movingEntity.getRealVelocity() * BrakingRate);                                     
+    }
+    else
+    {
+        // 加速度
+        Vec2 tmpAccel   =   tmpRealForce / m_movingEntity.getMass();
+        // 改变当前速度
+        m_movingEntity.setRealVelocity(m_movingEntity.getRealVelocity() + tmpAccel * dm);
+    }
+
     // 改变当前坐标
-    m_movingEntity.setPosition(m_movingEntity.getPosition() + m_movingEntity.getVelocity() * dm);
+    m_movingEntity.setPosition(m_movingEntity.getPosition() + m_movingEntity.getRealVelocity() * dm);
     m_shape->setPosition(m_movingEntity.getPosition());
 
     // @_@ 显示当前驱动力
-    m_shape->setForce(tmpForce);
+    // m_shape->setForce(tmpForce);
 }
 
 bool GameCharacter::hasGoal()

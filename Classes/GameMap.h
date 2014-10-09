@@ -29,6 +29,15 @@ public:
     // 在地图上添加子弹
     void addProjectile(Projectile* aProjectile);
 
+    // 在玩家所在层添加一个子节点
+    void addChildToPlayerLayer(Node* aChild);
+
+    /**
+    *	 返回在指定区域内的所有角色
+    *   @_@ 目前使用效率不高的逻辑来处理，以后可能会对地图进行分块
+    */ 
+    vector<GameCharacter*> getCharactersInRadius(Vec2 aCenter, float aRadius);
+
 protected:
     GameMap():MOUNTAIN_MOVE_SCALE(0.9f),SKY_MOVE_SCALE(0.3f),m_wallLBPos(0,0),m_wallRTPos(5120, 370){}
     ~GameMap();

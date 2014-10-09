@@ -1,6 +1,10 @@
 #ifndef __WEAPON_H__
 #define __WEAPON_H__
 
+#include "cocos2d.h"
+
+using namespace std;
+
 class GameCharacter;
 
 /**
@@ -10,7 +14,15 @@ enum WeaponTypeEnum
 {
     NORMAL_CLOSE_RANGE_WEAPON,          // 普通近战
     NORMAL_LONG_RANGE_WEAPON,           // 普通远程
+
     SPIRIT_FREEZE_SKILL_WEAPON,         // 雪精灵的冰冻攻击
+    SPIRIT_SNOWSTORM_SKILL_WEAPON,      // 雪精灵的暴风雪攻击
+
+    ZEUS_THUMP_SKILL_WEAPON,            // 宙斯重击
+
+    AER_CRYOSPHERE_SKILL_WEAPON,        // 骑士冰圈
+
+    YSG_METEORIC_STREAM_SKILL_WEAPON,   // 石头人的陨石
 };
 
 /**

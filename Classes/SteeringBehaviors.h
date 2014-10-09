@@ -10,6 +10,8 @@ class GameCharacter;
 
 /**
 * 用来计算行为驱动力的逻辑部分，施加在一个角色身上的合力在此处计算出来的
+* 2014-10-9     增加了牵引力这个概念，牵引力属于不会改变角色移动方向的，但是会影响位
+                移的，会造成一种想离开但是被某种力拖着走不动的样子
 */
 class SteeringBehaviors
 {
@@ -18,13 +20,23 @@ public:
     ~SteeringBehaviors();
 
     /**
-    * 外部获取当前的驱动力的接口 
+    * 外部获取当前的驱动力的接口，该接口获取的是不包括外部牵引力的
     */
     Vec2 calculate();
+
+    /**
+    *	该接口获取的力包括了外部牵引力
+    */
+    Vec2 calculateWithTraction();
 
     void setTarget(Vec2 t) { m_vTarget = t; }
     
     void setTargetId(int id) { m_targetId = id; }
+
+    /**
+    *	 设置牵引力，
+    */
+    void setTraction(Vec2 aTraction) { m_traction = aTraction; }
 
     /**
     * 关于驱动力的开启和关闭 
@@ -41,6 +53,13 @@ public:
     void pursuitOff() { if(On(PURSUIT)) m_behaviorsFlag ^= PURSUIT; }
     void keepFormationOn() { m_behaviorsFlag |= KEEP_FORMATION; }
     void keepFormationOff() { if(On(KEEP_FORMATION)) m_behaviorsFlag ^= KEEP_FORMATION; }
+
+private:
+    /**
+    *	这里还是不让外部调用，外部不想使用牵引力的时候将牵引力设置为(0, 0)就OK了 
+    */
+    void tractionOn() { m_behaviorsFlag |= TRACTION; }
+    void tractionOff() { if (On(TRACTION)) m_behaviorsFlag ^= TRACTION; }
 
 private:
     /**
@@ -85,6 +104,7 @@ private:
         WALL_AVOIDANCE      =   1 << 3,                 // 用来避开墙壁的
         PURSUIT             =   1 << 4,                 // 追击指定角色
         KEEP_FORMATION      =   1 << 5,                 // 保持阵型
+        TRACTION            =   1 << 6,                 // 牵引力
     };
 
     // 检查某个类型的驱动力是否开启
@@ -115,6 +135,11 @@ private:
     * 与pursue行为有关的数据 
     */
     int             m_targetId;                         // 正在追击的对手id
+
+    /**
+    *	有关外部牵引力的数据，
+    */
+    Vec2            m_traction;                         // 牵引力
 };
 
 #endif

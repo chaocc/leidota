@@ -79,6 +79,9 @@
     <Filter Include="Classes\state">
       <UniqueIdentifier>{5d810428-9d53-4b37-81ad-ae8af8105305}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\ai\system\weaponchoice">
+      <UniqueIdentifier>{7aebe5f8-8d80-4436-9a5a-06fed685a41b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -170,6 +173,12 @@
     </ClCompile>
     <ClCompile Include="..\Classes\ProjectileTypeOneShapePart.cpp">
       <Filter>Classes\weapons &amp; projectiles\projectiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SpiritFreezeSkillWeapon.cpp">
+      <Filter>Classes\weapons &amp; projectiles\weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SpiritSnowStormSkillWeapon.cpp">
+      <Filter>Classes\weapons &amp; projectiles\weapons</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -334,6 +343,33 @@
     </ClInclude>
     <ClInclude Include="..\Classes\SpiritFreezeSkillWeapon.h">
       <Filter>Classes\weapons &amp; projectiles\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\WeaponAerChoiceAI.h">
+      <Filter>Classes\ai\system\weaponchoice</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\WeaponChoiceAI.h">
+      <Filter>Classes\ai\system\weaponchoice</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\WeaponPigNiuTheifChoiceAI.h">
+      <Filter>Classes\ai\system\weaponchoice</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\WeaponSpiritChoiceAI.h">
+      <Filter>Classes\ai\system\weaponchoice</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\WeaponZeusChoiceAI.h">
+      <Filter>Classes\ai\system\weaponchoice</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\WeaponYSGChoiceAI.h">
+      <Filter>Classes\ai\system\weaponchoice</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ZeusThumpSkillWeapon.h">
+      <Filter>Classes\weapons &amp; projectiles\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SpiritSnowStormSkillWeapon.h">
+      <Filter>Classes\weapons &amp; projectiles\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Tornado.h">
+      <Filter>Classes\weapons &amp; projectiles</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

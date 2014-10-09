@@ -94,3 +94,26 @@ void GameMap::addProjectile(Projectile* aProjectile)
 {
     m_playerLayer->addChild(aProjectile->getShapePart());
 }
+
+vector<GameCharacter*> GameMap::getCharactersInRadius( Vec2 aCenter, float aRadius )
+{
+    // @_@这里先采用遍历的方式遍历所有人物，这个函数不要经常调用
+    vector<GameCharacter*> tmpRetCharacters;
+    auto tmpCharacterMap    =   EntityMgr->getEntityMap();
+    for (auto tmpIterator = tmpCharacterMap->begin(); tmpIterator != tmpCharacterMap->end(); tmpIterator++)
+    {
+        auto tmpCharacter       =   dynamic_cast<GameCharacter*>(tmpIterator->second);
+        auto tmpCharacterPos    =   tmpCharacter->getShape()->getPosition();
+        if ((tmpCharacterPos - aCenter).getLengthSq() <= aRadius * aRadius)
+        {
+            tmpRetCharacters.push_back(tmpCharacter);
+        }
+    }
+
+    return tmpRetCharacters;
+}
+
+void GameMap::addChildToPlayerLayer( Node* aChild )
+{
+    m_playerLayer->addChild(aChild);
+}

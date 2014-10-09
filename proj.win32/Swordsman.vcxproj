@@ -156,6 +156,8 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\ProjectileMonomerAttack.cpp" />
     <ClCompile Include="..\Classes\ProjectileManager.cpp" />
     <ClCompile Include="..\Classes\ProjectileTypeOneShapePart.cpp" />
+    <ClCompile Include="..\Classes\SpiritFreezeSkillWeapon.cpp" />
+    <ClCompile Include="..\Classes\SpiritSnowStormSkillWeapon.cpp" />
     <ClCompile Include="..\Classes\SteeringBehaviors.cpp" />
     <ClCompile Include="..\Classes\TeamManager.cpp" />
     <ClCompile Include="..\Classes\UIView.cpp" />
@@ -206,18 +208,27 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\RefreshUIEventEnum.h" />
     <ClInclude Include="..\Classes\RefreshUIMsg.h" />
     <ClInclude Include="..\Classes\SpiritFreezeSkillWeapon.h" />
+    <ClInclude Include="..\Classes\SpiritSnowStormSkillWeapon.h" />
     <ClInclude Include="..\Classes\State.h" />
     <ClInclude Include="..\Classes\StateMachine.h" />
     <ClInclude Include="..\Classes\SteeringBehaviors.h" />
     <ClInclude Include="..\Classes\TeamManager.h" />
     <ClInclude Include="..\Classes\Telegram.h" />
     <ClInclude Include="..\Classes\TimeTool.h" />
+    <ClInclude Include="..\Classes\Tornado.h" />
     <ClInclude Include="..\Classes\UIView.h" />
     <ClInclude Include="..\Classes\UIViewIdEnum.h" />
     <ClInclude Include="..\Classes\UIViewManager.h" />
     <ClInclude Include="..\Classes\Wall2D.h" />
     <ClInclude Include="..\Classes\Weapon.h" />
+    <ClInclude Include="..\Classes\WeaponAerChoiceAI.h" />
+    <ClInclude Include="..\Classes\WeaponChoiceAI.h" />
     <ClInclude Include="..\Classes\WeaponControlSystem.h" />
+    <ClInclude Include="..\Classes\WeaponPigNiuTheifChoiceAI.h" />
+    <ClInclude Include="..\Classes\WeaponSpiritChoiceAI.h" />
+    <ClInclude Include="..\Classes\WeaponYSGChoiceAI.h" />
+    <ClInclude Include="..\Classes\WeaponZeusChoiceAI.h" />
+    <ClInclude Include="..\Classes\ZeusThumpSkillWeapon.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>
