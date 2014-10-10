@@ -16,6 +16,8 @@
 #include "ZeusThumpSkillWeapon.h"
 #include "SpiritFreezeSkillWeapon.h"
 #include "SpiritSnowStormSkillWeapon.h"
+#include "AerCryosphereSkillWeapon.h"
+#include "YSGMeteoricStreamSkillWeapon.h"
 
 GameCharacter* GameCharacter::create(int id)
 {
@@ -84,6 +86,8 @@ GameCharacter* GameCharacter::create(int id)
 
             // 普通近程攻击能力
             tmpRet->getWeaponControlSystem()->addWeapon(new NormalCloseRangeWeapon(tmpRet));
+            // 骑士冰圈
+            tmpRet->getWeaponControlSystem()->addWeapon(new AerCryosphereSkillWeapon(tmpRet));
 
             tmpRet->getWeaponControlSystem()->setWeaponChoiceAI(new WeaponAerChoiceAI(tmpRet));
 
@@ -153,6 +157,7 @@ GameCharacter* GameCharacter::create(int id)
 
             // 普通近程攻击能力
             tmpRet->getWeaponControlSystem()->addWeapon(new NormalCloseRangeWeapon(tmpRet));
+            tmpRet->getWeaponControlSystem()->addWeapon(new YSGMeteoricStreamSkillWeapon(tmpRet));
 
             tmpRet->getWeaponControlSystem()->setWeaponChoiceAI(new WeaponYSGChoiceAI(tmpRet));
 

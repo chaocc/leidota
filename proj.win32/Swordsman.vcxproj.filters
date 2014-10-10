@@ -371,6 +371,15 @@
     <ClInclude Include="..\Classes\Tornado.h">
       <Filter>Classes\weapons &amp; projectiles</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\AerCryosphereSkillWeapon.h">
+      <Filter>Classes\weapons &amp; projectiles\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\YSGMeteoricStreamSkillWeapon.h">
+      <Filter>Classes\weapons &amp; projectiles\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MeteoricStream.h">
+      <Filter>Classes\weapons &amp; projectiles</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">

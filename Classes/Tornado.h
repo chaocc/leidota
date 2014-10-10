@@ -99,7 +99,7 @@ public:
     }
 
 protected:
-    Tornado(int ownerId):m_effectRadius(120), m_effectInterval(0.4), m_lethality(10), m_traction(100)
+    Tornado(int ownerId):m_effectRadius(120), m_effectInterval(0.4), m_lethality(10), m_traction(200)
     {
         ArmatureDataManager::getInstance()->addArmatureFileInfo("skill/xuejingling_VFX.ExportJson");
         m_tornadoArmature   =   Armature::create("xuejingling_VFX");

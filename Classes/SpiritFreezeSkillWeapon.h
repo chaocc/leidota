@@ -23,7 +23,7 @@ public:
 
     virtual bool isReadyForNextAttack() override;
 
-    virtual bool isAttacking();
+    virtual bool isAttacking() override;
 
 private:
     /**

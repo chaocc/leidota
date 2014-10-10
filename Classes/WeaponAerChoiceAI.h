@@ -9,7 +9,7 @@
 class WeaponAerChoiceAI : public WeaponChoiceAI
 {
 public:
-    WeaponAerChoiceAI(GameCharacter* owner):WeaponChoiceAI(owner), m_cryosphereProbability(0.1)
+    WeaponAerChoiceAI(GameCharacter* owner):WeaponChoiceAI(owner), m_cryosphereProbability(0.5)
     {
 
     }
@@ -32,9 +32,6 @@ protected:
 private:
     WeaponTypeEnum choiceCloseOrCryosphere()
     {
-        // 暂时骑士只有普通攻击
-        return NORMAL_CLOSE_RANGE_WEAPON;
-
         if (CCRANDOM_0_1() < m_cryosphereProbability)
         {
             return AER_CRYOSPHERE_SKILL_WEAPON;

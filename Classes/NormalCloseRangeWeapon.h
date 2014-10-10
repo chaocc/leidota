@@ -11,7 +11,7 @@
 class NormalCloseRangeWeapon : public Weapon
 {
 public:
-    NormalCloseRangeWeapon(GameCharacter* owner, float minAttackInterval = 3, string actionName = "atk1");
+    NormalCloseRangeWeapon(GameCharacter* owner, float minAttackInterval = 2, string actionName = "atk1");
     virtual ~NormalCloseRangeWeapon();
 
     virtual void attack(GameCharacter* target) override;

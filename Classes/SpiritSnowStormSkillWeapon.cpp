@@ -8,7 +8,7 @@ SpiritSnowStormSkillWeapon::SpiritSnowStormSkillWeapon( GameCharacter* owner )
     :Weapon(owner, SPIRIT_SNOWSTORM_SKILL_WEAPON), m_actionName("atk2")
 {
     m_attRadius         =   650;
-    m_minAttInterval    =   5;
+    m_minAttInterval    =   3;
 }
 
 void SpiritSnowStormSkillWeapon::attack( GameCharacter* target )

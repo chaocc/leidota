@@ -9,7 +9,7 @@
 class WeaponYSGChoiceAI : public WeaponChoiceAI
 {
 public:
-    WeaponYSGChoiceAI(GameCharacter* owner):WeaponChoiceAI(owner), m_normalProbability(0.9)
+    WeaponYSGChoiceAI(GameCharacter* owner):WeaponChoiceAI(owner), m_normalProbability(0.5)
     {
 
     }
@@ -28,10 +28,6 @@ protected:
     */
     virtual void choiceWeapon() override
     {
-        // 暂时石头人也只有普通攻击
-        changeWeapon(NORMAL_CLOSE_RANGE_WEAPON);
-        return;
-
         if (CCRANDOM_0_1() < m_normalProbability)
         {
             changeWeapon(NORMAL_CLOSE_RANGE_WEAPON);

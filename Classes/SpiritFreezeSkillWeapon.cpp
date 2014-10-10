@@ -5,7 +5,7 @@
 SpiritFreezeSkillWeapon::SpiritFreezeSkillWeapon( GameCharacter* owner ):Weapon(owner, SPIRIT_FREEZE_SKILL_WEAPON)
     , m_actionName("atk3"), m_attRadius(600)
 {
-    m_minAttackInterval     =   4;
+    m_minAttackInterval     =   3;
 }
 
 SpiritFreezeSkillWeapon::~SpiritFreezeSkillWeapon()

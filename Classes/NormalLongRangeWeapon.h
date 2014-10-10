@@ -15,7 +15,7 @@ public:
     *	创建时需要指定发射的“子弹类型”，主要是TMD还会有角色的一个动画
     */
     NormalLongRangeWeapon(GameCharacter* owner, ProjectileTypeEnum type, float attDistance, 
-        string attAnimationName = "atk1",float minAttackInterval = 3);
+        string attAnimationName = "atk1",float minAttackInterval = 2);
 
     virtual void attack(GameCharacter* target);
     virtual bool isInAttackRange(GameCharacter* target);

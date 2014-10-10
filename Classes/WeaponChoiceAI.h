@@ -15,7 +15,7 @@ class Weapon;
 class WeaponChoiceAI
 {
 public:
-    WeaponChoiceAI(GameCharacter* owner):m_updateInterval(4)
+    WeaponChoiceAI(GameCharacter* owner):m_updateInterval(3)
     {
         m_pOwner            =   owner;
         m_updateCountTime   =   0;
