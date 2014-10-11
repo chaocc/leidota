@@ -4,16 +4,16 @@
 	<dict>
 		<key>frames</key>
 		<dict>
-			<key>Aer/mabozi.png</key>
+			<key>snowstorm IMG/snowflake_08.png</key>
 			<dict>
 				<key>width</key>
-				<integer>333</integer>
+				<integer>500</integer>
 				<key>height</key>
-				<integer>494</integer>
+				<integer>500</integer>
 				<key>originalWidth</key>
-				<integer>333</integer>
+				<integer>500</integer>
 				<key>originalHeight</key>
-				<integer>494</integer>
+				<integer>500</integer>
 				<key>x</key>
 				<integer>0</integer>
 				<key>y</key>
@@ -23,229 +23,191 @@
 				<key>offsetY</key>
 				<real>0</real>
 			</dict>
-			<key>Aer/jianjiaL.png</key>
+			<key>snowstorm IMG/snowflake_09.png</key>
 			<dict>
 				<key>width</key>
-				<integer>249</integer>
+				<integer>500</integer>
 				<key>height</key>
-				<integer>270</integer>
+				<integer>500</integer>
 				<key>originalWidth</key>
-				<integer>249</integer>
+				<integer>500</integer>
 				<key>originalHeight</key>
-				<integer>270</integer>
+				<integer>500</integer>
 				<key>x</key>
-				<integer>335</integer>
-				<key>y</key>
-				<integer>0</integer>
-				<key>offsetX</key>
-				<real>0</real>
-				<key>offsetY</key>
-				<real>0</real>
-			</dict>
-			<key>Aer/xiaobiL.png</key>
-			<dict>
-				<key>width</key>
-				<integer>208</integer>
-				<key>height</key>
-				<integer>236</integer>
-				<key>originalWidth</key>
-				<integer>208</integer>
-				<key>originalHeight</key>
-				<integer>236</integer>
-				<key>x</key>
-				<integer>586</integer>
-				<key>y</key>
-				<integer>0</integer>
-				<key>offsetX</key>
-				<real>0</real>
-				<key>offsetY</key>
-				<real>0</real>
-			</dict>
-			<key>Aer/pifeng.png</key>
-			<dict>
-				<key>width</key>
-				<integer>1002</integer>
-				<key>height</key>
 				<integer>502</integer>
+				<key>y</key>
+				<integer>0</integer>
+				<key>offsetX</key>
+				<real>0</real>
+				<key>offsetY</key>
+				<real>0</real>
+			</dict>
+			<key>snowstorm IMG/snowflake_10.png</key>
+			<dict>
+				<key>width</key>
+				<integer>500</integer>
+				<key>height</key>
+				<integer>500</integer>
 				<key>originalWidth</key>
-				<integer>1002</integer>
+				<integer>500</integer>
 				<key>originalHeight</key>
+				<integer>500</integer>
+				<key>x</key>
+				<integer>1004</integer>
+				<key>y</key>
+				<integer>0</integer>
+				<key>offsetX</key>
+				<real>0</real>
+				<key>offsetY</key>
+				<real>0</real>
+			</dict>
+			<key>snowstorm IMG/snowflake_11.png</key>
+			<dict>
+				<key>width</key>
+				<integer>500</integer>
+				<key>height</key>
+				<integer>500</integer>
+				<key>originalWidth</key>
+				<integer>500</integer>
+				<key>originalHeight</key>
+				<integer>500</integer>
+				<key>x</key>
+				<integer>1506</integer>
+				<key>y</key>
+				<integer>0</integer>
+				<key>offsetX</key>
+				<real>0</real>
+				<key>offsetY</key>
+				<real>0</real>
+			</dict>
+			<key>snowstorm IMG/snowflake_12.png</key>
+			<dict>
+				<key>width</key>
+				<integer>500</integer>
+				<key>height</key>
+				<integer>500</integer>
+				<key>originalWidth</key>
+				<integer>500</integer>
+				<key>originalHeight</key>
+				<integer>500</integer>
+				<key>x</key>
+				<integer>0</integer>
+				<key>y</key>
 				<integer>502</integer>
-				<key>x</key>
-				<integer>796</integer>
-				<key>y</key>
-				<integer>0</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
 				<real>0</real>
 			</dict>
-			<key>Aer/matuiL11l.png</key>
+			<key>snowstorm IMG/snowflake_13.png</key>
 			<dict>
 				<key>width</key>
-				<integer>184</integer>
+				<integer>500</integer>
 				<key>height</key>
-				<integer>280</integer>
+				<integer>500</integer>
 				<key>originalWidth</key>
-				<integer>184</integer>
+				<integer>500</integer>
 				<key>originalHeight</key>
-				<integer>280</integer>
+				<integer>500</integer>
 				<key>x</key>
-				<integer>1800</integer>
+				<integer>502</integer>
 				<key>y</key>
-				<integer>0</integer>
+				<integer>502</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
 				<real>0</real>
 			</dict>
-			<key>Aer/matuiL1.png</key>
+			<key>snowstorm IMG/snowflake_14.png</key>
 			<dict>
 				<key>width</key>
-				<integer>252</integer>
+				<integer>500</integer>
 				<key>height</key>
-				<integer>314</integer>
+				<integer>500</integer>
 				<key>originalWidth</key>
-				<integer>252</integer>
+				<integer>500</integer>
 				<key>originalHeight</key>
-				<integer>314</integer>
+				<integer>500</integer>
 				<key>x</key>
-				<integer>0</integer>
+				<integer>1004</integer>
 				<key>y</key>
-				<integer>504</integer>
+				<integer>502</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
 				<real>0</real>
 			</dict>
-			<key>Aer/matuiL21.png</key>
+			<key>snowstorm IMG/snowflake_15.png</key>
 			<dict>
 				<key>width</key>
-				<integer>193</integer>
+				<integer>500</integer>
 				<key>height</key>
-				<integer>283</integer>
+				<integer>500</integer>
 				<key>originalWidth</key>
-				<integer>193</integer>
+				<integer>500</integer>
 				<key>originalHeight</key>
-				<integer>283</integer>
+				<integer>500</integer>
 				<key>x</key>
-				<integer>254</integer>
+				<integer>1506</integer>
 				<key>y</key>
-				<integer>504</integer>
+				<integer>502</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
 				<real>0</real>
 			</dict>
-			<key>Aer/matuiL22.png</key>
+			<key>snowstorm IMG/snowflake_16.png</key>
 			<dict>
 				<key>width</key>
-				<integer>236</integer>
+				<integer>500</integer>
 				<key>height</key>
-				<integer>238</integer>
+				<integer>500</integer>
 				<key>originalWidth</key>
-				<integer>236</integer>
+				<integer>500</integer>
 				<key>originalHeight</key>
-				<integer>238</integer>
-				<key>x</key>
-				<integer>449</integer>
-				<key>y</key>
-				<integer>504</integer>
-				<key>offsetX</key>
-				<real>0</real>
-				<key>offsetY</key>
-				<real>0</real>
-			</dict>
-			<key>Aer/matuiR11.png</key>
-			<dict>
-				<key>width</key>
-				<integer>224</integer>
-				<key>height</key>
-				<integer>300</integer>
-				<key>originalWidth</key>
-				<integer>224</integer>
-				<key>originalHeight</key>
-				<integer>300</integer>
-				<key>x</key>
-				<integer>687</integer>
-				<key>y</key>
-				<integer>504</integer>
-				<key>offsetX</key>
-				<real>0</real>
-				<key>offsetY</key>
-				<real>0</real>
-			</dict>
-			<key>Aer/matuiR12.png</key>
-			<dict>
-				<key>width</key>
-				<integer>255</integer>
-				<key>height</key>
-				<integer>312</integer>
-				<key>originalWidth</key>
-				<integer>255</integer>
-				<key>originalHeight</key>
-				<integer>312</integer>
-				<key>x</key>
-				<integer>913</integer>
-				<key>y</key>
-				<integer>504</integer>
-				<key>offsetX</key>
-				<real>0</real>
-				<key>offsetY</key>
-				<real>0</real>
-			</dict>
-			<key>Aer/matuiR22.png</key>
-			<dict>
-				<key>width</key>
-				<integer>174</integer>
-				<key>height</key>
-				<integer>296</integer>
-				<key>originalWidth</key>
-				<integer>174</integer>
-				<key>originalHeight</key>
-				<integer>296</integer>
-				<key>x</key>
-				<integer>1170</integer>
-				<key>y</key>
-				<integer>504</integer>
-				<key>offsetX</key>
-				<real>0</real>
-				<key>offsetY</key>
-				<real>0</real>
-			</dict>
-			<key>Aer/matuiR21.png</key>
-			<dict>
-				<key>width</key>
-				<integer>235</integer>
-				<key>height</key>
-				<integer>282</integer>
-				<key>originalWidth</key>
-				<integer>235</integer>
-				<key>originalHeight</key>
-				<integer>282</integer>
-				<key>x</key>
-				<integer>1346</integer>
-				<key>y</key>
-				<integer>504</integer>
-				<key>offsetX</key>
-				<real>0</real>
-				<key>offsetY</key>
-				<real>0</real>
-			</dict>
-			<key>ICE_03.png</key>
-			<dict>
-				<key>width</key>
-				<integer>1300</integer>
-				<key>height</key>
-				<integer>975</integer>
-				<key>originalWidth</key>
-				<integer>1300</integer>
-				<key>originalHeight</key>
-				<integer>975</integer>
+				<integer>500</integer>
 				<key>x</key>
 				<integer>0</integer>
 				<key>y</key>
-				<integer>820</integer>
+				<integer>1004</integer>
+				<key>offsetX</key>
+				<real>0</real>
+				<key>offsetY</key>
+				<real>0</real>
+			</dict>
+			<key>snowstorm IMG/snowflake_17.png</key>
+			<dict>
+				<key>width</key>
+				<integer>500</integer>
+				<key>height</key>
+				<integer>500</integer>
+				<key>originalWidth</key>
+				<integer>500</integer>
+				<key>originalHeight</key>
+				<integer>500</integer>
+				<key>x</key>
+				<integer>502</integer>
+				<key>y</key>
+				<integer>1004</integer>
+				<key>offsetX</key>
+				<real>0</real>
+				<key>offsetY</key>
+				<real>0</real>
+			</dict>
+			<key>snowstorm IMG/snowflake_18.png</key>
+			<dict>
+				<key>width</key>
+				<integer>500</integer>
+				<key>height</key>
+				<integer>500</integer>
+				<key>originalWidth</key>
+				<integer>500</integer>
+				<key>originalHeight</key>
+				<integer>500</integer>
+				<key>x</key>
+				<integer>1004</integer>
+				<key>y</key>
+				<integer>1004</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -257,9 +219,9 @@
 			<key>format</key>
 			<integer>0</integer>
 			<key>textureFileName</key>
-			<string>Aer1.png</string>
+			<string>xuejingling_VFX1.png</string>
 			<key>realTextureFileName</key>
-			<string>Aer1.png</string>
+			<string>xuejingling_VFX1.png</string>
 			<key>size</key>
 			<string>{2048,2048}</string>
 		</dict>

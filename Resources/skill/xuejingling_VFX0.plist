@@ -205,9 +205,9 @@
 				<key>originalHeight</key>
 				<integer>350</integer>
 				<key>x</key>
-				<integer>1955</integer>
-				<key>y</key>
 				<integer>0</integer>
+				<key>y</key>
+				<integer>352</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -224,9 +224,9 @@
 				<key>originalHeight</key>
 				<integer>350</integer>
 				<key>x</key>
-				<integer>2177</integer>
+				<integer>222</integer>
 				<key>y</key>
-				<integer>0</integer>
+				<integer>352</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -243,9 +243,9 @@
 				<key>originalHeight</key>
 				<integer>350</integer>
 				<key>x</key>
-				<integer>2399</integer>
+				<integer>444</integer>
 				<key>y</key>
-				<integer>0</integer>
+				<integer>352</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -262,9 +262,9 @@
 				<key>originalHeight</key>
 				<integer>350</integer>
 				<key>x</key>
-				<integer>2621</integer>
+				<integer>666</integer>
 				<key>y</key>
-				<integer>0</integer>
+				<integer>352</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -281,9 +281,9 @@
 				<key>originalHeight</key>
 				<integer>350</integer>
 				<key>x</key>
-				<integer>2843</integer>
+				<integer>888</integer>
 				<key>y</key>
-				<integer>0</integer>
+				<integer>352</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -300,9 +300,9 @@
 				<key>originalHeight</key>
 				<integer>350</integer>
 				<key>x</key>
-				<integer>3065</integer>
+				<integer>1110</integer>
 				<key>y</key>
-				<integer>0</integer>
+				<integer>352</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -319,9 +319,9 @@
 				<key>originalHeight</key>
 				<integer>350</integer>
 				<key>x</key>
-				<integer>3287</integer>
+				<integer>1332</integer>
 				<key>y</key>
-				<integer>0</integer>
+				<integer>352</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -338,9 +338,9 @@
 				<key>originalHeight</key>
 				<integer>350</integer>
 				<key>x</key>
-				<integer>3509</integer>
+				<integer>1554</integer>
 				<key>y</key>
-				<integer>0</integer>
+				<integer>352</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -357,9 +357,9 @@
 				<key>originalHeight</key>
 				<integer>350</integer>
 				<key>x</key>
-				<integer>3731</integer>
+				<integer>1776</integer>
 				<key>y</key>
-				<integer>0</integer>
+				<integer>352</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -378,7 +378,7 @@
 				<key>x</key>
 				<integer>0</integer>
 				<key>y</key>
-				<integer>352</integer>
+				<integer>704</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -397,7 +397,7 @@
 				<key>x</key>
 				<integer>502</integer>
 				<key>y</key>
-				<integer>352</integer>
+				<integer>704</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -416,7 +416,7 @@
 				<key>x</key>
 				<integer>1004</integer>
 				<key>y</key>
-				<integer>352</integer>
+				<integer>704</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -435,7 +435,7 @@
 				<key>x</key>
 				<integer>1506</integer>
 				<key>y</key>
-				<integer>352</integer>
+				<integer>704</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -452,9 +452,9 @@
 				<key>originalHeight</key>
 				<integer>500</integer>
 				<key>x</key>
-				<integer>2008</integer>
+				<integer>0</integer>
 				<key>y</key>
-				<integer>352</integer>
+				<integer>1206</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -471,9 +471,9 @@
 				<key>originalHeight</key>
 				<integer>500</integer>
 				<key>x</key>
-				<integer>2510</integer>
+				<integer>502</integer>
 				<key>y</key>
-				<integer>352</integer>
+				<integer>1206</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -490,9 +490,9 @@
 				<key>originalHeight</key>
 				<integer>500</integer>
 				<key>x</key>
-				<integer>3012</integer>
+				<integer>1004</integer>
 				<key>y</key>
-				<integer>352</integer>
+				<integer>1206</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -509,218 +509,9 @@
 				<key>originalHeight</key>
 				<integer>500</integer>
 				<key>x</key>
-				<integer>3514</integer>
-				<key>y</key>
-				<integer>352</integer>
-				<key>offsetX</key>
-				<real>0</real>
-				<key>offsetY</key>
-				<real>0</real>
-			</dict>
-			<key>snowstorm IMG/snowflake_08.png</key>
-			<dict>
-				<key>width</key>
-				<integer>500</integer>
-				<key>height</key>
-				<integer>500</integer>
-				<key>originalWidth</key>
-				<integer>500</integer>
-				<key>originalHeight</key>
-				<integer>500</integer>
-				<key>x</key>
-				<integer>0</integer>
-				<key>y</key>
-				<integer>854</integer>
-				<key>offsetX</key>
-				<real>0</real>
-				<key>offsetY</key>
-				<real>0</real>
-			</dict>
-			<key>snowstorm IMG/snowflake_09.png</key>
-			<dict>
-				<key>width</key>
-				<integer>500</integer>
-				<key>height</key>
-				<integer>500</integer>
-				<key>originalWidth</key>
-				<integer>500</integer>
-				<key>originalHeight</key>
-				<integer>500</integer>
-				<key>x</key>
-				<integer>502</integer>
-				<key>y</key>
-				<integer>854</integer>
-				<key>offsetX</key>
-				<real>0</real>
-				<key>offsetY</key>
-				<real>0</real>
-			</dict>
-			<key>snowstorm IMG/snowflake_10.png</key>
-			<dict>
-				<key>width</key>
-				<integer>500</integer>
-				<key>height</key>
-				<integer>500</integer>
-				<key>originalWidth</key>
-				<integer>500</integer>
-				<key>originalHeight</key>
-				<integer>500</integer>
-				<key>x</key>
-				<integer>1004</integer>
-				<key>y</key>
-				<integer>854</integer>
-				<key>offsetX</key>
-				<real>0</real>
-				<key>offsetY</key>
-				<real>0</real>
-			</dict>
-			<key>snowstorm IMG/snowflake_11.png</key>
-			<dict>
-				<key>width</key>
-				<integer>500</integer>
-				<key>height</key>
-				<integer>500</integer>
-				<key>originalWidth</key>
-				<integer>500</integer>
-				<key>originalHeight</key>
-				<integer>500</integer>
-				<key>x</key>
 				<integer>1506</integer>
 				<key>y</key>
-				<integer>854</integer>
-				<key>offsetX</key>
-				<real>0</real>
-				<key>offsetY</key>
-				<real>0</real>
-			</dict>
-			<key>snowstorm IMG/snowflake_12.png</key>
-			<dict>
-				<key>width</key>
-				<integer>500</integer>
-				<key>height</key>
-				<integer>500</integer>
-				<key>originalWidth</key>
-				<integer>500</integer>
-				<key>originalHeight</key>
-				<integer>500</integer>
-				<key>x</key>
-				<integer>2008</integer>
-				<key>y</key>
-				<integer>854</integer>
-				<key>offsetX</key>
-				<real>0</real>
-				<key>offsetY</key>
-				<real>0</real>
-			</dict>
-			<key>snowstorm IMG/snowflake_13.png</key>
-			<dict>
-				<key>width</key>
-				<integer>500</integer>
-				<key>height</key>
-				<integer>500</integer>
-				<key>originalWidth</key>
-				<integer>500</integer>
-				<key>originalHeight</key>
-				<integer>500</integer>
-				<key>x</key>
-				<integer>2510</integer>
-				<key>y</key>
-				<integer>854</integer>
-				<key>offsetX</key>
-				<real>0</real>
-				<key>offsetY</key>
-				<real>0</real>
-			</dict>
-			<key>snowstorm IMG/snowflake_14.png</key>
-			<dict>
-				<key>width</key>
-				<integer>500</integer>
-				<key>height</key>
-				<integer>500</integer>
-				<key>originalWidth</key>
-				<integer>500</integer>
-				<key>originalHeight</key>
-				<integer>500</integer>
-				<key>x</key>
-				<integer>3012</integer>
-				<key>y</key>
-				<integer>854</integer>
-				<key>offsetX</key>
-				<real>0</real>
-				<key>offsetY</key>
-				<real>0</real>
-			</dict>
-			<key>snowstorm IMG/snowflake_15.png</key>
-			<dict>
-				<key>width</key>
-				<integer>500</integer>
-				<key>height</key>
-				<integer>500</integer>
-				<key>originalWidth</key>
-				<integer>500</integer>
-				<key>originalHeight</key>
-				<integer>500</integer>
-				<key>x</key>
-				<integer>3514</integer>
-				<key>y</key>
-				<integer>854</integer>
-				<key>offsetX</key>
-				<real>0</real>
-				<key>offsetY</key>
-				<real>0</real>
-			</dict>
-			<key>snowstorm IMG/snowflake_16.png</key>
-			<dict>
-				<key>width</key>
-				<integer>500</integer>
-				<key>height</key>
-				<integer>500</integer>
-				<key>originalWidth</key>
-				<integer>500</integer>
-				<key>originalHeight</key>
-				<integer>500</integer>
-				<key>x</key>
-				<integer>0</integer>
-				<key>y</key>
-				<integer>1356</integer>
-				<key>offsetX</key>
-				<real>0</real>
-				<key>offsetY</key>
-				<real>0</real>
-			</dict>
-			<key>snowstorm IMG/snowflake_17.png</key>
-			<dict>
-				<key>width</key>
-				<integer>500</integer>
-				<key>height</key>
-				<integer>500</integer>
-				<key>originalWidth</key>
-				<integer>500</integer>
-				<key>originalHeight</key>
-				<integer>500</integer>
-				<key>x</key>
-				<integer>502</integer>
-				<key>y</key>
-				<integer>1356</integer>
-				<key>offsetX</key>
-				<real>0</real>
-				<key>offsetY</key>
-				<real>0</real>
-			</dict>
-			<key>snowstorm IMG/snowflake_18.png</key>
-			<dict>
-				<key>width</key>
-				<integer>500</integer>
-				<key>height</key>
-				<integer>500</integer>
-				<key>originalWidth</key>
-				<integer>500</integer>
-				<key>originalHeight</key>
-				<integer>500</integer>
-				<key>x</key>
-				<integer>1004</integer>
-				<key>y</key>
-				<integer>1356</integer>
+				<integer>1206</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
@@ -736,14 +527,14 @@
 			<key>realTextureFileName</key>
 			<string>xuejingling_VFX0.png</string>
 			<key>size</key>
-			<string>{4096,4096}</string>
+			<string>{2048,2048}</string>
 		</dict>
 		<key>texture</key>
 		<dict>
 			<key>width</key>
-			<integer>4096</integer>
+			<integer>2048</integer>
 			<key>height</key>
-			<integer>4096</integer>
+			<integer>2048</integer>
 		</dict>
 	</dict>
 </plist>

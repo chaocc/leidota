@@ -757,9 +757,13 @@
     }
   ],
   "config_file_path": [
-    "YSG-VFX0.plist"
+    "YSG-VFX0.plist",
+    "YSG-VFX1.plist",
+    "YSG-VFX2.plist"
   ],
   "config_png_path": [
-    "YSG-VFX0.png"
+    "YSG-VFX0.png",
+    "YSG-VFX1.png",
+    "YSG-VFX2.png"
   ]
 }

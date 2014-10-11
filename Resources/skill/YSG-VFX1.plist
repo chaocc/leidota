@@ -4,7 +4,7 @@
 	<dict>
 		<key>frames</key>
 		<dict>
-			<key>rock_VFX/rock_VFX_00.png</key>
+			<key>rock_VFX/rock_VFX_09.png</key>
 			<dict>
 				<key>width</key>
 				<integer>600</integer>
@@ -23,7 +23,7 @@
 				<key>offsetY</key>
 				<real>0</real>
 			</dict>
-			<key>rock_VFX/rock_VFX_01.png</key>
+			<key>rock_VFX/rock_VFX_10.png</key>
 			<dict>
 				<key>width</key>
 				<integer>600</integer>
@@ -42,7 +42,7 @@
 				<key>offsetY</key>
 				<real>0</real>
 			</dict>
-			<key>rock_VFX/rock_VFX_02.png</key>
+			<key>rock_VFX/rock_VFX_11.png</key>
 			<dict>
 				<key>width</key>
 				<integer>600</integer>
@@ -61,7 +61,7 @@
 				<key>offsetY</key>
 				<real>0</real>
 			</dict>
-			<key>rock_VFX/rock_VFX_03.png</key>
+			<key>rock_VFX/rock_VFX_12.png</key>
 			<dict>
 				<key>width</key>
 				<integer>600</integer>
@@ -80,7 +80,7 @@
 				<key>offsetY</key>
 				<real>0</real>
 			</dict>
-			<key>rock_VFX/rock_VFX_04.png</key>
+			<key>rock_VFX/rock_VFX_13.png</key>
 			<dict>
 				<key>width</key>
 				<integer>600</integer>
@@ -99,7 +99,7 @@
 				<key>offsetY</key>
 				<real>0</real>
 			</dict>
-			<key>rock_VFX/rock_VFX_05.png</key>
+			<key>rock_VFX/rock_VFX_14.png</key>
 			<dict>
 				<key>width</key>
 				<integer>600</integer>
@@ -118,7 +118,7 @@
 				<key>offsetY</key>
 				<real>0</real>
 			</dict>
-			<key>rock_VFX/rock_VFX_06.png</key>
+			<key>rock_VFX/rock_VFX_15.png</key>
 			<dict>
 				<key>width</key>
 				<integer>600</integer>
@@ -137,7 +137,7 @@
 				<key>offsetY</key>
 				<real>0</real>
 			</dict>
-			<key>rock_VFX/rock_VFX_07.png</key>
+			<key>rock_VFX/rock_VFX_16.png</key>
 			<dict>
 				<key>width</key>
 				<integer>600</integer>
@@ -156,7 +156,7 @@
 				<key>offsetY</key>
 				<real>0</real>
 			</dict>
-			<key>rock_VFX/rock_VFX_08.png</key>
+			<key>rock_VFX/rock_VFX_17.png</key>
 			<dict>
 				<key>width</key>
 				<integer>600</integer>
@@ -181,9 +181,9 @@
 			<key>format</key>
 			<integer>0</integer>
 			<key>textureFileName</key>
-			<string>YSG-VFX0.png</string>
+			<string>YSG-VFX1.png</string>
 			<key>realTextureFileName</key>
-			<string>YSG-VFX0.png</string>
+			<string>YSG-VFX1.png</string>
 			<key>size</key>
 			<string>{2048,2048}</string>
 		</dict>

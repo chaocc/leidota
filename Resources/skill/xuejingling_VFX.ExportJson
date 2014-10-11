@@ -97,7 +97,7 @@
         {
           "name": "ice cube",
           "parent": "",
-          "dI": 14,
+          "dI": 1,
           "x": 0.0,
           "y": 74.702957153320312,
           "z": 1,
@@ -885,7 +885,7 @@
         },
         {
           "name": "atk3",
-          "dr": 13,
+          "dr": 14,
           "lp": true,
           "to": 0,
           "drTW": 0,
@@ -1112,7 +1112,7 @@
         },
         {
           "name": "atk",
-          "dr": 6,
+          "dr": 5,
           "lp": true,
           "to": 0,
           "drTW": 0,
@@ -1533,9 +1533,11 @@
     }
   ],
   "config_file_path": [
-    "xuejingling_VFX0.plist"
+    "xuejingling_VFX0.plist",
+    "xuejingling_VFX1.plist"
   ],
   "config_png_path": [
-    "xuejingling_VFX0.png"
+    "xuejingling_VFX0.png",
+    "xuejingling_VFX1.png"
   ]
 }
