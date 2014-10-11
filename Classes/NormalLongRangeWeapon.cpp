@@ -49,7 +49,7 @@ void NormalLongRangeWeapon::onLaunchProjectile( string evt )
     {
         // 创建并发射子弹
         auto tmpProjectile  =   Projectile::create(m_pOwner->getAttribute(), 
-            m_projectileType, (void*)m_targetId);
+            m_projectileType, (void*)m_targetId, m_pOwner->getId());
         
         // 放置初始位置
         tmpProjectile->getMovingPart()->setPosition(m_pOwner->getShape()->getCenterPos());
@@ -59,6 +59,9 @@ void NormalLongRangeWeapon::onLaunchProjectile( string evt )
         auto tmpTargetPos   =   tmpCharacter->getShape()->getCenterPos();
         auto tmpOwnerPos    =   m_pOwner->getShape()->getCenterPos();
         tmpProjectile->getMovingPart()->setOrientation((tmpTargetPos - tmpOwnerPos).getNormalized());
+
+        // 同时增加自己的能量值120
+        m_pOwner->getAttribute().addEnergy(120);
     }
 }
 

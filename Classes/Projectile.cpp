@@ -7,7 +7,7 @@
 
 int Projectile::m_count =   -1;
 
-Projectile* Projectile::create( GameCharacterAttribute& att, ProjectileTypeEnum type, void* extraInfo )
+Projectile* Projectile::create( GameCharacterAttribute& att, ProjectileTypeEnum type, void* extraInfo, int ownerId )
 {
     Projectile* pRet    =   nullptr;
 
@@ -86,6 +86,7 @@ Projectile* Projectile::create( GameCharacterAttribute& att, ProjectileTypeEnum 
     if (pRet != nullptr)
     {
         pRet->m_projectileType  =   type;
+        pRet->m_ownerId         =   ownerId;
         pRet->autorelease();
 
         // 注册到管理器中

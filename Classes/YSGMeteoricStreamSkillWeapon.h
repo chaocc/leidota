@@ -58,6 +58,9 @@ private:
         auto tmpMeteoricStream  =   MeteoricStream::create(m_pOwner->getId());
         tmpMeteoricStream->setPosition(m_targetPos);
         GamepMapSingleton->addChildToPlayerLayer(tmpMeteoricStream);
+
+        // ¹éÁãÄÜÁ¿Öµ
+        m_pOwner->getAttribute().setEnergy(0);
     }
 
     /**

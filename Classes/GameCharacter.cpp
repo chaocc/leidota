@@ -41,7 +41,7 @@ GameCharacter* GameCharacter::create(int id)
             tmpRet->m_shape->retain();
 
             // 不同的角色有不同的初始属性
-            tmpRet->m_attribute     =   GameCharacterAttribute(80, 10, 30, 80);
+            tmpRet->m_attribute     =   GameCharacterAttribute(200, 10, 30, 70);
 
             // 普通近距离攻击能力
             tmpRet->getWeaponControlSystem()->addWeapon(new NormalCloseRangeWeapon(tmpRet));
@@ -62,7 +62,7 @@ GameCharacter* GameCharacter::create(int id)
             tmpRet->m_shape         =   GameCharacterShape::create("xuejingling-qian");
             tmpRet->m_shape->retain();
 
-            tmpRet->m_attribute     =   GameCharacterAttribute(800, 100, 10, 90, 700);
+            tmpRet->m_attribute     =   GameCharacterAttribute(800, 80, 10, 80, 700);
 
             // 普通远程攻击，丢出去的是闪电球
             tmpRet->getWeaponControlSystem()->addWeapon(new NormalLongRangeWeapon(tmpRet, PROJECTILE_TYPE_GALAXO_BALL, 
@@ -82,7 +82,7 @@ GameCharacter* GameCharacter::create(int id)
             tmpRet->m_shape         =   GameCharacterShape::create("Aer");
             tmpRet->m_shape->retain();
 
-            tmpRet->m_attribute     =   GameCharacterAttribute(900, 1, 50, 120);
+            tmpRet->m_attribute     =   GameCharacterAttribute(900, 20, 50, 120);
 
             // 普通近程攻击能力
             tmpRet->getWeaponControlSystem()->addWeapon(new NormalCloseRangeWeapon(tmpRet));
@@ -135,7 +135,7 @@ GameCharacter* GameCharacter::create(int id)
             tmpRet->m_shape         =   GameCharacterShape::create("Theif");
             tmpRet->m_shape->retain();
 
-            tmpRet->m_attribute     =   GameCharacterAttribute(300, 30, 5, 100);
+            tmpRet->m_attribute     =   GameCharacterAttribute(300, 30, 5, 80);
 
             // 普通进程攻击能力
             tmpRet->getWeaponControlSystem()->addWeapon(new NormalCloseRangeWeapon(tmpRet));
@@ -217,26 +217,32 @@ GameCharacter::~GameCharacter()
 
 void GameCharacter::update(float dm)
 {
-    // 如果当前角色是死亡的，那么就不用update了
+    // 这里以hp归零作为死亡的标准，然后在一个统一的地方删除处于死亡状态的
+    if (getAttribute().getHp() <= 0)
+    {
+        m_state =   dead;
+    }
+
+    // 如果当前角色是死亡的，就不用update了
     if (m_state == dead)
     {
         return;
     }
 
-    // 更新当前武器系统
-    m_weaponControlSystem->update(dm);
+    // 状态机也更新一下
+    m_stateMachine->update(dm);
+
+    // 如果当前角色处于dull，就不用继续了
+    if (On(dull))
+    {
+        return;
+    }
 
     // 思考一下
     m_brain->process();
 
     // 根据MovingEntity来调整Shape的坐标
     updateMovement(dm);
-
-    // 这里以hp归零作为死亡的标准，然后在一个统一的地方删除处于死亡状态的
-    if (getAttribute().getHp() <= 0)
-    {
-        m_state =   dead;
-    }
 
     // @_@ 额外的数字标签
     m_shape->setPosNumber(m_movingEntity.getFormationPosId());
@@ -273,9 +279,20 @@ bool GameCharacter::handleMessage(Telegram& msg)
             if (m_attribute.getHp() <= 0)
             {
                 m_state =   dead;
+                /**
+                *	需要通知攻击者，自己死了 
+                */
+                auto tmpDeadMsg =   Telegram::create(this->getId(), tmpMsg->senderId, TELEGRAM_ENUM_BE_KILLED);
+                Dispatch->dispatchMessage(*tmpDeadMsg);
             }
             m_shape->setHpRatio(m_attribute.getHp() / m_attribute.getFullHp());
             return true;
+        }
+
+    case TELEGRAM_ENUM_BE_KILLED:                           // 收到目标被自己杀死的通知
+        {
+            // 哈哈，自己杀人了，给自己增加能量
+            m_attribute.addEnergy(200);
         }
 
     default:

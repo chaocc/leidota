@@ -93,4 +93,45 @@ private:
     Armature*       m_iceCake;          // 冰块
 };
 
+/**
+*	角色处于受击状态 
+*/
+class GameCharacterHitedState : public State<GameCharacter>
+{
+protected:
+    GameCharacterHitedState():m_actionName("hit")
+    {
+
+    }
+
+public:
+    virtual void onEnter(GameCharacter* owner) override
+    {
+        // 播放受击动画
+        owner->getShape()->playAction(m_actionName, false);
+
+        // 同时该角色呆滞
+        owner->dullOn();
+    }
+
+    virtual void update(GameCharacter *owner, float dm) override
+    {
+        // 动画播放完毕后就退出
+        if (owner->getShape()->getCurrentAnimationName() != m_actionName)
+        {
+            owner->getFSM()->changeState(GameCharacterFreeState::create());
+        }
+    }
+
+    virtual void onExit(GameCharacter *owner) override
+    {
+        owner->dullOff();
+    }
+
+    CREATE_FUNC(GameCharacterHitedState);
+
+private:
+    const string m_actionName;
+};
+
 #endif

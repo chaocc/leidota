@@ -9,7 +9,7 @@
 class WeaponYSGChoiceAI : public WeaponChoiceAI
 {
 public:
-    WeaponYSGChoiceAI(GameCharacter* owner):WeaponChoiceAI(owner), m_normalProbability(0.5)
+    WeaponYSGChoiceAI(GameCharacter* owner):WeaponChoiceAI(owner)
     {
 
     }
@@ -24,22 +24,18 @@ protected:
     *	石头人也就只有
     *   （1）普通近距离攻击
     *   （2）石头雨
-    *   暂时也是使用概率吧
     */
     virtual void choiceWeapon() override
     {
-        if (CCRANDOM_0_1() < m_normalProbability)
-        {
-            changeWeapon(NORMAL_CLOSE_RANGE_WEAPON);
-        }
-        else
+        if (m_pOwner->getAttribute().getEnergy() == 600)
         {
             changeWeapon(YSG_METEORIC_STREAM_SKILL_WEAPON);
         }
+        else
+        {
+            changeWeapon(NORMAL_CLOSE_RANGE_WEAPON);
+        }
     }
-
-private:
-    const float m_normalProbability;                // 普通攻击的概率
 };
 
 #endif

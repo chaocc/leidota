@@ -10,43 +10,55 @@ class WeaponSpiritChoiceAI : public WeaponChoiceAI
 {
 public:
     WeaponSpiritChoiceAI(GameCharacter* owner): WeaponChoiceAI(owner)
-        ,m_normalProbability(0.1), m_freezeProbability(0.5)
     {
 
+    }
+
+    virtual void changeTarget()
+    {
+        m_attackCount   =   0;
+    }
+
+    virtual void attack() override
+    {
+        if (m_pOwner->getWeaponControlSystem()->getCurrentWeaponType() == NORMAL_LONG_RANGE_WEAPON )
+        {
+            m_attackCount++;
+        }
+        else
+        {
+            m_attackCount   =   0;
+        }
+
+        WeaponChoiceAI::attack();
     }
 
 protected:
     /**
-    *	雪精灵只有普通远程攻击、冰冻、暴风雪，暂时还是用概率来控制选择哪种武器@_@ 
+    *	雪精灵拥有3种攻击方式，普通远程攻击、冰冻、暴风雪，当能量等于600的时候
+    *   使用暴风雪，当不够的时候按照3次普通1次冰冻来选择
     */
     virtual void choiceWeapon() override
     {
-        changeWeapon(choiceBetweenThree());
-    }
-
-private:
-    /**
-    *	@_@ 都不知道该怎么取名字了，反正这个就是返回根据概率计算好的选择的武器 
-    */
-    WeaponTypeEnum choiceBetweenThree()
-    {
-        auto tmpRandResult  =   CCRANDOM_0_1();
-        if (tmpRandResult < m_normalProbability)
+        if (m_pOwner->getAttribute().getEnergy() == 600)
         {
-            return NORMAL_LONG_RANGE_WEAPON;
-        }
-        else if (tmpRandResult < m_normalProbability + m_freezeProbability)
-        {
-            return SPIRIT_FREEZE_SKILL_WEAPON;
+            changeWeapon(SPIRIT_SNOWSTORM_SKILL_WEAPON);
         }
         else
         {
-            return SPIRIT_SNOWSTORM_SKILL_WEAPON;
+            if (m_attackCount <= 3)
+            {
+                changeWeapon(NORMAL_LONG_RANGE_WEAPON);
+            }
+            else
+            {
+                changeWeapon(SPIRIT_FREEZE_SKILL_WEAPON);
+            }
         }
     }
 
-    const float m_normalProbability;            // 普通远距离攻击概率
-    const float m_freezeProbability;            // 冰冻攻击概率
+private:
+    int m_attackCount;                      // 统计普通远距离攻击的次数
 };
 
 #endif

@@ -9,7 +9,7 @@
 class WeaponAerChoiceAI : public WeaponChoiceAI
 {
 public:
-    WeaponAerChoiceAI(GameCharacter* owner):WeaponChoiceAI(owner), m_cryosphereProbability(0.5)
+    WeaponAerChoiceAI(GameCharacter* owner):WeaponChoiceAI(owner)
     {
 
     }
@@ -32,7 +32,7 @@ protected:
 private:
     WeaponTypeEnum choiceCloseOrCryosphere()
     {
-        if (CCRANDOM_0_1() < m_cryosphereProbability)
+        if (m_pOwner->getAttribute().getEnergy() == 600)
         {
             return AER_CRYOSPHERE_SKILL_WEAPON;
         }
@@ -41,8 +41,6 @@ private:
             return NORMAL_CLOSE_RANGE_WEAPON;
         }
     }
-
-    const float m_cryosphereProbability;            // ±ùÈ¦µÄ¸ÅÂÊ
 };
 
 #endif

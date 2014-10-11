@@ -15,10 +15,9 @@ class Weapon;
 class WeaponChoiceAI
 {
 public:
-    WeaponChoiceAI(GameCharacter* owner):m_updateInterval(3)
+    WeaponChoiceAI(GameCharacter* owner)
     {
         m_pOwner            =   owner;
-        m_updateCountTime   =   0;
     }
 
     virtual ~WeaponChoiceAI()
@@ -27,20 +26,29 @@ public:
     }
 
     /**
-    *	定时调用来对当前使用的武器做调整，比如当前使用远程攻击，后来改成进程攻击 
+    *	每一次调用，都会根据当前情况选择一个合适的武器 
     */
-    void update(float dm)
+    void update()
     {
-        if (m_updateCountTime == 0)
-        {
-            // 真正考虑一下更换武器的逻辑
-            choiceWeapon();
-        }
-        m_updateCountTime   +=  dm;
-        if (m_updateCountTime > m_updateInterval)
-        {
-            m_updateCountTime   =   0;
-        }
+        // 真正考虑一下更换武器的逻辑
+        choiceWeapon();
+    }
+
+    /**
+    *	因为是用什么武器与之前的攻击有关，所以在每次攻击的时候需要回调该函数，有些
+    *   角色可以在子类中去覆盖该方法
+    */
+    virtual void attack()
+    {
+        update();
+    }
+
+    /**
+    *	当更改了当前攻击目标的时候被调用，这个可能会影响角色武器选择的逻辑
+    */
+    virtual void changeTarget()
+    {
+
     }
 
 protected:
@@ -58,10 +66,6 @@ protected:
     }
 
     GameCharacter*    m_pOwner;                // 对应的武器控制系统
-
-private:
-    const float m_updateInterval;                       // 这个应该没有必要每次都更新
-    float m_updateCountTime;                            // 更新的计数时间
 };
 
 #endif

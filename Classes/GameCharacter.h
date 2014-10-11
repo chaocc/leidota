@@ -59,6 +59,12 @@ public:
     bool isDead() { return m_state == dead; }
 
     /**
+    *	有关状态的设置 
+    */
+    void dullOn() { m_state |= dull; }
+    void dullOff() { m_state &= ~dull; }
+
+    /**
     * 有关当前目标的判断，比如在队伍分配目标的时候会用到这个接口
     */
     bool hasGoal();
@@ -87,9 +93,12 @@ protected:
     */
     enum GameCharacterStateEnum
     {
-        alive,                  // 当前活着
-        dead,                   // 已经死了
+        alive,                                // 当前活着
+        dead,                                 // 已经死了
+        dull    =   0x0004,                   // 如果置位就不调用update
     };
+
+    bool On(GameCharacterStateEnum state) { return (m_state & state) != 0; }
 
     GameCharacterShape*             m_shape;                    // 该角色的外形
     GameCharacterAttribute          m_attribute;                // 该角色的各种属性
@@ -104,7 +113,7 @@ protected:
     MovingEntity                    m_movingEntity;             // 用来代表角色移动的对象
     SteeringBehaviors*              m_steeringBehaviors;        // 驱动力产生对象
 
-    GameCharacterStateEnum          m_state;                    // 角色当前当前状态
+    int                             m_state;                    // 角色当前当前状态
  
     CharacterStateMachine*   m_stateMachine;                    // 角色的状态机
 };

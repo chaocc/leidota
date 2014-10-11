@@ -7,6 +7,7 @@
 #include "EntityManager.h"
 #include "MessageDispatcher.h"
 #include "GameMap.h"
+#include "GameCharacterState.h"
 
 using namespace cocos2d;
 using namespace cocostudio;
@@ -23,7 +24,7 @@ public:
 
         m_meteoricArmature->getAnimation()->play("atk", -1, 0);
 
-        m_meteoricArmature->scheduleUpdate();
+        this->scheduleUpdate();
     }
 
     virtual void update(float dm) override
@@ -45,7 +46,7 @@ public:
                 auto tmpCharacters  =   getAffectedCharacters();
                 for (auto tmpIterator = tmpCharacters.begin(); tmpIterator != tmpCharacters.end(); tmpIterator++)
                 {
-                    effectLethality((*tmpIterator)->getId());
+                    effectLethality(*tmpIterator);
                 }
             }
 
@@ -67,7 +68,7 @@ public:
     }
 
 protected:
-    MeteoricStream(int ownerId):m_effectInterval(0.4), m_effectRadius(200)
+    MeteoricStream(int ownerId):m_effectInterval(0.4), m_effectRadius(300), m_lethality(14)
     {
         ArmatureDataManager::getInstance()->addArmatureFileInfo("skill/YSG-VFX.ExportJson");
         m_meteoricArmature  =   Armature::create("YSG-VFX");
@@ -76,6 +77,7 @@ protected:
         m_timeCount         =   0;
         auto tmpCharacter   =   dynamic_cast<GameCharacter*>(EntityMgr->getEntityFromID(m_ownerId));
         m_ownerAtt          =   tmpCharacter->getAttribute();
+        m_ownerAtt.setAttack(m_lethality);
         m_ownerType         =   tmpCharacter->getType();
     }
 
@@ -114,12 +116,18 @@ private:
     /**
     *	在角色身上作用杀伤力 
     */
-    void effectLethality(int targetId)
+    void effectLethality(GameCharacter* target)
     {
+        /**
+        *	这里不是普通攻击，还需要让被攻击者进入受击状态
+        *   @_@ 这里直接进行状态转换不太好，但暂时这样写吧
+        */
+        target->getFSM()->changeState(GameCharacterHitedState::create());
+
         /**
         *	这里就作为普通攻击攻击吧，只是攻击力采用这里记录的 
         */
-        auto tmpMsg = TelegramNormalAttack::create(m_ownerId, targetId, m_ownerAtt);
+        auto tmpMsg = TelegramNormalAttack::create(m_ownerId, target->getId(), m_ownerAtt);
         Dispatch->dispatchMessage(*tmpMsg);
     }
 
@@ -132,6 +140,7 @@ private:
 
     const float             m_effectInterval;           // 扣血的间隔时间
     const float             m_effectRadius;             // 影响半径
+    const float             m_lethality;                // 杀伤力
 };
 
 #endif

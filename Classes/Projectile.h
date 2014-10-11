@@ -40,7 +40,7 @@ public:
     *	只能通过这个接口创建子弹，这里作为类似工厂的作用，这里提供一个传入
     *   自定义数据的能力，在create中应该有能力根据不同的类型使用这个数据
     */
-    static Projectile* create(GameCharacterAttribute& att, ProjectileTypeEnum type, void* extraData);
+    static Projectile* create(GameCharacterAttribute& att, ProjectileTypeEnum type, void* extraData, int ownerId);
 
     /**
     *	在此处完成位移更新，不再使用原来的继承方式，而是采用
@@ -75,6 +75,11 @@ protected:
     *	关于子弹的状态 
     */
     CC_SYNTHESIZE(int, m_state, State);
+
+    /**
+    *	该子弹的拥有者，就是发射者
+    */
+    CC_SYNTHESIZE_READONLY(int, m_ownerId, OwnerId);
 
     bool canUpdate() { return (m_state & PROJECTILE_STATE_UPDATE) != 0; }
     bool canUpdateMovement() { return (m_state & PROJECTILE_STATE_UPDATEMOVEMENT) != 0; }

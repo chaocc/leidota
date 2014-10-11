@@ -4,13 +4,14 @@
 #include "GameTeam.h"
 #include "EntityManager.h"
 #include "WeaponChoiceAI.h"
+#include "TimeTool.h"
 
-WeaponControlSystem::WeaponControlSystem( GameCharacter* owner ):m_updateInterval(1)
+WeaponControlSystem::WeaponControlSystem( GameCharacter* owner ):m_minAttackInterval(1.5)
 {
     m_pOwner            =   owner;
     m_currentWeapon     =   nullptr;
-    m_updateCountTime   =   0;
     m_targetId          =   INVALID_GAME_ENTITY_ID;
+    m_lastAttackTime    =   0;
 }
 
 WeaponControlSystem::~WeaponControlSystem()
@@ -38,7 +39,7 @@ void WeaponControlSystem::addWeapon(Weapon* aWeapon)
 void WeaponControlSystem::takeWeaponAndAttack( GameCharacter* target )
 {
     // 使用当前的武器攻击敌人
-    if (m_currentWeapon->isInAttackRange(target) && m_currentWeapon->isReadyForNextAttack())
+    if (satisfySysAttack() && m_currentWeapon->isInAttackRange(target) && m_currentWeapon->isReadyForNextAttack())
     {
         // 面向敌人
         if (m_pOwner->getMovingEntity().getPosition().x > target->getMovingEntity().getPosition().x)
@@ -52,6 +53,13 @@ void WeaponControlSystem::takeWeaponAndAttack( GameCharacter* target )
 
         m_currentWeapon->attack(target);
         m_targetId  =   target->getId();
+
+        m_weaponChoiceAI->attack();
+
+        // 记录当前时间
+        m_lastAttackTime    =   TimeTool::getSecondTime();
+        // 允许下次攻击的时间
+        m_nextAttackTime    =   m_lastAttackTime + m_minAttackInterval;
     }
 }
 
@@ -67,10 +75,10 @@ bool WeaponControlSystem::canCharacterMove()
     return !m_currentWeapon->isAttacking() && !(tmpTarget != nullptr && isInAttackRange(tmpTarget));
 }
 
-void WeaponControlSystem::update(float dm)
+void WeaponControlSystem::update()
 {
     // 现在把这部分更新当前选择武器的逻辑交给外部对象
-    m_weaponChoiceAI->update(dm);
+    m_weaponChoiceAI->update();
 }
 
 bool WeaponControlSystem::changeWeapon( WeaponTypeEnum type )
@@ -85,4 +93,14 @@ bool WeaponControlSystem::changeWeapon( WeaponTypeEnum type )
         m_currentWeapon =   tmpIterator->second;
         return true;
     }
+}
+
+bool WeaponControlSystem::satisfySysAttack()
+{
+    return m_nextAttackTime < TimeTool::getSecondTime();
+}
+
+void WeaponControlSystem::setAttackTarget( int targetId )
+{
+    m_weaponChoiceAI->changeTarget();
 }

@@ -31,7 +31,7 @@ void ProjectileMonomerAttack::update( float dm )
             m_shapePart->onImpact();
 
             // 发送消息给受击者，@_@发送者id没有必要
-            auto tmpMsg = TelegramNormalAttack::create(0, m_targetId, m_senderAtt);
+            auto tmpMsg = TelegramNormalAttack::create(m_ownerId, m_targetId, m_senderAtt);
             Dispatch->dispatchMessage(*tmpMsg);
         }
     }

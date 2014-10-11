@@ -20,6 +20,9 @@ void SpiritSnowStormSkillWeapon::attack( GameCharacter* target )
     m_lastAttackTime        =   TimeTool::getSecondTime();
     m_nextAttackReadyTime   =   m_lastAttackTime + m_minAttInterval;
     m_targetId              =   target->getId();
+
+    // 同时把能量归零
+    m_pOwner->getAttribute().setEnergy(0);
 }
 
 bool SpiritSnowStormSkillWeapon::isInAttackRange( GameCharacter* target )

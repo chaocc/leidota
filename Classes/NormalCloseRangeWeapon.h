@@ -23,7 +23,12 @@ protected:
     /**
     *	 普通近距离攻击都是直接播放动画在特定帧的时候才作用，这里是帧事件
     */
-    void onAttackEffect(string evt);
+    virtual void onAttackEffect(string evt);
+
+    /**
+    *	临时数据 
+    */
+    int             m_targetId;                     // 临时保存当前攻击的角色id
 
 private:
     /**
@@ -44,11 +49,6 @@ private:
     float           m_minAttackInterval;
     double          m_lastAttackTime;               // 最近一次攻击时间
     double          m_nextAttackReadyTime;          // 下一次攻击准备完毕时间
-
-    /**
-    *	临时数据 
-    */
-    int             m_targetId;                     // 临时保存当前攻击的角色id
 };
 
 #endif

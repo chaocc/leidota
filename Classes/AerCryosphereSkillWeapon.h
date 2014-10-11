@@ -14,7 +14,7 @@ class AerCryosphereSkillWeapon : public Weapon
 {
 public:
     AerCryosphereSkillWeapon(GameCharacter* owner):Weapon(owner, AER_CRYOSPHERE_SKILL_WEAPON)
-        , m_actionName("atk2"), m_effectRadius(275), m_attRadius(200)
+        , m_actionName("atk2"), m_effectRadius(300), m_attRadius(220), m_lethality(20)
     {
         m_minAttackInterval =   4;
     }
@@ -32,6 +32,7 @@ public:
         // 记录一下当前的时间
         m_lastAttackTime        =   TimeTool::getSecondTime();
         m_nextAttackReadyTime   =   m_lastAttackTime + m_minAttackInterval;
+        m_targetId              =   target->getId();
     }
 
     virtual bool isInAttackRange(GameCharacter* target) override
@@ -65,6 +66,9 @@ private:
             // 依次对每个角色造成一定得影响
             effectLethality(*tmpIterator);
         }
+
+        // 将能量归零
+        m_pOwner->getAttribute().setEnergy(0);
     }
 
     /**
@@ -101,7 +105,16 @@ private:
         *	这里就作为普通攻击吧 
         */
         auto tmpMsg = TelegramNormalAttack::create(m_pOwner->getId(), target->getId(), m_pOwner->getAttribute());
+        tmpMsg->senderAtt.setAttack(m_lethality);
         Dispatch->dispatchMessage(*tmpMsg);
+
+        /**
+        *	 如果是攻击目标，同时进入受击状态
+        */
+        if (target->getId() == m_targetId)
+        {
+            target->getFSM()->changeState(GameCharacterHitedState::create());
+        }
     }
 
     /**
@@ -110,10 +123,12 @@ private:
     float           m_minAttackInterval;
     double          m_lastAttackTime;               // 最近一次攻击时间
     double          m_nextAttackReadyTime;          // 下一次攻击准备完毕时间
+    int             m_targetId;                     // 目标id
 
     const string    m_actionName;                   // 对应的角色的动画
     const float     m_effectRadius;                 // 受影响的范围
     const float     m_attRadius;                    // 发起攻击的半径
+    const float     m_lethality;                    // 杀伤力
 };
 
 #endif

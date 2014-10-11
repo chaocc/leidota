@@ -26,10 +26,14 @@ public:
     void addWeapon(Weapon* aWeapon);
 
     /**
-    *	定时在主循环中被调用，在这里会根据当前的情况选择合适的武器来发起
-    *   当前的攻击
+    *	调用一下角色的武器控制系统的思考部分，根据当前情况选择正确的武器
     */
-    void update(float dm);
+    void update();
+
+    /**
+    *	设置攻击目标的时候调用 
+    */
+    void setAttackTarget(int targetId);
 
     /**
     * 使用当前武器并且攻击某个目标 
@@ -56,7 +60,17 @@ public:
     */
     bool changeWeapon(WeaponTypeEnum type);
 
+    /**
+    *	返回当前武器的类型 
+    */
+    WeaponTypeEnum getCurrentWeaponType() { return m_currentWeapon->getWeaponType(); }
+
 private:
+    /**
+    *	 是否满足系统攻击的
+    */
+    bool satisfySysAttack();
+
     GameCharacter*                              m_pOwner;           // 当前武器拥有者
 
     Weapon*                                     m_currentWeapon;    // 当前武器
@@ -68,8 +82,12 @@ private:
 
     int                                         m_targetId;         // 临时记录上一次攻击的目标的id
 
-    const float m_updateInterval;                                   // 这个应该没有必要每次都更新
-    float m_updateCountTime;                                        // 更新的计数时间
+    /**
+    *	除了独立的武器有攻击间隔要求，就算中间换了武器，也有武器系统的最小攻击间隔事件 
+    */
+    double                                      m_lastAttackTime;   // 最近一次攻击
+    double                                      m_nextAttackTime;   // 下一次允许的攻击时间
+    const float                                 m_minAttackInterval;// 攻击的最小间隔
 };
 
 #endif

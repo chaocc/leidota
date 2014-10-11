@@ -10,7 +10,9 @@ GoalAttackSpecifiedTarget::GoalAttackSpecifiedTarget( GameCharacter* owner, int 
 
 void GoalAttackSpecifiedTarget::activate()
 {
-    
+    m_pOwner->getWeaponControlSystem()->setAttackTarget(m_targetId);
+    // @_@ 更新一下武器系统的部分
+    m_pOwner->getWeaponControlSystem()->update();
 }
 
 GoalStateEnum GoalAttackSpecifiedTarget::process()

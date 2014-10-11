@@ -28,7 +28,7 @@ public:
         FORMATION_TYPE_LEFT,                // 面向左边的阵型
     };
 
-    Formation(FormationTypeEnum type = FORMATION_TYPE_RIGHT):m_xPosInterval(200), m_yPosInterval(115)
+    Formation(FormationTypeEnum type = FORMATION_TYPE_RIGHT):m_xPosInterval(150), m_yPosInterval(115)
     {
         m_formationType =   type;
     }

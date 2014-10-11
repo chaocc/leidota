@@ -17,14 +17,22 @@ void TeamManager::update(float dm)
 {
     removeCanRemoveTeam();
 
+    // @_@ 这里做一个小东西，就是只对前两个队伍调用update
+    int tmpCount            =   0;
+    static bool tmpFirst    =   true;
     auto tmpIterator    =   m_allTeam.begin();
     for (; tmpIterator != m_allTeam.end(); )
     {
         auto tmpTeam    =   tmpIterator->second;
         tmpIterator++;
         tmpTeam->update(dm);
+        if (++tmpCount == 2 && !tmpFirst)
+        {
+            break;
+        }
     }
 
+    tmpFirst    =   false;
     removeCanRemoveTeam();
 }
 

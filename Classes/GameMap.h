@@ -39,7 +39,8 @@ public:
     vector<GameCharacter*> getCharactersInRadius(Vec2 aCenter, float aRadius);
 
 protected:
-    GameMap():MOUNTAIN_MOVE_SCALE(0.9f),SKY_MOVE_SCALE(0.3f),m_wallLBPos(0,0),m_wallRTPos(5120, 370){}
+    GameMap():MOUNTAIN_MOVE_SCALE(0.9f),SKY_MOVE_SCALE(0.3f),m_wallLBPos(0,0),
+        m_wallRTPos(5120, 370), m_maxCameraRate(70){}
     ~GameMap();
 
     bool init () override;
@@ -53,7 +54,7 @@ protected:
     * 设置摄像机在初始位置移动了多少，这样来调整4个层的移动，每个层相对于此移动不同的距离，其中摄像机
     * 是跟着主角的
     */
-    void cameraMove(int x);
+    void cameraMove(float dm);
 
     static GameMap* m_instance;      // 全局单件
 
@@ -78,6 +79,11 @@ protected:
     */
     const Vec2 m_wallLBPos;
     const Vec2 m_wallRTPos;
+
+    /**
+    *	摄像机的最大移动速度 
+    */
+    const float m_maxCameraRate;    // 摄像机的最大移动速度
 };
 
 #define GamepMapSingleton   GameMap::instance()

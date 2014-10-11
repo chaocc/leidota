@@ -54,4 +54,7 @@ void NormalCloseRangeWeapon::onAttackEffect(string evt)
     // 给受击者发送一条消息
     auto tmpMsg = TelegramNormalAttack::create(m_pOwner->getId(), m_targetId, m_pOwner->getAttribute());
     Dispatch->dispatchMessage(*tmpMsg);
+
+    // 同时会增加自己的能量值120
+    m_pOwner->getAttribute().addEnergy(120);
 }

@@ -23,6 +23,7 @@ enum TelegramEnum
     	 游戏角色之间的消息
     */
     TELEGRAM_ENUM_NORMAL_ATTACK,                     // 普通攻击
+    TELEGRAM_ENUM_BE_KILLED,                         // 被杀死者向攻击者发的消息，通知它自己死了
 
     /**
     	 队伍与队伍中的角色之间的消息
