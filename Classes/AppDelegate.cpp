@@ -17,9 +17,16 @@ bool AppDelegate::applicationDidFinishLaunching() {
     auto glview = director->getOpenGLView();
     if(!glview) {
         glview = GLView::create("My Game");
+
+        // 如果是windows版本就手动设置窗口大小，对于android版本不需要设置
+#ifdef WIN32
         glview->setFrameSize(1280, 800);
+#endif
         director->setOpenGLView(glview);
     }
+
+    // @_@ 难道cocos2d 3.x已经把自适应搞好了？？
+    glview->setDesignResolutionSize(1280, 800, ResolutionPolicy::SHOW_ALL);
 
     // turn on display FPS
     director->setDisplayStats(true);
