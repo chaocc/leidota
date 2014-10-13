@@ -62,7 +62,7 @@ GameCharacter* GameCharacter::create(int id)
             tmpRet->m_shape         =   GameCharacterShape::create("xuejingling-qian");
             tmpRet->m_shape->retain();
 
-            tmpRet->m_attribute     =   GameCharacterAttribute(800, 80, 10, 80, 700);
+            tmpRet->m_attribute     =   GameCharacterAttribute(800, 70, 10, 80, 700);
 
             // 普通远程攻击，丢出去的是闪电球
             tmpRet->getWeaponControlSystem()->addWeapon(new NormalLongRangeWeapon(tmpRet, PROJECTILE_TYPE_GALAXO_BALL, 
@@ -245,10 +245,10 @@ void GameCharacter::update(float dm)
     updateMovement(dm);
 
     // @_@ 额外的数字标签
-    m_shape->setPosNumber(m_movingEntity.getFormationPosId());
+    //m_shape->setPosNumber(m_movingEntity.getFormationPosId());
 
     // @_@ 额外的目标标签
-    m_shape->setCurrentGoal(m_brain->getGoalDescribe());
+    //m_shape->setCurrentGoal(m_brain->getGoalDescribe());
 }
 
 bool GameCharacter::handleMessage(Telegram& msg)
@@ -349,20 +349,29 @@ void GameCharacter::updateMovement(float dm)
 
     /**
     *	 在改变当前坐标前，使用包含牵引力的重新计算，这里主要就是因为
-    */ 
-    Vec2 tmpRealForce   =   m_steeringBehaviors->calculateWithTraction();
-    if (tmpRealForce.getLengthSq() < 5)
+    */
+    if (m_steeringBehaviors->getTraction() != Vec2::ZERO)
     {
-        // 如果力过小，就直接把速度降为0
-        const double BrakingRate = 0.1; 
-        m_movingEntity.setRealVelocity(m_movingEntity.getRealVelocity() * BrakingRate);                                     
+        // 如果牵引力不为0，才需要计算一次
+        Vec2 tmpRealForce   =   m_steeringBehaviors->calculateWithTraction();
+        if (tmpRealForce.getLengthSq() < 5)
+        {
+            // 如果力过小，就直接把速度降为0
+            const double BrakingRate = 0.1; 
+            m_movingEntity.setRealVelocity(m_movingEntity.getRealVelocity() * BrakingRate);                                     
+        }
+        else
+        {
+            // 加速度
+            Vec2 tmpAccel   =   tmpRealForce / m_movingEntity.getMass();
+            // 改变当前速度
+            m_movingEntity.setRealVelocity(m_movingEntity.getRealVelocity() + tmpAccel * dm);
+        }
     }
     else
     {
-        // 加速度
-        Vec2 tmpAccel   =   tmpRealForce / m_movingEntity.getMass();
-        // 改变当前速度
-        m_movingEntity.setRealVelocity(m_movingEntity.getRealVelocity() + tmpAccel * dm);
+        // 牵引力为0，期望速度和实际速度相同
+        m_movingEntity.setRealVelocity(m_movingEntity.getVelocity());
     }
 
     // 改变当前坐标

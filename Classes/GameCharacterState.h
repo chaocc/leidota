@@ -50,6 +50,23 @@ public:
         m_iceCake->setPosition(owner->getShape()->getCenterPosLocation());
         owner->getShape()->addChild(m_iceCake, 10);
         m_iceCake->getAnimation()->play("atk3");
+
+        // 还需要根据角色形象的大小来对冰块进行缩放
+        float tmpShapeW     =   owner->getShape()->getContentSize().width;
+        float tmpShapeH     =   owner->getShape()->getContentSize().height;
+        float tmpShapeWToH  =   tmpShapeW / tmpShapeH;
+        const float tmpIceH     =   140;
+        const float tmpIceW     =   50;
+        const float tmpIceWToH  = tmpIceW / tmpIceH;
+        if (tmpShapeWToH >= tmpIceWToH)
+        {
+            // 如果角色宽一些
+            m_iceCake->setScale(tmpShapeW * 0.6 / tmpIceW);
+        }
+        else
+        {
+            m_iceCake->setScale(tmpShapeH * 0.6 / tmpIceH);
+        }
     }
 
     virtual void update(GameCharacter *owner, float dm) override

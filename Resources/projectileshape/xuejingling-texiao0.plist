@@ -7,13 +7,13 @@
 			<key>1.png</key>
 			<dict>
 				<key>width</key>
-				<integer>25</integer>
+				<integer>16</integer>
 				<key>height</key>
-				<integer>16</integer>
+				<integer>11</integer>
 				<key>originalWidth</key>
-				<integer>25</integer>
-				<key>originalHeight</key>
 				<integer>16</integer>
+				<key>originalHeight</key>
+				<integer>11</integer>
 				<key>x</key>
 				<integer>0</integer>
 				<key>y</key>
@@ -26,15 +26,15 @@
 			<key>2.png</key>
 			<dict>
 				<key>width</key>
-				<integer>25</integer>
+				<integer>16</integer>
 				<key>height</key>
-				<integer>16</integer>
+				<integer>11</integer>
 				<key>originalWidth</key>
-				<integer>25</integer>
-				<key>originalHeight</key>
 				<integer>16</integer>
+				<key>originalHeight</key>
+				<integer>11</integer>
 				<key>x</key>
-				<integer>27</integer>
+				<integer>18</integer>
 				<key>y</key>
 				<integer>0</integer>
 				<key>offsetX</key>
@@ -45,15 +45,15 @@
 			<key>3.png</key>
 			<dict>
 				<key>width</key>
-				<integer>25</integer>
+				<integer>16</integer>
 				<key>height</key>
-				<integer>16</integer>
+				<integer>11</integer>
 				<key>originalWidth</key>
-				<integer>25</integer>
-				<key>originalHeight</key>
 				<integer>16</integer>
+				<key>originalHeight</key>
+				<integer>11</integer>
 				<key>x</key>
-				<integer>54</integer>
+				<integer>36</integer>
 				<key>y</key>
 				<integer>0</integer>
 				<key>offsetX</key>
@@ -64,15 +64,15 @@
 			<key>4.png</key>
 			<dict>
 				<key>width</key>
-				<integer>25</integer>
+				<integer>16</integer>
 				<key>height</key>
-				<integer>16</integer>
+				<integer>11</integer>
 				<key>originalWidth</key>
-				<integer>25</integer>
-				<key>originalHeight</key>
 				<integer>16</integer>
+				<key>originalHeight</key>
+				<integer>11</integer>
 				<key>x</key>
-				<integer>81</integer>
+				<integer>54</integer>
 				<key>y</key>
 				<integer>0</integer>
 				<key>offsetX</key>
@@ -83,15 +83,15 @@
 			<key>5.png</key>
 			<dict>
 				<key>width</key>
-				<integer>25</integer>
+				<integer>16</integer>
 				<key>height</key>
-				<integer>16</integer>
+				<integer>11</integer>
 				<key>originalWidth</key>
-				<integer>25</integer>
-				<key>originalHeight</key>
 				<integer>16</integer>
+				<key>originalHeight</key>
+				<integer>11</integer>
 				<key>x</key>
-				<integer>108</integer>
+				<integer>72</integer>
 				<key>y</key>
 				<integer>0</integer>
 				<key>offsetX</key>
@@ -109,14 +109,14 @@
 			<key>realTextureFileName</key>
 			<string>xuejingling-texiao0.png</string>
 			<key>size</key>
-			<string>{1024,1024}</string>
+			<string>{128,128}</string>
 		</dict>
 		<key>texture</key>
 		<dict>
 			<key>width</key>
-			<integer>1024</integer>
+			<integer>128</integer>
 			<key>height</key>
-			<integer>1024</integer>
+			<integer>128</integer>
 		</dict>
 	</dict>
 </plist>

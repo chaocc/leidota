@@ -1,5 +1,6 @@
 #include "AppDelegate.h"
 #include "GameScene.h"
+#include "cocostudio/CCArmature.h"
 
 USING_NS_CC;
 
@@ -36,6 +37,17 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
     // create a scene. it's an autorelease object
     auto scene = GameScene::create();
+
+    /**
+    *	此处先把一些资源加载进来，以防止第一次使用的时候会卡 
+    */
+    ArmatureDataManager::getInstance()->addArmatureFileInfo("skill/xuejingling_VFX.ExportJson");
+    ArmatureDataManager::getInstance()->addArmatureFileInfo("skill/YSG-VFX.ExportJson");
+    ArmatureDataManager::getInstance()->addArmatureFileInfo("projectileshape/Niu-wuqi.ExportJson");
+    ArmatureDataManager::getInstance()->addArmatureFileInfo("projectileshape/Pig-wuqi.ExportJson");
+    ArmatureDataManager::getInstance()->addArmatureFileInfo("projectileshape/Theif-wuqi.ExportJson");
+    ArmatureDataManager::getInstance()->addArmatureFileInfo("projectileshape/xuejingling-texiao.ExportJson");
+    ArmatureDataManager::getInstance()->addArmatureFileInfo("projectileshape/zhousi-wuqi.ExportJson");
 
     // run
     director->runWithScene(scene);

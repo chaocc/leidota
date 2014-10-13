@@ -137,9 +137,9 @@ private:
     int             m_targetId;                         // 正在追击的对手id
 
     /**
-    *	有关外部牵引力的数据，
+    *	有关外部牵引力的数据
     */
-    Vec2            m_traction;                         // 牵引力
+    CC_SYNTHESIZE_READONLY(Vec2, m_traction, Traction);
 };
 
 #endif

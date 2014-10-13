@@ -45,7 +45,8 @@ void ProjectileManager::removeAllCanRemoveProjectile()
     for (auto tmpIterator = m_projectilesMap.begin(); 
         tmpIterator != m_projectilesMap.end();)
     {
-        if (tmpIterator->second->canRemove())
+        // 移除被标记为可以移除的以及超出屏幕的
+        if (tmpIterator->second->canRemove() || isOutWindow(tmpIterator->second))
         {
             CC_SAFE_RELEASE_NULL(tmpIterator->second);
             tmpIterator = m_projectilesMap.erase(tmpIterator);
@@ -55,4 +56,12 @@ void ProjectileManager::removeAllCanRemoveProjectile()
             tmpIterator++;
         }
     }
+}
+
+bool ProjectileManager::isOutWindow(Projectile* aPorjectile)
+{
+    // 先转换到世界坐标系中
+    auto tmpParent  =   aPorjectile->getShapePart()->getParent();
+    auto tmpPoint   =   tmpParent->convertToWorldSpace(aPorjectile->getMovingPart()->getPosition());
+    return !Rect(0, 0, 1280, 800).containsPoint(tmpPoint);
 }

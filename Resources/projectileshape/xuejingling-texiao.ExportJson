@@ -1,5 +1,5 @@
 {
-  "content_scale": 0.15,
+  "content_scale": 0.1,
   "armature_data": [
     {
       "strVersion": "1.6.0.0",
@@ -9,7 +9,7 @@
         {
           "name": "Layer1",
           "parent": "",
-          "dI": 12,
+          "dI": 8,
           "x": 1717.500732421875,
           "y": 475.03363037109375,
           "z": 1,

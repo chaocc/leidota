@@ -25,6 +25,9 @@ private:
     // 移除所有可以移除的子弹
     void removeAllCanRemoveProjectile();
 
+    // 判断有没有超出屏幕窗口
+    bool isOutWindow(Projectile* aPorjectile);
+
     static ProjectileManager*   m_instance;
 
     typedef map<int, Projectile*> ProjectileMap;

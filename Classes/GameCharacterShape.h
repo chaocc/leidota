@@ -150,6 +150,8 @@ public:
     */
     }
 
+    Size getContentSize() { return _armature->getContentSize(); }
+    
 protected:
     GameCharacterShape(const std::string& armatureName);
 
