@@ -180,6 +180,9 @@
     <ClCompile Include="..\Classes\SpiritSnowStormSkillWeapon.cpp">
       <Filter>Classes\weapons &amp; projectiles\weapons</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\TimeTool.cpp">
+      <Filter>Classes\tools</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">

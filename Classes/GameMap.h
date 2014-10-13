@@ -39,7 +39,7 @@ public:
     vector<GameCharacter*> getCharactersInRadius(Vec2 aCenter, float aRadius);
 
 protected:
-    GameMap():MOUNTAIN_MOVE_SCALE(0.9f),SKY_MOVE_SCALE(0.3f),m_wallLBPos(0,0),
+    GameMap():MOUNTAIN_MOVE_SCALE(0.9f),SKY_MOVE_SCALE(0.25f),m_wallLBPos(0,0),
         m_wallRTPos(5120, 370), m_maxCameraRate(70){}
     ~GameMap();
 

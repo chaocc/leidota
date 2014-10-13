@@ -2,6 +2,7 @@
 #include "EntityManager.h"
 #include "TeamManager.h"
 #include "ProjectileManager.h"
+#include "TimeTool.h"
 
 GameMainModel::GameMainModel()
 {
@@ -58,7 +59,12 @@ void GameMainModel::changeTarget()
 
 void GameMainModel::update(float dm)
 {
-    // CCLOG("GameMainModel::update");
+    // 这里是游戏逻辑更新的最上面的，所有游戏逻辑的时间都来自于此
+    // dm  *=  2;
+
+    // 时间
+    TimeTool::update(dm);
+
     // 队伍逻辑更新
     TeamMgr->update(dm);
 

@@ -6,24 +6,26 @@
 using namespace cocos2d;
 
 /**
-* 主要就是一些时间工具，比如获取当前秒
+* 主要就是一些时间工具
+* @_@ 主要是发现关于时间的获取在不同平台会不同，而且时间部分不能够和游戏的节奏
+*     一起，所以这里采用的是根据帧数间隔累加时间，以后在帧变化的时间做点手脚可
+*     以影响我自己的逻辑
 */
 class TimeTool
 {
 public:
-    /**
-    * 返回当前以秒为单位的时间，这里可能会出现的问题是在跨天的时候
-    */
-    static double getSecondTime()
+    static void update(float dm)
     {
-        struct timeval tv;
-        memset(&tv, 0, sizeof(tv));
-        gettimeofday(&tv, nullptr);
-        double tmpCurrentTime = tv.tv_sec + (double)tv.tv_usec / 1000000.0;
-        //CCLOG("tv.tv_sec = %ld, tv.tv_usec = %ld", tv.tv_sec, tv.tv_usec);
-        //CCLOG("getSecondTime = %f", tmpCurrentTime);
-        return tmpCurrentTime;
+        m_timeCount +=  dm;
     }
+
+    static float getSecondTime()
+    {
+        return m_timeCount;
+    }
+
+private:
+    static float m_timeCount;
 };
 
 #endif
