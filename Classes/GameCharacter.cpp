@@ -253,7 +253,10 @@ void GameCharacter::update(float dm)
 
 bool GameCharacter::handleMessage(Telegram& msg)
 {
-    // 首先把消息交给该成员的脑袋
+    // 交给状态机去处理
+    m_stateMachine->handleMessage(msg);
+
+    // 把消息交给该成员的脑袋
     if (m_brain->handleMessage(msg)) return true;
 
     /**

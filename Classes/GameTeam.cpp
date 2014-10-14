@@ -31,10 +31,51 @@ GameTeam::~GameTeam()
 
 void GameTeam::addMember(GameCharacter* player, int posId)
 {
-    player->retain();
-    m_members.push_back(player);
+    // player->retain();
     player->setTeam(this);
-    player->getMovingEntity().setFormationPosId(posId);
+
+    // 如果当前位置已经有人了，就会给他一个从0开始的最小的还没有使用的位置
+    bool tmpPosIdUsed       =   false;
+    map<int, int> tmpUsedIds;
+    for (auto tmpIterator = m_members.begin(); tmpIterator != m_members.end(); tmpIterator++)
+    {
+        auto tmpPosId   =   (*tmpIterator)->getMovingEntity().getFormationPosId();
+        tmpUsedIds.insert(map<int, int>::value_type(tmpPosId, tmpPosId));
+        if (tmpPosId == posId)
+        {
+            tmpPosIdUsed    =   true;
+        }
+    }
+    if (!tmpPosIdUsed)
+    {
+        player->getMovingEntity().setFormationPosId(posId);
+        m_members.push_back(player);
+    }
+    else
+    {
+        for (auto tmpMinPosIdUnused = 0; tmpMinPosIdUnused < 9 ; tmpMinPosIdUnused++)
+        {
+            if (tmpUsedIds.find(tmpMinPosIdUnused) == tmpUsedIds.end())
+            {
+                player->getMovingEntity().setFormationPosId(tmpMinPosIdUnused);
+                m_members.push_back(player);
+                break;
+            }
+        }
+    }
+}
+
+void GameTeam::removeMember( GameCharacter* player )
+{
+    for (auto tmpIterator = m_members.begin(); tmpIterator != m_members.end(); tmpIterator++)
+    {
+        if (*tmpIterator == player)
+        {
+            m_members.erase(tmpIterator);
+            player->setTeam(nullptr);
+            break;
+        }
+    }
 }
 
 void GameTeam::update(float dm)
@@ -47,9 +88,11 @@ void GameTeam::update(float dm)
     m_teamBrain->process();
 
     // 调用该队的所有成员的update
-    for (auto tmpIterator = m_members.begin(); tmpIterator != m_members.end(); tmpIterator++)
+    for (auto tmpIterator = m_members.begin(); tmpIterator != m_members.end();)
     {
-        (*tmpIterator)->update(dm);
+        auto tmpMember  =   *tmpIterator;
+        tmpIterator++;
+        tmpMember->update(dm);
     }
 
     // 再删除处于死亡状态的队员
@@ -164,23 +207,6 @@ void GameTeam::collectiveForwardEnd()
     m_advanceRate   =   0;
 
     setFollowPlayerState();
-}
-
-bool GameTeam::isEveryMemberInPos()
-{
-    auto tmpIterator = m_members.begin();
-    for (; tmpIterator != m_members.end(); tmpIterator++)
-    {
-        auto tmpMovingEntity    =   (*tmpIterator)->getMovingEntity();
-        auto tmpPos1            =   tmpMovingEntity.getPosition();
-        auto tmpPos2            =   m_formation.getPositionByPosId(tmpMovingEntity.getFormationPosId());
-        if ((tmpPos1 - tmpPos2).getLengthSq() > 900 || tmpMovingEntity.getSpeed() != 0)
-        {
-            return false;
-        }
-    }
-
-    return true;
 }
 
 GameCharacter* GameTeam::getMemberIdFromFormation( int posId )

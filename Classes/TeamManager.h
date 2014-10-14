@@ -37,6 +37,11 @@ public:
     */
     GameTeam* getTeamFromId(int id);
 
+    /**
+    *	返回队伍id指定的队伍的下一个队伍 
+    */
+    GameTeam* getNextTeam(int id);
+
 private:
     // 删除可以被删除的队伍
     void removeCanRemoveTeam();

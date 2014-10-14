@@ -183,6 +183,9 @@
     <ClCompile Include="..\Classes\TimeTool.cpp">
       <Filter>Classes\tools</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\GameCharacterState.cpp">
+      <Filter>Classes\state</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">

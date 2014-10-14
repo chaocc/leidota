@@ -11,7 +11,7 @@
 class GoalAttackSpecifiedTarget : public GoalComposite<GameCharacter>
 {
 public:
-    GoalAttackSpecifiedTarget(GameCharacter* owner, int targetId);
+    GoalAttackSpecifiedTarget(GameCharacter* owner, int targetId, int targetTeamId);
 
 protected:
     virtual void activate() override;
@@ -33,6 +33,7 @@ private:
 
 private:
     int m_targetId;                     // 指定的攻击目标
+    int m_targetTeamId;                 // 目标所在队伍id
 };
 
 #endif

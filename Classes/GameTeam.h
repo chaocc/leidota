@@ -33,6 +33,9 @@ public:
     // 给该队伍添加成员，同时指定该角色在阵型中的位置编号
     void addMember(GameCharacter* player, int posId = 0);
 
+    // 从队伍中删除指定队员，但是不会清除该角色
+    void removeMember(GameCharacter* player);
+
     // 每一帧中回调，在这里会调用所有成员的update
     void update(float dm);
 
@@ -50,9 +53,6 @@ public:
 
     // 给某个指定的角色发送消息
     void sendMessageToOneMember(Telegram& msg, GameCharacter* aCharacter);
-
-    // 判断是否所有人都在阵型指定位置
-    bool isEveryMemberInPos();
 
     // 从阵型中找到指定位置id的成员，如果没有了，就返回null
     GameCharacter* getMemberIdFromFormation(int posId);

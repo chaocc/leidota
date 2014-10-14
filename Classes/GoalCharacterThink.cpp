@@ -47,8 +47,8 @@ bool GoalCharacterThink::handleMessage( Telegram& msg )
         {
             // 删除所有的当前任务，然后设定新的任务
             removeAllSubgoals();
-            int tmpTargetId =   (int)msg.extraInfo;
-            addSubgoal(new GoalAttackSpecifiedTarget(m_pOwner, tmpTargetId));
+            TelegramAttackSpecifiedTarget* pMsg =   dynamic_cast<TelegramAttackSpecifiedTarget*>(&msg);
+            addSubgoal(new GoalAttackSpecifiedTarget(m_pOwner, pMsg->targetId, pMsg->targetTeamId));
             return true;
         }
 

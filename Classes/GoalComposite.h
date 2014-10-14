@@ -45,6 +45,23 @@ public:
         }
     }
 
+    /**
+    * 移除该目标的所有子目标
+    */
+    void removeAllSubgoals()
+    {
+        auto tmpIterator = m_subgoalList.begin();
+        for (; tmpIterator != m_subgoalList.end(); tmpIterator++)
+        {
+            (*tmpIterator)->terminate();
+
+            // 如果该目标也是组合目标，就会在构造函数中去结束掉它的所有子目标
+            delete *tmpIterator;
+        }
+
+        m_subgoalList.clear();
+    }
+
 protected:
     GoalComposite(entity_type* owner):Goal<entity_type>(owner)
     {
@@ -75,6 +92,15 @@ protected:
         return this->m_goalState;
     }
 
+    /**
+    *	对于组合目标结束的时候，需要调用所有子目标的terminate 
+    */
+    virtual void terminate() override
+    {
+        removeAllSubgoals();
+        Goal<entity_type>::terminate();
+    }
+
 protected:
     /**
     * 在后面追加目标对象 
@@ -94,23 +120,6 @@ protected:
         assert(goal != nullptr && goal != this);
 
         m_subgoalList.push_front(goal);
-    }
-
-    /**
-    * 移除该目标的所有子目标
-    */
-    void removeAllSubgoals()
-    {
-        auto tmpIterator = m_subgoalList.begin();
-        for (; tmpIterator != m_subgoalList.end(); tmpIterator++)
-        {
-            (*tmpIterator)->terminate();
-
-            // 如果该目标也是组合目标，就会在构造函数中去结束掉它的所有子目标
-            delete *tmpIterator;
-        }
-
-        m_subgoalList.clear();
     }
 
     /**

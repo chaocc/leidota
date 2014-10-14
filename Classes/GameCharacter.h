@@ -103,7 +103,7 @@ protected:
     GameCharacterShape*             m_shape;                    // 该角色的外形
     GameCharacterAttribute          m_attribute;                // 该角色的各种属性
 
-    GoalCharacterThink*             m_brain;                    // 作为大脑存在的，是目标规划的最高级别
+    CC_SYNTHESIZE_READONLY(GoalCharacterThink*, m_brain, Brain);// 作为大脑存在的，是目标规划的最高级别
 
     /**
     * 一些系统

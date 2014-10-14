@@ -50,7 +50,6 @@ BaseGameEntity* EntityManager::getEntityFromID(int id)
 
 void EntityManager::removeEntity(BaseGameEntity *entity)
 {
-    // 如果移除的是主控实体，就把这个也设置为nullptr
     _entityMap->erase(entity->getId());
 }
 

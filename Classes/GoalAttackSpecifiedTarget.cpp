@@ -1,11 +1,13 @@
 #include "GoalAttackSpecifiedTarget.h"
 #include "EntityManager.h"
 #include "GoalPursuitTarget.h"
+#include "GameTeam.h"
 
-GoalAttackSpecifiedTarget::GoalAttackSpecifiedTarget( GameCharacter* owner, int targetId )
+GoalAttackSpecifiedTarget::GoalAttackSpecifiedTarget( GameCharacter* owner, int targetId, int targetTeamId )
     :GoalComposite<GameCharacter>(owner)
 {
-    m_targetId  =   targetId;
+    m_targetId      =   targetId;
+    m_targetTeamId  =   targetTeamId;
 }
 
 void GoalAttackSpecifiedTarget::activate()
@@ -55,8 +57,11 @@ GoalStateEnum GoalAttackSpecifiedTarget::process()
 
 bool GoalAttackSpecifiedTarget::isTargetAlive()
 {
+    /**
+    *	丢失目标的情况有除了角色死掉，就是角色已经离开原来的队伍 
+    */
     auto tmpCharacter   =   dynamic_cast<GameCharacter*>(EntityMgr->getEntityFromID(m_targetId));
-    return tmpCharacter != nullptr && tmpCharacter->isAlive();
+    return tmpCharacter != nullptr && tmpCharacter->getTeam()->getTeamId() == m_targetTeamId && tmpCharacter->isAlive();
 }
 
 bool GoalAttackSpecifiedTarget::isInAttackDistance()

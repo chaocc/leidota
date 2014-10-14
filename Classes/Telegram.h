@@ -79,12 +79,6 @@ public:
 class TelegramNormalAttack : public Telegram
 {
 public:
-    TelegramNormalAttack()
-    {
-        type    =   TELEGRAM_ENUM_NORMAL_ATTACK;
-    }
-
-public:
     GameCharacterAttribute  senderAtt;          // 发送者的属性，用来计算目标伤害的
 
     static TelegramNormalAttack* create(int senderId, int receiverId, GameCharacterAttribute& senderAtt)
@@ -99,6 +93,41 @@ public:
         }
 
         return pRet;
+    }
+
+protected:
+    TelegramNormalAttack()
+    {
+        type    =   TELEGRAM_ENUM_NORMAL_ATTACK;
+    }
+
+};
+
+/**
+*	 队伍给角色指定攻击目标
+*/
+class TelegramAttackSpecifiedTarget : public Telegram
+{
+public:
+    int             targetTeamId;             // 目标所属队伍id
+    int             targetId;                 // 目标id
+
+    static TelegramAttackSpecifiedTarget* create(int aReceiveId, int aTargetId, int aTargetTeamId)
+    {
+        TelegramAttackSpecifiedTarget* pRet =   new TelegramAttackSpecifiedTarget();
+        if (pRet != nullptr)
+        {
+            pRet->receiverId    =   aReceiveId;
+            pRet->targetId      =   aTargetId;
+            pRet->targetTeamId  =   aTargetTeamId;
+        }
+        return pRet;
+    }
+
+protected:
+    TelegramAttackSpecifiedTarget()
+    {
+        type    =   TELEGRAM_ENUM_TEAM_ATTACK_SPECIFIED_TARGET;
     }
 };
 

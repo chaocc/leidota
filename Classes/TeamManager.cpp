@@ -73,3 +73,16 @@ void TeamManager::removeCanRemoveTeam()
         }
     }
 }
+
+GameTeam* TeamManager::getNextTeam( int id )
+{
+    auto tmpIterator    =   m_allTeam.find(++id);
+    if (tmpIterator == m_allTeam.end())
+    {
+        return nullptr;
+    }
+    else
+    {
+        return tmpIterator->second;
+    }
+}

@@ -114,6 +114,11 @@ public:
     */
     void setGlobalState(State<entity_type>* globalState)
     {
+        if (_globalState != nullptr)
+        {
+            _globalState->onExit(_owner);
+            CC_SAFE_RELEASE_NULL(_globalState);
+        }
         _globalState    =   globalState;
         _globalState->retain();
     }

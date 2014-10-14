@@ -191,8 +191,8 @@ void GoalTeamAttackTargetTeam::inspectTeamMembers()
         if (tmpTarget != nullptr)
         {
             // 发送消息告知攻击
-            auto tmpMsg = Telegram::create(0, tmpOwnCharacter->getId(),
-                TELEGRAM_ENUM_TEAM_ATTACK_SPECIFIED_TARGET, 0, (void*)tmpTarget->getId());
+            auto tmpMsg = TelegramAttackSpecifiedTarget::create(tmpOwnCharacter->getId(),
+                tmpTarget->getId(), tmpTarget->getTeam()->getTeamId());
             m_pOwner->sendMessageToOneMember(*tmpMsg, tmpOwnCharacter);
         }
     }

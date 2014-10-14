@@ -140,6 +140,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\GameCharacter.cpp" />
     <ClCompile Include="..\Classes\GameCharacterAttribute.cpp" />
     <ClCompile Include="..\Classes\GameCharacterShape.cpp" />
+    <ClCompile Include="..\Classes\GameCharacterState.cpp" />
     <ClCompile Include="..\Classes\GameMainModel.cpp" />
     <ClCompile Include="..\Classes\GameMap.cpp" />
     <ClCompile Include="..\Classes\GameScene.cpp" />
