@@ -22,6 +22,12 @@ public:
     virtual void moveToRight()  =   0;      // 向右
     virtual void idle()         =   0;      // 什么都不操作
     virtual void changeTarget() =   0;      // 选择目标
+
+    /**
+    *	用来操作角色释放技能的 
+    */
+    virtual void useSkill1()    =   0;      // 点击使用第一个技能
+    virtual void useSkill2()    =   0;      // 点击使用第二个技能
 };
 
 /**

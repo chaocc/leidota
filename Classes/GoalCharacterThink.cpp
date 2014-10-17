@@ -1,9 +1,11 @@
 #include "GoalCharacterThink.h"
 #include "GoalAttackSpecifiedTarget.h"
+#include "TimeTool.h"
 
-GoalCharacterThink::GoalCharacterThink( GameCharacter* owner ):GoalComposite<GameCharacter>(owner)
+GoalCharacterThink::GoalCharacterThink( GameCharacter* owner )
+    :GoalComposite<GameCharacter>(owner), m_processInterval(0.3)
 {
-
+    m_lastProcessTime   =   -1;
 }
 
 GoalCharacterThink::~GoalCharacterThink()
@@ -13,7 +15,12 @@ GoalCharacterThink::~GoalCharacterThink()
 
 GoalStateEnum GoalCharacterThink::process()
 {
-    return GoalComposite<GameCharacter>::process();
+    if (TimeTool::getSecondTime() - m_lastProcessTime > m_processInterval)
+    {
+        m_lastProcessTime   =   TimeTool::getSecondTime();
+        return GoalComposite<GameCharacter>::process();
+    }
+    return active;
 }
 
 void GoalCharacterThink::activate()

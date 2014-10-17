@@ -31,6 +31,11 @@ public:
     void update();
 
     /**
+    *	定期被调用的函数，有些逻辑还是要依赖一些间隔的
+    */
+    void regularUpdate(float dm);
+
+    /**
     *	设置攻击目标的时候调用 
     */
     void setAttackTarget(int targetId);
@@ -53,17 +58,23 @@ public:
     /**
     *	 设置武器选择的AI部分
     */
-    void setWeaponChoiceAI(WeaponChoiceAI* aAI) { m_weaponChoiceAI = aAI; }
+    void setWeaponChoiceAI(WeaponChoiceAI* aAI);
 
     /**
     *	更换武器，如果更换成功就返回true，否则返回false 
+    *   force表示是否强制更换武器
     */
-    bool changeWeapon(WeaponTypeEnum type);
+    bool changeWeapon(WeaponTypeEnum type, bool force = false);
 
     /**
     *	返回当前武器的类型 
     */
     WeaponTypeEnum getCurrentWeaponType() { return m_currentWeapon->getWeaponType(); }
+
+    /**
+    *	返回指定武器类型的武器
+    */
+    Weapon* getWeaponByType(WeaponTypeEnum aType);
 
 private:
     /**
@@ -73,9 +84,10 @@ private:
 
     GameCharacter*                              m_pOwner;           // 当前武器拥有者
 
-    Weapon*                                     m_currentWeapon;    // 当前武器
+    CC_SYNTHESIZE_READONLY(Weapon*, m_currentWeapon, CurrentWeapon);// 当前武器
+    Weapon*                                     m_readyToUseWeapon; // 当要求换武器的时候，而前一个武器正在进行中，就有可能需要将更换的武器先保存一下，等到上一个武器用完
 
-    WeaponChoiceAI*                             m_weaponChoiceAI;   // 武器选择AI
+    CC_SYNTHESIZE_READONLY(WeaponChoiceAI*, m_weaponChoiceAI, WeaponChoiceAI);// 武器选择AI，这个也暴露出去
     
     typedef map<WeaponTypeEnum, Weapon*> WeaponMap;
     WeaponMap        m_allWeapons;                                  // 当前角色拥有的所有武器

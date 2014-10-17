@@ -186,6 +186,9 @@
     <ClCompile Include="..\Classes\GameCharacterState.cpp">
       <Filter>Classes\state</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\WeaponSpiritUserChoiceAI.h">
+      <Filter>Classes\ai\system\weaponchoice</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -385,6 +388,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\MeteoricStream.h">
       <Filter>Classes\weapons &amp; projectiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\CircularProgress.h">
+      <Filter>Classes\ui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

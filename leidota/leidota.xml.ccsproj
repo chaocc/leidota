@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <GameProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <ProjectDir>E:\cocostudiosample\leidota</ProjectDir>
+  <ProjectDir>E:\leidota\leidota</ProjectDir>
   <Version>1.6.0.0</Version>
-  <Resources>E:\cocostudiosample\leidota</Resources>
+  <Resources>E:\leidota\leidota</Resources>
   <Name>leidota</Name>
   <JsonFileName>leidota.json</JsonFileName>
   <JsonList />
@@ -10,10 +10,10 @@
     <Width>480</Width>
     <Height>320</Height>
   </CanvasSize>
-  <filePath>E:\cocostudiosample\leidota\leidota.xml.ccsproj</filePath>
+  <filePath>E:\leidota\leidota\leidota.xml.ccsproj</filePath>
   <ProjectType>GameProject</ProjectType>
   <ResRelativePath />
-  <ResProjFolder>E:\cocostudiosample\leidota\CocosStudio\ccsprojs</ResProjFolder>
-  <AssetsDir>E:\cocostudiosample\leidota\CocosStudio\assets</AssetsDir>
+  <ResProjFolder>E:\leidota\leidota\CocosStudio\ccsprojs</ResProjFolder>
+  <AssetsDir>E:\leidota\leidota\CocosStudio\assets</AssetsDir>
   <LanaguageType>cpp</LanaguageType>
 </GameProject>

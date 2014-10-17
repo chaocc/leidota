@@ -26,6 +26,10 @@ protected:
     {
         return "GoalCharacterThink";
     }
+
+private:
+    float       m_lastProcessTime;                  // 作为角色的大脑没必要process太频繁
+    const float m_processInterval;
 };
 
 #endif

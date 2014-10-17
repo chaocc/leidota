@@ -1,11 +1,16 @@
 #include "SpiritFreezeSkillWeapon.h"
 #include "EntityManager.h"
 #include "TimeTool.h"
+#include "RefreshUIMsg.h"
+#include "UIViewManager.h"
 
 SpiritFreezeSkillWeapon::SpiritFreezeSkillWeapon( GameCharacter* owner ):Weapon(owner, SPIRIT_FREEZE_SKILL_WEAPON)
     , m_actionName("atk3"), m_attRadius(600)
 {
-    m_minAttackInterval     =   3;
+    m_minAttackInterval     =   6;
+    m_lastTestIsReady       =   false;
+    m_lastAttackTime        =   0;
+    m_nextAttackReadyTime   =   m_lastAttackTime + m_minAttackInterval;
 }
 
 SpiritFreezeSkillWeapon::~SpiritFreezeSkillWeapon()
@@ -65,4 +70,23 @@ bool SpiritFreezeSkillWeapon::isTargetAlive()
 {
     auto tmpCharacter   =   dynamic_cast<GameCharacter*>(EntityMgr->getEntityFromID(m_targetId));
     return tmpCharacter != nullptr && tmpCharacter->isAlive();
+}
+
+void SpiritFreezeSkillWeapon::update( float dm )
+{
+    if (m_pOwner != dynamic_cast<GameCharacter*>(EntityMgr->getmainEntity()))
+    {
+        return;
+    }
+
+    auto tmpIsReady =   isReadyForNextAttack();
+    if (!m_lastTestIsReady)
+    {
+        // 如果最近一次调用isReadyForNextAttack还是没有成功的话，就必须在下一帧中刷新冷却进度
+        int tmpRatio   =   (TimeTool::getSecondTime() - m_lastAttackTime) / m_minAttackInterval * 100;
+        tmpRatio       =   tmpRatio > 100 ? 100 : tmpRatio;
+        RefreshUIMsg tmpMsg(REFRESH_UI_SKILL2_COOLING, (void *)tmpRatio);
+        UIViewMgr->refreshView(tmpMsg);
+    }
+    m_lastTestIsReady   =   tmpIsReady;
 }

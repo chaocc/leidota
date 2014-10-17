@@ -15,6 +15,7 @@ public:
     virtual bool isInAttackRange(GameCharacter* target);
     virtual bool isReadyForNextAttack();
     virtual bool isAttacking();
+    virtual void update(float dm);
 
 private:
     /**
@@ -28,13 +29,11 @@ private:
     bool isTargetAlive();
 
     float           m_attRadius;                    // 攻击半径
-    float           m_minAttInterval;               // 最小攻击间隔
     const string    m_actionName;                   // 开火的时候的角色动画
 
-    double   m_lastAttackTime;                         // 最近一次发送攻击的时间
-    double   m_nextAttackReadyTime;                    // 
+    int             m_targetId;
 
-    int     m_targetId;
+    bool            m_lastTestIsReady;              // 最近一次调用isReadyForNextAttack结果
 };
 
 #endif

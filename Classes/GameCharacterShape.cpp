@@ -204,3 +204,11 @@ cocos2d::Vec2 GameCharacterShape::getCenterPosLocation()
 {
     return getCenterPos() - this->getPosition();
 }
+
+void GameCharacterShape::showHeroHalo()
+{
+    ArmatureDataManager::getInstance()->addArmatureFileInfo("halo/greenhalo.ExportJson");
+    auto tmpHalo    =   Armature::create("greenhalo");
+    this->addChild(tmpHalo);
+    tmpHalo->getAnimation()->play("Animation1");
+}

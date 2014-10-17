@@ -32,6 +32,9 @@ bool BattleUI::init()
     m_changeTargetBtn   =   dynamic_cast<Button*>(tmpUIRoot->getChildByName("changetargetbtn"));
     m_skillBtn          =   dynamic_cast<Button*>(tmpUIRoot->getChildByName("skillbtn"));
     m_convergeBtn       =   dynamic_cast<Button*>(tmpUIRoot->getChildByName("jihuobtn"));
+    m_circularProgress  =   CircularProgress::create(38);
+    m_circularProgress->setPosition(m_convergeBtn->getChildren().at(0)->getPosition());
+    m_convergeBtn->addChild(m_circularProgress);
 
     // 在节点上绑定回调
     m_changeTargetBtn->addTouchEventListener(CC_CALLBACK_2(BattleUI::onClickChangeTargetBtn, this));
@@ -39,11 +42,11 @@ bool BattleUI::init()
     m_skillBtn->addTouchEventListener(CC_CALLBACK_2(BattleUI::onClickSkillBtn, this));
 
     // 操纵柄
-    m_jokStick    =   JoyStick::create(Sprite::create("battleui/000.png"), Sprite::create("battleui/001.png"));
-    m_jokStick->setPosition(140, 140);
-    tmpUIRoot->addChild(m_jokStick);
+    //m_jokStick    =   JoyStick::create(Sprite::create("battleui/000.png"), Sprite::create("battleui/001.png"));
+    //m_jokStick->setPosition(140, 140);
+    //tmpUIRoot->addChild(m_jokStick);
     // @_@ 这里开启每一帧回调
-    this->scheduleUpdate();
+    //this->scheduleUpdate();
 
     return true;
 }
@@ -63,9 +66,21 @@ void BattleUI::onWee( RefreshUIMsg& msg )
             break;
         }
 
-    case REFRESH_UI_EVENT_ATTACK_CHARACTER:
+    case REFRESH_UI_SKILL1_USABLE:              // 此时需要将最右边的按钮亮起来
         {
-            refreshTargetCharacter((GameCharacter*)msg.extraInfo);
+            highLightSkillBtn();
+            break;
+        }
+
+    case REFRESH_UI_SKILL1_UNUSABLE:            // 将最右边的按钮暗下来
+        {
+            dimSkillBtn();
+            break;
+        }
+
+    case REFRESH_UI_SKILL2_COOLING:             // 左边的按钮的冷却消息
+        {
+            coolSkill2Btn((int)msg.extraInfo);
             break;
         }
 
@@ -77,7 +92,9 @@ void BattleUI::onWee( RefreshUIMsg& msg )
 void BattleUI::setWeeList()
 {
     m_weeList.push_back(REFRESH_UI_EVENT_CHARACTER);
-    m_weeList.push_back(REFRESH_UI_EVENT_ATTACK_CHARACTER);
+    m_weeList.push_back(REFRESH_UI_SKILL1_USABLE);
+    m_weeList.push_back(REFRESH_UI_SKILL1_UNUSABLE);
+    m_weeList.push_back(REFRESH_UI_SKILL2_COOLING);
 }
 
 void BattleUI::refreshCharacter( GameCharacter* character )
@@ -127,7 +144,7 @@ void BattleUI::onClickChangeTargetBtn( Ref* target,Widget::TouchEventType type )
 {
     if (type == Widget::TouchEventType::ENDED)
     {
-        _delegate->changeTarget();
+        // _delegate->changeTarget();
     }
 }
 
@@ -135,7 +152,7 @@ void BattleUI::onClickConvergeBtn( Ref* target,Widget::TouchEventType type )
 {
     if (type == Widget::TouchEventType::ENDED)
     {
-
+        _delegate->useSkill2();
     }
 }
 
@@ -143,6 +160,30 @@ void BattleUI::onClickSkillBtn( Ref* target,Widget::TouchEventType type )
 {
     if (type == Widget::TouchEventType::ENDED)
     {
-
+        _delegate->useSkill1();
     }
+}
+
+void BattleUI::highLightSkillBtn()
+{
+    // 右边的按钮
+    auto tmpImage   =   m_skillBtn->getChildren().at(0);
+    tmpImage->removeAllChildren();
+    auto tmpHightImage  =   ImageView::create("battleui/hightlight1.png");
+    tmpHightImage->setAnchorPoint(Vec2(0, 0));
+    tmpImage->addChild(tmpHightImage);
+    m_skillBtn->setEnabled(true);
+}
+
+void BattleUI::dimSkillBtn()
+{
+    // 右边的按钮
+    auto tmpImage       =   m_skillBtn->getChildren().at(0);
+    tmpImage->removeAllChildren();
+    m_skillBtn->setEnabled(false);
+}
+
+void BattleUI::coolSkill2Btn( int ratio )
+{
+    m_circularProgress->setRatio(ratio);
 }

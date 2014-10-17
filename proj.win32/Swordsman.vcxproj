@@ -166,6 +166,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\UIViewManager.cpp" />
     <ClCompile Include="..\Classes\Weapon.cpp" />
     <ClCompile Include="..\Classes\WeaponControlSystem.cpp" />
+    <ClCompile Include="..\Classes\WeaponSpiritUserChoiceAI.h" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -173,6 +174,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\BaseGameEntity.h" />
     <ClInclude Include="..\Classes\BattleUI.h" />
+    <ClInclude Include="..\Classes\CircularProgress.h" />
     <ClInclude Include="..\Classes\EntityManager.h" />
     <ClInclude Include="..\Classes\Formation.h" />
     <ClInclude Include="..\Classes\GameCharacter.h" />

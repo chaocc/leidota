@@ -50,6 +50,10 @@ BaseGameEntity* EntityManager::getEntityFromID(int id)
 
 void EntityManager::removeEntity(BaseGameEntity *entity)
 {
+    if (entity == _mainEntity)
+    {
+        _mainEntity =   nullptr;
+    }
     _entityMap->erase(entity->getId());
 }
 

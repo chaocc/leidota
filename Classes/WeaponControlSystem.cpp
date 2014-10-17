@@ -6,12 +6,14 @@
 #include "WeaponChoiceAI.h"
 #include "TimeTool.h"
 
-WeaponControlSystem::WeaponControlSystem( GameCharacter* owner ):m_minAttackInterval(1.5)
+WeaponControlSystem::WeaponControlSystem( GameCharacter* owner ):m_minAttackInterval(0)
 {
     m_pOwner            =   owner;
     m_currentWeapon     =   nullptr;
     m_targetId          =   INVALID_GAME_ENTITY_ID;
     m_lastAttackTime    =   0;
+    m_weaponChoiceAI    =   nullptr;
+    m_readyToUseWeapon  =   nullptr;
 }
 
 WeaponControlSystem::~WeaponControlSystem()
@@ -79,9 +81,16 @@ void WeaponControlSystem::update()
 {
     // 现在把这部分更新当前选择武器的逻辑交给外部对象
     m_weaponChoiceAI->update();
+
+    // 如果有等待更换的武器，就更换掉
+    if (m_readyToUseWeapon != nullptr)
+    {
+        m_currentWeapon     =   m_readyToUseWeapon;
+        m_readyToUseWeapon  =   nullptr;
+    }
 }
 
-bool WeaponControlSystem::changeWeapon( WeaponTypeEnum type )
+bool WeaponControlSystem::changeWeapon( WeaponTypeEnum type, bool force )
 {
     auto tmpIterator    =   m_allWeapons.find(type);
     if (tmpIterator == m_allWeapons.end())
@@ -90,7 +99,14 @@ bool WeaponControlSystem::changeWeapon( WeaponTypeEnum type )
     }
     else
     {
-        m_currentWeapon =   tmpIterator->second;
+        if (force || !m_currentWeapon->isAttacking())
+        {
+            m_currentWeapon =   tmpIterator->second;
+        }
+        else if (m_currentWeapon->isAttacking())
+        {
+            m_readyToUseWeapon  =   tmpIterator->second;
+        }
         return true;
     }
 }
@@ -103,4 +119,34 @@ bool WeaponControlSystem::satisfySysAttack()
 void WeaponControlSystem::setAttackTarget( int targetId )
 {
     m_weaponChoiceAI->changeTarget();
+}
+
+Weapon* WeaponControlSystem::getWeaponByType( WeaponTypeEnum aType )
+{
+    auto tmpIterator    =   m_allWeapons.find(aType);
+    if (tmpIterator != m_allWeapons.end())
+    {
+        return tmpIterator->second;
+    }
+    return nullptr;
+}
+
+void WeaponControlSystem::regularUpdate( float dm )
+{
+    m_weaponChoiceAI->regularUpdate(dm);
+
+    // 调用所有的武器的update
+    for (auto tmpIterator = m_allWeapons.begin(); tmpIterator != m_allWeapons.end(); tmpIterator++)
+    {
+        tmpIterator->second->update(dm);
+    }
+}
+
+void WeaponControlSystem::setWeaponChoiceAI( WeaponChoiceAI* aAI )
+{
+    if (m_weaponChoiceAI != nullptr)
+    {
+        CC_SAFE_DELETE(m_weaponChoiceAI);
+    }
+    m_weaponChoiceAI = aAI;
 }

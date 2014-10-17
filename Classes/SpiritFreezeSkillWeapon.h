@@ -25,6 +25,8 @@ public:
 
     virtual bool isAttacking() override;
 
+    virtual void update(float dm) override;
+
 private:
     /**
     *	施展动画播放到要开始 
@@ -47,6 +49,9 @@ private:
 
     const string    m_actionName;                   // 动作名称
     const float     m_attRadius;                    // 攻击半径
+
+private:
+    bool            m_lastTestIsReady;              // 最近一次调用isReadyForNextAttack
 };
 
 #endif

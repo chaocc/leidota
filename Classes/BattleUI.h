@@ -6,6 +6,7 @@
 #include "GameCharacter.h"
 #include "InputManager.h"
 #include "JoyStick.h"
+#include "CircularProgress.h"
 
 using namespace cocos2d;
 using namespace ui;
@@ -49,6 +50,22 @@ protected:
     void onClickConvergeBtn(Ref* target,Widget::TouchEventType type);
     void onClickSkillBtn(Ref* target,Widget::TouchEventType type);
 
+private:
+    /**
+    *	 高亮右上角技能按钮
+    */
+    void highLightSkillBtn();
+
+    /**
+    *	让右上角技能按钮暗淡 
+    */
+    void dimSkillBtn();
+
+    /**
+    *	让左下角的技能按钮冷却到多少，ratio是0~100 
+    */
+    void coolSkill2Btn(int ratio);
+
     LoadingBar*     m_leaderHpBar;                  // 主角hp条
     ImageView*      m_leaderIcon;                   // 主角的头像
 
@@ -57,6 +74,8 @@ protected:
     Node*           m_enemyPanel;                   // 敌人信息的面板根节点
 
     Button*         m_convergeBtn;                  // 集中火力的按钮
+    CircularProgress*   m_circularProgress;         // 圆形进度条
+
     Button*         m_changeTargetBtn;              // 更换当前主角的攻击目标
     Button*         m_skillBtn;                     // 技能按钮
 

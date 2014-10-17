@@ -62,6 +62,16 @@ public:
     */
     virtual bool isAttacking() = 0;
 
+    /**
+    *	 主要是因为很多时候，技能的冷却过程是需要告知外部的，比如UI界面
+    */
+    virtual void update(float dm) {}
+
+    /**
+    *	 取消当前的攻击
+    */
+    void cancelCurrentAttack();
+
 protected:
     GameCharacter*      m_pOwner;                          // 武器的拥有者
     WeaponTypeEnum      m_weaponType;                      // 武器类型

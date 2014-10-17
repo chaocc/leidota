@@ -35,6 +35,14 @@ public:
     }
 
     /**
+    *	定期调用的 
+    */
+    virtual void regularUpdate(float dm)
+    {
+
+    }
+
+    /**
     *	因为是用什么武器与之前的攻击有关，所以在每次攻击的时候需要回调该函数，有些
     *   角色可以在子类中去覆盖该方法
     */
@@ -51,11 +59,19 @@ public:
 
     }
 
+    /**
+    *	对于普通的AI，默认情况下所有的命令都是无效的
+    */
+    virtual bool userOrder(WeaponTypeEnum aType)
+    {
+        return false;
+    }
+
 protected:
     /**
     *	在此处封装真正的武器选择逻辑 
     */
-    virtual void choiceWeapon() = 0;
+    virtual void choiceWeapon() {}
     
     /**
     *	提供的快捷方法来选择武器 

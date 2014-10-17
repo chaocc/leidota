@@ -8,7 +8,11 @@
 enum RefreshUIEventEnum
 {
     REFRESH_UI_EVENT_CHARACTER,                      // 当角色数据发生变化的时候
-    REFRESH_UI_EVENT_ATTACK_CHARACTER                // 当主角攻击目标或者数据发生变化的时候
+
+    REFRESH_UI_SKILL1_USABLE,                        // 用来刷新两个技能按钮的是否可以点击
+    REFRESH_UI_SKILL1_UNUSABLE,
+
+    REFRESH_UI_SKILL2_COOLING,                       // 技能2冷却的消息，刷新当前冷却的显示
 };
 
 #endif

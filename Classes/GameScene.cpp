@@ -8,6 +8,7 @@
 #include "GoalTeamGuard.h"
 #include "GoalTeamThink.h"
 #include "GameCharacterState.h"
+#include "WeaponSpiritUserChoiceAI.h"
 
 //#define ADDPCINPUT
 
@@ -44,6 +45,7 @@ bool GameScene::init()
     auto tmpRole5   =   GameCharacter::create(2);
     tmpRole5->retain();
     tmpRole5->setType(GAME_ENTITY_TYPE_PLAYER_CHARACTER);
+    tmpRole5->getWeaponControlSystem()->setWeaponChoiceAI(new WeaponSpiritUserChoiceAI(tmpRole5));
 
     auto tmpRole6   =   GameCharacter::create(2);
     tmpRole6->retain();
@@ -203,6 +205,7 @@ bool GameScene::init()
     tmpTeam4->getTeamBrain()->addSubgoal(new GoalTeamGuard(tmpTeam4));
 
     m_mainModel =   new GameMainModel();
+    m_mainModel->setMainGameCharacter(tmpRole5);
 
 //#ifdef ADDPCINPUT                   // 如果添加了使用PC键盘输入
 //    m_pcInputManager  =   new PCInputManager();
@@ -211,11 +214,11 @@ bool GameScene::init()
 //#endif
 
     // 战斗UI
-    // auto tmpUI  =   BattleUI::create();
-    // this->addChild(tmpUI);
+    auto tmpUI  =   BattleUI::create();
+    this->addChild(tmpUI);
     // 允许手机输入的，也就是屏幕输入方式
-    // m_mobileInputManager    =   tmpUI;
-    // m_mobileInputManager->setDelegate(m_mainModel);
+    m_mobileInputManager    =   tmpUI;
+    m_mobileInputManager->setDelegate(m_mainModel);
 
     return true;
 }

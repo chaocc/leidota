@@ -90,7 +90,7 @@ void GameCharacterTimidState::update( GameCharacter *owner, float dm )
 {
     // 每次更新都会判断血量是否满足逃跑条件
     auto tmpAttribute   =   owner->getAttribute();
-    if (tmpAttribute.getHp() / tmpAttribute.getFullHp() <= 0.5)
+    if (tmpAttribute.getHp() / tmpAttribute.getFullHp() <= 0.7)
     {
         auto tmpCurrentTeam =   owner->getTeam();
         auto tmpNextTeam    =   TeamMgr->getNextTeam(tmpCurrentTeam->getTeamId());
@@ -105,6 +105,7 @@ void GameCharacterTimidState::update( GameCharacter *owner, float dm )
 
             // 切换状态为逃跑中
             owner->getFSM()->changeState(GameCharacterEscapeToNextTeam::create());
+            owner->getFSM()->setGlobalState(nullptr);
         }
     }
 }
@@ -118,6 +119,10 @@ void GameCharacterEscapeToNextTeam::onEnter( GameCharacter* owner )
     owner->getMovingEntity().setMaxSpeed(2 * m_originMaxSpeed);
 
     owner->getSteeringBehaviros()->keepFormationOn();
+
+    // @_@ 下面是临时写的
+    owner->getSteeringBehaviros()->pursuitOff();
+    owner->getSteeringBehaviros()->setTraction(Vec2::ZERO);
 }
 
 void GameCharacterEscapeToNextTeam::onExit( GameCharacter *owner )

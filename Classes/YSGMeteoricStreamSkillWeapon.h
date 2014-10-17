@@ -61,6 +61,12 @@ private:
 
         // 归零能量值
         m_pOwner->getAttribute().setEnergy(0);
+
+        // 需要根据释放者和目标的相对位置来修改陨石下落的方向
+        if (m_targetPos.x < m_pOwner->getMovingEntity().getPosition().x)
+        {
+            tmpMeteoricStream->setScaleX(-1);
+        }
     }
 
     /**

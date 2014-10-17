@@ -5,6 +5,7 @@
 #include "GoalTeamAdvance.h"
 #include "GoalTeamAttackTargetTeam.h"
 #include "TeamManager.h"
+#include "TimeTool.h"
 
 class GameTeam;
 
@@ -14,7 +15,10 @@ class GameTeam;
 class GoalTeamThink : public GoalComposite<GameTeam>
 {
 public:
-    GoalTeamThink(GameTeam* owner):GoalComposite<GameTeam>(owner){}
+    GoalTeamThink(GameTeam* owner):GoalComposite<GameTeam>(owner), m_processInterval(0.5)
+    {
+        m_lastProcessTime   =   -1;
+    }
 
     // @_@ 临时使用的，方便外部设置目标
     void addSubgoal(Goal* aGoal)
@@ -24,16 +28,22 @@ public:
 
     virtual void activate() override
     {
-        //@_@ 临时这样写，一开始就给队伍一个集体前进的目标
-        // addSubgoal(new GoalTeamAdvance(m_pOwner));
-        // @_@ 临时这样写，进攻
-        // addSubgoal(new GoalTeamAttackTargetTeam(m_pOwner, TeamMgr->getTeamFromId(1)));
+
     }
 
     virtual GoalStateEnum process() override
     {
-        return GoalComposite<GameTeam>::process();
+        if (TimeTool::getSecondTime() - m_lastProcessTime > m_processInterval)
+        {
+            m_lastProcessTime   =   TimeTool::getSecondTime();
+            return GoalComposite<GameTeam>::process();
+        }
+        return active;
     }
+
+private:
+    float       m_lastProcessTime;              // 作为队伍的大脑也没有必要process太快
+    const float m_processInterval;
 };
 
 #endif

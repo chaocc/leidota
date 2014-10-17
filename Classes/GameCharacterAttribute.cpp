@@ -1,14 +1,11 @@
 #include "GameCharacterAttribute.h"
 
-GameCharacterAttribute::GameCharacterAttribute(float hp, float attack, float defense, float rate, 
-                                               float attDistance)
+GameCharacterAttribute::GameCharacterAttribute(float hp, float attack, float defense)
 {
     m_fullHp        =   hp;
     m_hp            =   hp;
     m_attack        =   attack;
     m_defense       =   defense;
-    m_rate          =   rate;
-    m_attDistance   =   attDistance;
     m_energy        =   0;
     m_maxEnergy     =   600;
 }

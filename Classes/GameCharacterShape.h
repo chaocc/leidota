@@ -152,6 +152,11 @@ public:
 
     Size getContentSize() { return _armature->getContentSize(); }
     
+    /**
+    *	展示主角光环 
+    */
+    void showHeroHalo();
+
 protected:
     GameCharacterShape(const std::string& armatureName);
 

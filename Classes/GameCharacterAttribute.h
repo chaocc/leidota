@@ -13,8 +13,7 @@ public:
     /**
     	 当前暂时一个人物只有血量、攻击值、防御值以及移动速度
     */
-    GameCharacterAttribute(float hp = 100, float attack = 10, float defense = 20, 
-        float rate = 80, float attDistance = 650);
+    GameCharacterAttribute(float hp = 100, float attack = 10, float defense = 20);
 
     /**
     	 遭受别人的普通攻击，这里之所以把对方的所有属性都传入，是因为考虑到可能普通攻击的杀伤计算
@@ -32,8 +31,6 @@ public:
     CC_SYNTHESIZE(float, m_energy, Energy);                             // 能量，用来控制攻击逻辑的
     CC_SYNTHESIZE(float, m_attack, Attack);                             // 攻击值
     CC_SYNTHESIZE(float, m_defense, Defense);                           // 防御值
-    CC_SYNTHESIZE(float, m_rate, Rate);                                 // 移动速度，单位是像素/秒
-    CC_SYNTHESIZE(float, m_attDistance, AttDistance);                   // 攻击范围（只对远程攻击单位有效）
 
     int   m_maxEnergy;                                                  // 最大能量
 };

@@ -119,8 +119,11 @@ public:
             _globalState->onExit(_owner);
             CC_SAFE_RELEASE_NULL(_globalState);
         }
-        _globalState    =   globalState;
-        _globalState->retain();
+        if (globalState != nullptr)
+        {
+            _globalState    =   globalState;
+            _globalState->retain();
+        }
     }
 
     /**

@@ -3,12 +3,14 @@
 #include "TimeTool.h"
 #include "EntityManager.h"
 #include "Tornado.h"
+#include "RefreshUIMsg.h"
+#include "UIViewManager.h"
 
 SpiritSnowStormSkillWeapon::SpiritSnowStormSkillWeapon( GameCharacter* owner ) 
     :Weapon(owner, SPIRIT_SNOWSTORM_SKILL_WEAPON), m_actionName("atk2")
 {
     m_attRadius         =   650;
-    m_minAttInterval    =   3;
+    m_lastTestIsReady   =   false;
 }
 
 void SpiritSnowStormSkillWeapon::attack( GameCharacter* target )
@@ -16,9 +18,7 @@ void SpiritSnowStormSkillWeapon::attack( GameCharacter* target )
     // 先播放动画
     m_pOwner->getShape()->playAction(m_actionName, false, 
         std::bind(&SpiritSnowStormSkillWeapon::onAttackEffect, this, std::placeholders::_1));
-    // 最短攻击间隔时间的
-    m_lastAttackTime        =   TimeTool::getSecondTime();
-    m_nextAttackReadyTime   =   m_lastAttackTime + m_minAttInterval;
+
     m_targetId              =   target->getId();
 
     // 同时把能量归零
@@ -34,7 +34,8 @@ bool SpiritSnowStormSkillWeapon::isInAttackRange( GameCharacter* target )
 
 bool SpiritSnowStormSkillWeapon::isReadyForNextAttack()
 {
-    return m_nextAttackReadyTime < TimeTool::getSecondTime();
+    // 暴风雪准备好的条件是能量达到600
+    return m_pOwner->getAttribute().getEnergy() >= 600;
 }
 
 bool SpiritSnowStormSkillWeapon::isAttacking()
@@ -61,4 +62,29 @@ bool SpiritSnowStormSkillWeapon::isTargetAlive()
 {
     auto tmpCharacter   =   dynamic_cast<GameCharacter*>(EntityMgr->getEntityFromID(m_targetId));
     return tmpCharacter != nullptr && tmpCharacter->isAlive();
+}
+
+void SpiritSnowStormSkillWeapon::update( float dm )
+{
+    // @_@ 如果之前是不能使用，而这次更新后可以使用，就会向发一个UI事件
+    // @_@ 这里忽略一个问题，只有主角采用发出消息
+    if (m_pOwner != dynamic_cast<GameCharacter*>(EntityMgr->getmainEntity()))
+    {
+        return;
+    }
+
+    auto tmpIsReady =   isReadyForNextAttack();
+    if (!m_lastTestIsReady && tmpIsReady)
+    {
+        // @_@ 发出UI事件
+        RefreshUIMsg    tmpMsg(REFRESH_UI_SKILL1_USABLE);
+        UIViewMgr->refreshView(tmpMsg);
+    }
+    else if (m_lastTestIsReady && !tmpIsReady)
+    {
+        // 之前可以，现在又不可以了，也发出一个消息
+        RefreshUIMsg    tmpMsg(REFRESH_UI_SKILL1_UNUSABLE);
+        UIViewMgr->refreshView(tmpMsg);
+    }
+    m_lastTestIsReady   =   tmpIsReady;
 }

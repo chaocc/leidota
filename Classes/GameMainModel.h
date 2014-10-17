@@ -25,6 +25,9 @@ public:
     virtual void idle() override;                // 不操作
     virtual void changeTarget() override;        // 选择目标
 
+    virtual void useSkill1() override;
+    virtual void useSkill2() override;
+
     /**
     	 设置主控制游戏角色，这个角色会收到玩家控制
     */

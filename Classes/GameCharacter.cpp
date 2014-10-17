@@ -41,7 +41,7 @@ GameCharacter* GameCharacter::create(int id)
             tmpRet->m_shape->retain();
 
             // 不同的角色有不同的初始属性
-            tmpRet->m_attribute     =   GameCharacterAttribute(200, 10, 30, 70);
+            tmpRet->m_attribute     =   GameCharacterAttribute(200, 10, 30);
 
             // 普通近距离攻击能力
             tmpRet->getWeaponControlSystem()->addWeapon(new NormalCloseRangeWeapon(tmpRet));
@@ -62,11 +62,11 @@ GameCharacter* GameCharacter::create(int id)
             tmpRet->m_shape         =   GameCharacterShape::create("xuejingling-qian");
             tmpRet->m_shape->retain();
 
-            tmpRet->m_attribute     =   GameCharacterAttribute(800, 70, 10, 80, 700);
+            tmpRet->m_attribute     =   GameCharacterAttribute(800, 70, 10);
 
             // 普通远程攻击，丢出去的是闪电球
             tmpRet->getWeaponControlSystem()->addWeapon(new NormalLongRangeWeapon(tmpRet, PROJECTILE_TYPE_GALAXO_BALL, 
-                tmpRet->getAttribute().getAttDistance()));
+                600));
             // 冰冻攻击，让敌人被冻住
             tmpRet->getWeaponControlSystem()->addWeapon(new SpiritFreezeSkillWeapon(tmpRet));
             // 暴风雪
@@ -82,7 +82,7 @@ GameCharacter* GameCharacter::create(int id)
             tmpRet->m_shape         =   GameCharacterShape::create("Aer");
             tmpRet->m_shape->retain();
 
-            tmpRet->m_attribute     =   GameCharacterAttribute(900, 20, 50, 120);
+            tmpRet->m_attribute     =   GameCharacterAttribute(900, 20, 50);
 
             // 普通近程攻击能力
             tmpRet->getWeaponControlSystem()->addWeapon(new NormalCloseRangeWeapon(tmpRet));
@@ -99,7 +99,7 @@ GameCharacter* GameCharacter::create(int id)
             tmpRet->m_shape         =   GameCharacterShape::create("Pig");
             tmpRet->m_shape->retain();
 
-            tmpRet->m_attribute     =   GameCharacterAttribute(400, 10, 10, 80);
+            tmpRet->m_attribute     =   GameCharacterAttribute(400, 10, 10);
 
             // 普通近程攻击能力
             tmpRet->getWeaponControlSystem()->addWeapon(new NormalCloseRangeWeapon(tmpRet));
@@ -117,7 +117,7 @@ GameCharacter* GameCharacter::create(int id)
             tmpRet->m_shape         =   GameCharacterShape::create("Niu");
             tmpRet->m_shape->retain();
 
-            tmpRet->m_attribute     =   GameCharacterAttribute(400, 15, 10, 70);
+            tmpRet->m_attribute     =   GameCharacterAttribute(400, 15, 10);
 
             // 普通近程攻击能力
             tmpRet->getWeaponControlSystem()->addWeapon(new NormalCloseRangeWeapon(tmpRet));
@@ -135,7 +135,7 @@ GameCharacter* GameCharacter::create(int id)
             tmpRet->m_shape         =   GameCharacterShape::create("Theif");
             tmpRet->m_shape->retain();
 
-            tmpRet->m_attribute     =   GameCharacterAttribute(300, 30, 5, 80);
+            tmpRet->m_attribute     =   GameCharacterAttribute(300, 30, 5);
 
             // 普通进程攻击能力
             tmpRet->getWeaponControlSystem()->addWeapon(new NormalCloseRangeWeapon(tmpRet));
@@ -153,7 +153,7 @@ GameCharacter* GameCharacter::create(int id)
             tmpRet->m_shape         =   GameCharacterShape::create("YSG");
             tmpRet->m_shape->retain();
 
-            tmpRet->m_attribute     =   GameCharacterAttribute(400, 20, 40, 60);
+            tmpRet->m_attribute     =   GameCharacterAttribute(500, 30, 40);
 
             // 普通近程攻击能力
             tmpRet->getWeaponControlSystem()->addWeapon(new NormalCloseRangeWeapon(tmpRet));
@@ -232,6 +232,9 @@ void GameCharacter::update(float dm)
     // 状态机也更新一下
     m_stateMachine->update(dm);
 
+    // 武器系统
+    m_weaponControlSystem->regularUpdate(dm);
+
     // 如果当前角色处于dull，就不用继续了
     if (On(dull))
     {
@@ -289,6 +292,14 @@ bool GameCharacter::handleMessage(Telegram& msg)
                 Dispatch->dispatchMessage(*tmpDeadMsg);
             }
             m_shape->setHpRatio(m_attribute.getHp() / m_attribute.getFullHp());
+
+            // 同时发出消息告知UI
+            if (this == dynamic_cast<GameCharacter*>(EntityMgr->getmainEntity()))
+            {
+                RefreshUIMsg    tmpMsg(REFRESH_UI_EVENT_CHARACTER, this);
+                UIViewMgr->refreshView(tmpMsg);
+            }
+
             return true;
         }
 
