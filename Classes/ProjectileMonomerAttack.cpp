@@ -4,7 +4,7 @@
 #include "MessageDispatcher.h"
 
 ProjectileMonomerAttack::ProjectileMonomerAttack( GameCharacterAttribute& att, int targetId )
-    :Projectile(att), m_collisionDisSq(400)
+    :Projectile(att), m_collisionDisSq(900)
 {
     ArmatureDataManager::getInstance()->addArmatureFileInfo("xuejingling-texiao.ExportJson");
     m_targetId  =   targetId;

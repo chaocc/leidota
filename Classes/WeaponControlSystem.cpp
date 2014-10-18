@@ -35,7 +35,10 @@ void WeaponControlSystem::addWeapon(Weapon* aWeapon)
     m_allWeapons.insert(WeaponMap::value_type(aWeapon->getWeaponType(), aWeapon));
 
     // @_@ 当前先这样写
-    m_currentWeapon     =   aWeapon;
+    if (m_currentWeapon == nullptr)
+    {
+        m_currentWeapon     =   aWeapon;
+    }
 }
 
 void WeaponControlSystem::takeWeaponAndAttack( GameCharacter* target )
