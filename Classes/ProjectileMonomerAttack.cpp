@@ -4,7 +4,7 @@
 #include "MessageDispatcher.h"
 
 ProjectileMonomerAttack::ProjectileMonomerAttack( GameCharacterAttribute& att, int targetId )
-    :Projectile(att)
+    :Projectile(att), m_collisionDisSq(400)
 {
     ArmatureDataManager::getInstance()->addArmatureFileInfo("xuejingling-texiao.ExportJson");
     m_targetId  =   targetId;
@@ -21,9 +21,7 @@ void ProjectileMonomerAttack::update( float dm )
     // 判断是否到达
     if (canUpdateMovement())
     {
-        float tmpDistance    =   
-            (m_movingPart->getPosition() - m_movingPart->getTargetPos()).getLengthSq();
-        if (tmpDistance <= 400)
+        if (testCollision(m_lastPos, m_movingPart->getPosition(), m_movingPart->getTargetPos()))
         {
             // 禁止更新位移
             updateMovementOff();
@@ -43,4 +41,31 @@ void ProjectileMonomerAttack::update( float dm )
             updateOff();
         }
     }
+}
+
+bool ProjectileMonomerAttack::testCollision( Vec2 aPos1, Vec2 aPos2, Vec2 aTargetPos )
+{
+    Vec2 tmpTargetToPos1    =   aPos1 - aTargetPos;
+    float tmpDistance1      =   tmpTargetToPos1.getLengthSq();
+    if (tmpDistance1 <= m_collisionDisSq)
+    {
+        return true;
+    }
+
+    Vec2 tmpTargetToPos2    =   aPos2 - aTargetPos;
+    float tmpDistance2      =   tmpTargetToPos2.getLengthSq();
+    if (tmpDistance2 <= m_collisionDisSq)
+    {
+        return true;
+    }
+
+    Vec2 tmpPos2ToPos1  =   aPos1 - aPos2;
+    Vec2 tmpVertical    =   tmpTargetToPos1 - 
+        tmpPos2ToPos1.dot(tmpTargetToPos1) * tmpPos2ToPos1 / tmpPos2ToPos1.getLengthSq();
+    if (Vec2::angle(tmpTargetToPos1, tmpVertical) * Vec2::angle(tmpTargetToPos2, tmpVertical) <= 0)
+    {
+        return tmpVertical.getLengthSq() <= m_collisionDisSq;
+    }
+
+    return false;
 }

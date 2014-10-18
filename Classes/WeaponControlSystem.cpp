@@ -81,17 +81,15 @@ void WeaponControlSystem::update()
 {
     // 现在把这部分更新当前选择武器的逻辑交给外部对象
     m_weaponChoiceAI->update();
-
-    // 如果有等待更换的武器，就更换掉
-    if (m_readyToUseWeapon != nullptr)
-    {
-        m_currentWeapon     =   m_readyToUseWeapon;
-        m_readyToUseWeapon  =   nullptr;
-    }
 }
 
 bool WeaponControlSystem::changeWeapon( WeaponTypeEnum type, bool force )
 {
+    if (m_currentWeapon != nullptr && m_currentWeapon->getWeaponType() == type)
+    {
+        return false;
+    }
+
     auto tmpIterator    =   m_allWeapons.find(type);
     if (tmpIterator == m_allWeapons.end())
     {
@@ -134,6 +132,13 @@ Weapon* WeaponControlSystem::getWeaponByType( WeaponTypeEnum aType )
 void WeaponControlSystem::regularUpdate( float dm )
 {
     m_weaponChoiceAI->regularUpdate(dm);
+
+    // 如果有等待更换的武器，就更换掉
+    if (m_readyToUseWeapon != nullptr && !m_currentWeapon->isAttacking())
+    {
+        m_currentWeapon     =   m_readyToUseWeapon;
+        m_readyToUseWeapon  =   nullptr;
+    }
 
     // 调用所有的武器的update
     for (auto tmpIterator = m_allWeapons.begin(); tmpIterator != m_allWeapons.end(); tmpIterator++)

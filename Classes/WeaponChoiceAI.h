@@ -26,7 +26,10 @@ public:
     }
 
     /**
-    *	每一次调用，都会根据当前情况选择一个合适的武器 
+    *	每一次调用，都会根据当前情况选择一个合适的武器，该函数只会在少数的地方被调用
+    *   （1）在设定攻击目标的时候被调用
+    *   （2）在每次发动攻击之后会被调用
+    *   这是用在每次只在
     */
     void update()
     {
@@ -78,7 +81,7 @@ protected:
     */
     void changeWeapon(WeaponTypeEnum aType)
     {
-        assert(m_pOwner->getWeaponControlSystem()->changeWeapon(aType));
+        m_pOwner->getWeaponControlSystem()->changeWeapon(aType);
     }
 
     GameCharacter*    m_pOwner;                // 对应的武器控制系统

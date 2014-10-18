@@ -33,6 +33,21 @@ protected:
             m_goalState =   completed;
         }
 
+        if (m_pOwner->getTeamFormation().getFormationType() == Formation::FORMATION_TYPE_RIGHT)
+        {
+            if (m_pOwner->getTeamFormation().getFormationAnchor().x >= m_xPos)
+            {
+                m_goalState =   completed;
+            }
+        }
+        else
+        {
+            if (m_pOwner->getTeamFormation().getFormationAnchor().x <= m_xPos)
+            {
+                m_goalState =   completed;
+            }
+        }
+
         return m_goalState;
     }
 

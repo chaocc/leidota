@@ -120,6 +120,9 @@ Projectile::~Projectile()
 
 void Projectile::updateMovement( float dm )
 {
+    // 需要记录一下最近一次的位置
+    m_lastPos   =   m_movingPart->getPosition();
+
     // 使用推进器更新当前的坐标
     m_movingPart->updateMovement(dm);
     m_shapePart->setPosition(m_movingPart->getPosition());

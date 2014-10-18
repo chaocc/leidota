@@ -15,7 +15,12 @@ public:
     virtual void update(float dm) override;
 
 private:
-    int             m_targetId;     // ¹¥»÷Ä¿±ê
+    /**
+    *	 ²âÊÔÊÇ·ñÅö×²
+    */    
+    bool testCollision(Vec2 aPos1, Vec2 aPos2, Vec2 aTargetPos);
+    int             m_targetId;         // ¹¥»÷Ä¿±ê
+    const float     m_collisionDisSq;   // Åö×²¾àÀë
 };
 
 #endif

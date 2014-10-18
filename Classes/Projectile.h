@@ -96,6 +96,9 @@ private:
     ProjectileTypeEnum          m_projectileType;               // “子弹”类型
     static int m_count;
     CC_SYNTHESIZE_READONLY(int, m_projectileId, ProjectileId);  // 唯一标识
+
+    // 在移动部分调用updateMovement之前的位置
+    Vec2                        m_lastPos;
 };
 
 #endif
