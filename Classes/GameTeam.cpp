@@ -14,6 +14,7 @@ GameTeam::GameTeam()
     m_teamBrain     =   new GoalTeamThink(this);
     m_teamState     =   GAME_TEAM_STATE_ACTIVE;
     setStayState();
+    m_lastUpdateTime    =   0;
 }
 
 GameTeam::~GameTeam()
@@ -80,6 +81,8 @@ void GameTeam::removeMember( GameCharacter* player )
 
 void GameTeam::update(float dm)
 {
+    dm  =   TimeTool::getSecondTime() - m_lastUpdateTime;
+    m_lastUpdateTime    =   TimeTool::getSecondTime();
     //CCLOG("GameTeam::update");
     // 首先删除当前处于死亡状态的成员
     removeDeadCharacter();

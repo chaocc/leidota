@@ -97,8 +97,8 @@ private:
     /**
     *	除了独立的武器有攻击间隔要求，就算中间换了武器，也有武器系统的最小攻击间隔事件 
     */
-    double                                      m_lastAttackTime;   // 最近一次攻击
-    double                                      m_nextAttackTime;   // 下一次允许的攻击时间
+    float                                      m_lastAttackTime;   // 最近一次攻击
+    float                                      m_nextAttackTime;   // 下一次允许的攻击时间
     const float                                 m_minAttackInterval;// 攻击的最小间隔
 };
 

@@ -14,6 +14,7 @@ WeaponControlSystem::WeaponControlSystem( GameCharacter* owner ):m_minAttackInte
     m_lastAttackTime    =   0;
     m_weaponChoiceAI    =   nullptr;
     m_readyToUseWeapon  =   nullptr;
+    m_nextAttackTime    =   0;
 }
 
 WeaponControlSystem::~WeaponControlSystem()
@@ -77,7 +78,7 @@ bool WeaponControlSystem::canCharacterMove()
 {
     // 只有当前武器不在攻击或者当前目标存在并且在攻击范围内
     auto tmpTarget  =   dynamic_cast<GameCharacter*>(EntityMgr->getEntityFromID(m_targetId));
-    return !m_currentWeapon->isAttacking() && !(tmpTarget != nullptr && isInAttackRange(tmpTarget));
+    return tmpTarget == nullptr || !isInAttackRange(tmpTarget) || !m_currentWeapon->isAttacking();
 }
 
 void WeaponControlSystem::update()

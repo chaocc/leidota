@@ -122,6 +122,8 @@ private:
         GAME_TEAM_MOVE_FOLLOW_PLAYER,                           // 依据成员
     };
     GameTeamMoveStateEnum       m_teamMoveState;
+
+    float                       m_lastUpdateTime;               // 最近一次更新的
 };
 
 #endif

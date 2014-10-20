@@ -14,6 +14,7 @@ public:
         , m_actionName("atk2"), m_attRadius(650)
     {
         m_minAttackInterval     =   6;
+        m_nextAttackReadyTime   =   0;
     }
 
     ~YSGMeteoricStreamSkillWeapon()

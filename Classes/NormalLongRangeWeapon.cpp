@@ -13,6 +13,7 @@ NormalLongRangeWeapon::NormalLongRangeWeapon( GameCharacter* owner,
     m_attRadius         =   attDistance;
     m_minAttInterval    =   minAttackInterval;
     m_projectileType    =   type;
+    m_nextAttackReadyTime   =   0;
 }
 
 void NormalLongRangeWeapon::attack( GameCharacter* target )

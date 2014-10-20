@@ -26,7 +26,7 @@ void TeamManager::update(float dm)
         auto tmpTeam    =   tmpIterator->second;
         tmpIterator++;
         tmpTeam->update(dm);
-        if (!tmpFirst && ++tmpCount == 2)
+        if (!tmpFirst && ++tmpCount == 3)
         {
             break;
         }

@@ -7,6 +7,7 @@ NormalCloseRangeWeapon::NormalCloseRangeWeapon( GameCharacter* owner, float minA
     :Weapon(owner, NORMAL_CLOSE_RANGE_WEAPON), m_actionName(actionName), m_xOffset(80), m_yOffset(8)
 {
     m_minAttackInterval     =   minAttackInterval;
+    m_nextAttackReadyTime   =   0;
 }
 
 NormalCloseRangeWeapon::~NormalCloseRangeWeapon()
