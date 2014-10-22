@@ -195,6 +195,8 @@ void GoalTeamAttackTargetTeam::inspectTeamMembers()
                 tmpTarget->getId(), tmpTarget->getTeam()->getTeamId());
             m_pOwner->sendMessageToOneMember(*tmpMsg, tmpOwnCharacter);
         }
+
+        break;
     }
 }
 

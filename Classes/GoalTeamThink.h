@@ -15,7 +15,7 @@ class GameTeam;
 class GoalTeamThink : public GoalComposite<GameTeam>
 {
 public:
-    GoalTeamThink(GameTeam* owner):GoalComposite<GameTeam>(owner), m_processInterval(0.5)
+    GoalTeamThink(GameTeam* owner):GoalComposite<GameTeam>(owner), m_processInterval(0.2)
     {
         m_lastProcessTime   =   -1;
     }
